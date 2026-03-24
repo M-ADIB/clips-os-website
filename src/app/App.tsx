@@ -415,13 +415,13 @@ export default function App() {
           >
             <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
               {[
-                '11_3_optimized', 'Amazon_Riddles_optimized', 'Dr Medhat.01 ', 'Good 4', 
-                'Image Showcase 1', 'Ninad_HG_240p', 'OM_HG_240p', 'Pointers 1', 
-                'Pointers 2', 'Tina_HG_240p', 'hager 1', 'intense warm', 
-                'softwarm', 'v1_optimized'
-              ].map((name, i) => (
+                '11_3_optimized.gif', 'Amazon_Riddles_optimized.gif', 'Dr Medhat.01 .gif', 'Good 4.gif', 
+                'Image Showcase 1.gif', 'Ninad_HG_240p.gif', 'OM_HG_240p.gif', 'Pointers 1.gif', 
+                'Pointers 2.gif', 'Tina_HG_240p.gif', 'hager 1.gif', 'intense warm.gif', 
+                'softwarm.gif', 'v1_optimized.gif'
+              ].map((gif, i) => (
                 <div key={i} className="w-[120px] sm:w-[160px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-1" style={{ willChange: 'transform', transform: 'translateZ(0)', contain: 'layout paint' }}>
-                  <img src={`/assets/ticker-thumbs/${name}.jpg`} alt="Reel" className="w-full h-full object-cover" loading="eager" decoding="async" />
+                  <img src={`/assets/ticker-gifs/${gif}`} alt="Reel" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 </div>
               ))}
             </Marquee>
