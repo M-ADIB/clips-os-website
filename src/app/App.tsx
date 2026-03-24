@@ -510,6 +510,15 @@ export default function App() {
               </div>
             </StaggerItem>
           </div>
+
+          <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
+            <Link to="/apply" className="w-full sm:w-auto relative group">
+              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+                Build your Authority Engine
+              </span>
+            </Link>
+          </FadeInOnScroll>
         </section>
 
         {/* ── How The System Runs ── */}
@@ -596,9 +605,12 @@ export default function App() {
             ))}
           </div>
 
-          <FadeInOnScroll className="mt-16 sm:mt-24 md:mt-32 flex justify-center">
-            <Link to="/book-a-call" className="bg-[#f5d1ff] text-[#080617] px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-lg sm:text-xl hover:bg-white transition-all shadow-[0_0_40px_rgba(245,209,255,0.2)] hover:shadow-[0_0_60px_rgba(245,209,255,0.4)]">
-              Book a Walkthrough
+          <FadeInOnScroll className="mt-16 sm:mt-24 md:mt-32 flex justify-center relative z-20">
+            <Link to="/book-a-call" className="w-full sm:w-auto relative group">
+              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+                Book a Walkthrough
+              </span>
             </Link>
           </FadeInOnScroll>
         </section>
@@ -667,6 +679,15 @@ export default function App() {
               />
             </StaggerItem>
           </StaggerContainer>
+
+          <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
+            <Link to="/apply" className="w-full sm:w-auto relative group">
+              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+                Apply to become our next Case Study
+              </span>
+            </Link>
+          </FadeInOnScroll>
         </section>
 
         {/* ── Testimonials ── */}
