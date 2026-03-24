@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router'
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router'
 import { AnimatePresence, motion } from 'motion/react'
 import App from './app/App'
 import ApplyPage from './app/ApplyPage'
@@ -25,12 +25,12 @@ function AnimatedRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<App />} />
-          <Route path="/apply" element={<ApplyPage />} />
+          <Route path="/submit-form" element={<ApplyPage />} />
           <Route path="/book-a-call" element={<BookACallPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

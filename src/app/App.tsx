@@ -330,7 +330,7 @@ export default function App() {
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-4">
               <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 px-5 py-2.5 rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
-              <Link to="/apply" className="cta-shine-light px-6 py-2.5 rounded-lg font-bold">
+              <Link to="/submit-form" className="cta-shine-light px-6 py-2.5 rounded-lg font-bold">
                 Book a call
               </Link>
             </div>
@@ -357,7 +357,7 @@ export default function App() {
             >
               <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
                 <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
-                <Link to="/apply" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
+                <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
                   Book a call
                 </Link>
               </div>
@@ -407,7 +407,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Link to="/apply" className="w-full sm:w-auto relative group">
+            <Link to="/submit-form" className="w-full sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-8 py-3.5 rounded-xl font-bold">
                 Apply for ClipsOS™
@@ -512,7 +512,7 @@ export default function App() {
           </div>
 
           <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
-            <Link to="/apply" className="w-full sm:w-auto relative group">
+            <Link to="/submit-form" className="w-full sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
                 Build your Authority Engine
@@ -681,7 +681,7 @@ export default function App() {
           </StaggerContainer>
 
           <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
-            <Link to="/apply" className="w-full sm:w-auto relative group">
+            <Link to="/submit-form" className="w-full sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
                 Apply to become our next Case Study
@@ -749,7 +749,7 @@ export default function App() {
               
               <div className="flex justify-center relative z-20">
                 <Link
-                  to="/apply"
+                  to="/submit-form"
                   className="cta-shine text-white px-10 py-4 rounded-full font-bold text-[15px] inline-block relative group"
                 >
                   {/* Top highlight sheen */}
@@ -791,7 +791,7 @@ export default function App() {
                 <h4 className="font-bold mb-6 text-[#080617] uppercase text-sm tracking-wider">Services</h4>
                 <ul className="space-y-4">
                   <li><Link to="/" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Home</Link></li>
-                  <li><Link to="/apply" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Process &amp; Pricing</Link></li>
+                  <li><Link to="/submit-form" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Process &amp; Pricing</Link></li>
                   <li><a href="https://app.theclips.agency/careers" target="_blank" rel="noopener noreferrer" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Careers</a></li>
                 </ul>
               </div>
