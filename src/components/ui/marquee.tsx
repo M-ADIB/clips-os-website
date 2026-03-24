@@ -33,6 +33,7 @@ export function Marquee({
             } ${pauseOnHover ? "group-hover:[animation-play-state:paused]" : ""} ${
               reverse ? "[animation-direction:reverse]" : ""
             }`}
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
           >
             {children}
           </div>

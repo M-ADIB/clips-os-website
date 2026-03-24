@@ -337,24 +337,17 @@ export default function App() {
         </div>
 
         {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              className="md:hidden px-4 mt-2"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
-                <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
-                <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
-                  Book a call
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu - CSS transition instead of heavy AnimatePresence */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden px-4 mt-2 animate-in fade-in slide-in-from-top-2 duration-150">
+            <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
+              <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
+                Book a call
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       <main className="pt-24 sm:pt-32 pb-12 sm:pb-20">
@@ -420,15 +413,15 @@ export default function App() {
               WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
             }}
           >
-            <Marquee className="[--duration:50s]" pauseOnHover>
+            <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
               {[
-                '11_3_optimized.gif', 'Amazon_Riddles_optimized.gif', 'Dr Medhat.01 .gif', 'Good 4.gif', 
-                'Image Showcase 1.gif', 'Ninad_HG_240p.gif', 'OM_HG_240p.gif', 'Pointers 1.gif', 
-                'Pointers 2.gif', 'Tina_HG_240p.gif', 'hager 1.gif', 'intense warm.gif', 
-                'softwarm.gif', 'v1_optimized.gif'
-              ].map((gif, i) => (
-                <div key={i} className="w-[140px] sm:w-[180px] md:w-[220px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-2" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
-                  <img src={`/assets/ticker-gifs/${gif}`} alt="Reel" className="w-full h-full object-cover" loading="lazy" />
+                '11_3_optimized', 'Amazon_Riddles_optimized', 'Dr Medhat.01 ', 'Good 4', 
+                'Image Showcase 1', 'Ninad_HG_240p', 'OM_HG_240p', 'Pointers 1', 
+                'Pointers 2', 'Tina_HG_240p', 'hager 1', 'intense warm', 
+                'softwarm', 'v1_optimized'
+              ].map((name, i) => (
+                <div key={i} className="w-[120px] sm:w-[160px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-1" style={{ willChange: 'transform', transform: 'translateZ(0)', contain: 'layout paint' }}>
+                  <img src={`/assets/ticker-thumbs/${name}.jpg`} alt="Reel" className="w-full h-full object-cover" loading="eager" decoding="async" />
                 </div>
               ))}
             </Marquee>
@@ -600,7 +593,7 @@ export default function App() {
           </div>
 
           <FadeInOnScroll className="mt-16 sm:mt-24 md:mt-32 flex justify-center relative z-20">
-            <Link to="/book-a-call" className="w-full sm:w-auto relative group">
+            <Link to="/submit-form" className="w-full sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
                 Book a Walkthrough
