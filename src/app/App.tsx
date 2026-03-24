@@ -727,7 +727,15 @@ export default function App() {
               </p>
               
               <div className="flex justify-center relative z-20">
-                <Link to="/apply" className="bg-[#1C1A27] text-white px-8 py-4 rounded-full font-bold text-[15px] hover:bg-black transition-colors shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                <Link
+                  to="/apply"
+                  className="cta-shine text-white px-10 py-4 rounded-full font-bold text-[15px] inline-block relative group"
+                >
+                  {/* Top highlight sheen */}
+                  <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+                    <span className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                    <span className="absolute top-0 left-[10%] right-[10%] h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-full" />
+                  </span>
                   Apply For Clips OS™
                 </Link>
               </div>
