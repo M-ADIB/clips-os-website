@@ -1,28 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 export default function ApplyPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Inject the Jotform script
-    const script = document.createElement('script');
-    script.src = 'https://form.jotform.com/jsform/232130561902041';
-    script.type = 'text/javascript';
-    script.async = true;
-
-    if (containerRef.current) {
-      containerRef.current.appendChild(script);
-    }
-
-    return () => {
-      // Cleanup on unmount
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
-      }
-    };
-  }, []);
-
   return (
     <div className="bg-[#080617] min-h-screen text-[#fffff7] font-sans">
       {/* Simple Nav */}
@@ -56,10 +35,21 @@ export default function ApplyPage() {
           </p>
         </div>
 
-        {/* Jotform embed container */}
-        <div
-          ref={containerRef}
-          className="w-full min-h-[600px] rounded-2xl overflow-hidden"
+        {/* Jotform iframe embed – loads immediately, no JS injection delay */}
+        <iframe
+          id="JotFormIFrame-232130561902041"
+          title="Apply for ClipsOS"
+          src="https://form.jotform.com/232130561902041"
+          allow="geolocation; microphone; camera; fullscreen"
+          scrolling="yes"
+          style={{
+            width: '100%',
+            minHeight: '700px',
+            height: '100%',
+            border: 'none',
+            borderRadius: '16px',
+            display: 'block',
+          }}
         />
       </main>
     </div>
