@@ -584,7 +584,7 @@ export default function App() {
               { num: "01", title: "Collaborate With Ease", desc: "Access all content, assets, and updates in one workspace — keeping your team, editor, and strategy perfectly aligned.", img: "/assets/Collaborate with Ease.gif", reverse: false },
               { num: "02", title: "Frame-Based Review", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Dashboard from The Clips Agency.gif", reverse: true },
               { num: "03", title: "Analytics That Matter", desc: "Track the metrics that actually drive growth — views, retention, reach, and lead signals — so we know exactly what to double down on.", img: "/assets/IG Analytics from The Clips Agency.gif", reverse: false },
-              { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "", reverse: true },
+              { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Talent Network.gif", reverse: true },
             ].map((item, idx) => (
               <FadeInOnScroll key={idx}>
                 <div className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 sm:gap-10 md:gap-20`}>
