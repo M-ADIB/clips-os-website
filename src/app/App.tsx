@@ -792,13 +792,13 @@ export default function App() {
                 <ul className="space-y-4">
                   <li><Link to="/" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Home</Link></li>
                   <li><Link to="/apply" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Process &amp; Pricing</Link></li>
-                  <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Careers</a></li>
+                  <li><a href="https://app.theclips.agency/careers" target="_blank" rel="noopener noreferrer" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Careers</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-bold mb-6 text-[#080617] uppercase text-sm tracking-wider">Resources</h4>
                 <ul className="space-y-4">
-                  <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Platform</a></li>
+                  <li><a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Platform</a></li>
                   <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Help Center</a></li>
                 </ul>
               </div>
