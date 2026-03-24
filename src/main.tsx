@@ -7,6 +7,8 @@ import ApplyPage from './app/ApplyPage'
 import BookACallPage from './app/BookACallPage'
 import ThankYouPage from './app/ThankYouPage'
 import NotFoundPage from './app/NotFoundPage'
+import PrivacyPage from './app/PrivacyPage'
+import TermsPage from './app/TermsPage'
 import './styles/index.css'
 
 function AnimatedRoutes() {
@@ -26,6 +28,8 @@ function AnimatedRoutes() {
           <Route path="/apply" element={<ApplyPage />} />
           <Route path="/book-a-call" element={<BookACallPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </motion.div>

@@ -784,8 +784,8 @@ export default function App() {
               <div className="col-span-2 sm:col-span-1">
                 <h4 className="font-bold mb-6 text-[#080617] uppercase text-sm tracking-wider">Legal</h4>
                 <ul className="space-y-4">
-                  <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Privacy Policy</a></li>
-                  <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Terms of Service</a></li>
+                  <li><Link to="/privacy" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Privacy Policy</Link></li>
+                  <li><Link to="/terms" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Terms of Service</Link></li>
                 </ul>
               </div>
             </div>
