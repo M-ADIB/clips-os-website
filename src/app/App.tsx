@@ -330,7 +330,7 @@ export default function App() {
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-4">
               <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 px-5 py-2.5 rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
-              <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-2.5 rounded-lg font-bold hover:bg-white transition-colors">
+              <Link to="/apply" className="cta-shine-light px-6 py-2.5 rounded-lg font-bold">
                 Book a call
               </Link>
             </div>
@@ -357,7 +357,7 @@ export default function App() {
             >
               <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
                 <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
-                <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-3 rounded-lg font-bold text-center">
+                <Link to="/apply" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
                   Book a call
                 </Link>
               </div>
@@ -408,8 +408,8 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <Link to="/apply" className="w-full sm:w-auto relative group">
-              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-md opacity-40 group-hover:opacity-60 transition-opacity" />
-              <span className="relative block bg-[#fbe9ff] text-[#080617] px-8 py-3.5 rounded-xl font-bold hover:bg-white transition-colors">
+              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <span className="relative block cta-shine-light px-8 py-3.5 rounded-xl font-bold">
                 Apply for ClipsOS™
               </span>
             </Link>

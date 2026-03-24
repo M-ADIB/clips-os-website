@@ -38,10 +38,25 @@
   background: linear-gradient(90deg, #1C1A27 0%, #2d2a41 40%, #1C1A27 60%, #2d2a41 100%);
   background-size: 200% auto;
   animation: shine 3s linear infinite;
-  box-shadow: 0 0 20px rgba(251, 233, 255, 0.15), 0 0 60px rgba(251, 233, 255, 0.05), 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px rgba(251, 233, 255, 0.15), 0 0 60px rgba(251, 233, 255, 0.05), 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 20px 20px -20px rgba(255, 255, 255, 0.15);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   &:hover {
-    box-shadow: 0 0 30px rgba(251, 233, 255, 0.25), 0 0 80px rgba(251, 233, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 30px rgba(251, 233, 255, 0.25), 0 0 80px rgba(251, 233, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 20px 20px -20px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+@utility cta-shine-light {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #fbe9ff 0%, #ffffff 40%, #fbe9ff 60%, #ffffff 100%);
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+  color: #080617;
+  box-shadow: 0 0 20px rgba(251, 233, 255, 0.4), 0 0 50px rgba(251, 233, 255, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 15px 15px -15px rgba(255, 255, 255, 0.8);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  &:hover {
+    box-shadow: 0 0 30px rgba(251, 233, 255, 0.6), 0 0 80px rgba(251, 233, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 20px 20px -20px rgba(255, 255, 255, 1);
     transform: translateY(-2px);
   }
 }
