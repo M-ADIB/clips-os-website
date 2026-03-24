@@ -28,16 +28,17 @@
 }
 
 @keyframes shine {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @utility cta-shine {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, #1C1A27 0%, #2d2a41 40%, #1C1A27 60%, #2d2a41 100%);
-  background-size: 200% auto;
-  animation: shine 3s linear infinite;
+  background: linear-gradient(45deg, #1C1A27 0%, #1C1A27 30%, #312E48 50%, #1C1A27 70%, #1C1A27 100%);
+  background-size: 300% 300%;
+  animation: shine 6s ease-in-out infinite;
   box-shadow: 0 0 20px rgba(251, 233, 255, 0.15), 0 0 60px rgba(251, 233, 255, 0.05), 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 20px 20px -20px rgba(255, 255, 255, 0.15);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   &:hover {
@@ -49,9 +50,9 @@
 @utility cta-shine-light {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, #fbe9ff 0%, #ffffff 40%, #fbe9ff 60%, #ffffff 100%);
-  background-size: 200% auto;
-  animation: shine 3s linear infinite;
+  background: linear-gradient(45deg, #fbe9ff 0%, #fbe9ff 30%, #ffffff 50%, #fbe9ff 70%, #fbe9ff 100%);
+  background-size: 300% 300%;
+  animation: shine 6s ease-in-out infinite;
   color: #080617;
   box-shadow: 0 0 20px rgba(251, 233, 255, 0.4), 0 0 50px rgba(251, 233, 255, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 15px 15px -15px rgba(255, 255, 255, 0.8);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
