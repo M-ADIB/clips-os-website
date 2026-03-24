@@ -329,7 +329,7 @@ export default function App() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6">
-              <a href="#" className="font-medium hover:text-[#fbe9ff] transition-colors">Client Login</a>
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-[#fbe9ff] transition-colors">Client Login</a>
               <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-2.5 rounded-lg font-bold hover:bg-white transition-colors">
                 Book a call
               </Link>
@@ -356,7 +356,7 @@ export default function App() {
               transition={{ duration: 0.2 }}
             >
               <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-4 border border-white/10 shadow-xl">
-                <a href="#" className="font-medium text-center py-2 hover:bg-white/5 rounded-lg">Client Login</a>
+                <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="font-medium text-center py-2 hover:bg-white/5 rounded-lg">Client Login</a>
                 <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-3 rounded-lg font-bold text-center">
                   Book a call
                 </Link>
@@ -426,27 +426,18 @@ export default function App() {
             transition={{ duration: 1, delay: 1 }}
             style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
           >
-            <motion.div 
-              className="flex gap-4 shrink-0 px-2"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ ease: "linear", duration: 30, repeat: Infinity }}
-            >
+            <Marquee className="[--duration:50s]" pauseOnHover>
               {[
-                '11_3_optimized.gif', 'Amazon_Riddles_optimized.gif', 'Dr Medhat.01 .gif', 'Good 4.gif', 
-                'Image Showcase 1.gif', 'Ninad_HG_240p.gif', 'OM_HG_240p.gif', 'Pointers 1.gif', 
-                'Pointers 2.gif', 'Tina_HG_240p.gif', 'hager 1.gif', 'intense warm.gif', 
-                'softwarm.gif', 'v1_optimized.gif',
-                // Duplicate for seamless loop
                 '11_3_optimized.gif', 'Amazon_Riddles_optimized.gif', 'Dr Medhat.01 .gif', 'Good 4.gif', 
                 'Image Showcase 1.gif', 'Ninad_HG_240p.gif', 'OM_HG_240p.gif', 'Pointers 1.gif', 
                 'Pointers 2.gif', 'Tina_HG_240p.gif', 'hager 1.gif', 'intense warm.gif', 
                 'softwarm.gif', 'v1_optimized.gif'
               ].map((gif, i) => (
-                <div key={i} className="w-[140px] sm:w-[180px] md:w-[220px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5">
-                  <img src={`/assets/ticker-gifs/${gif}`} alt="Reel" className="w-full h-full object-cover" />
+                <div key={i} className="w-[140px] sm:w-[180px] md:w-[220px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-2">
+                  <img src={`/assets/ticker-gifs/${gif}`} alt="Reel" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
-            </motion.div>
+            </Marquee>
           </motion.div>
         </section>
 
@@ -460,18 +451,18 @@ export default function App() {
             <p className="text-xl text-white/70">We take your expertise and make it undeniable.</p>
           </FadeInOnScroll>
 
-          <div className="flex flex-col gap-4 max-w-5xl mx-auto">
+          <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
             {/* Row 1 */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="w-full md:w-1/2 aspect-square rounded-[24px] overflow-hidden relative">
+              <div className="flex flex-col md:flex-row gap-4 items-stretch h-auto md:h-[450px]">
+                <div className="w-full md:w-1/2 h-[350px] md:h-full rounded-[24px] overflow-hidden relative">
                   <img src="/assets/branded-presence.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
-                <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden aspect-square">
+                <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
                      <div className="w-4 h-4 bg-white rounded-full" />
                    </div>
-                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Branded Presence</h3>
+                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight mt-12 md:mt-0">Branded Presence</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
                      Elevate your positioning with a unique visual system and attract premium clients you actually want.
                    </p>
@@ -481,31 +472,33 @@ export default function App() {
 
             {/* Row 2 */}
             <StaggerItem>
-              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8 relative text-[#080617] overflow-hidden">
-                <div className="w-full md:w-1/2 flex flex-col justify-center h-full sm:min-h-[300px]">
-                   <div className="mb-auto w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm mb-8 sm:mb-12">
+              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col md:flex-row items-stretch gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[350px]">
+                <div className="w-full md:w-1/2 flex flex-col justify-between h-full min-h-[250px] md:min-h-0">
+                   <div className="w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
                      <div className="w-4 h-4 bg-white rounded-full" />
                    </div>
-                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight mt-auto">Content Sprints</h3>
-                   <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
-                     One productive session turns into months of high quality content helping you save time & energy.
-                   </p>
+                   <div className="mt-8 md:mt-auto">
+                     <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Content Sprints</h3>
+                     <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
+                       One productive session turns into months of high quality content helping you save time & energy.
+                     </p>
+                   </div>
                 </div>
                 {/* 16:9 Placeholder container where user can put a GIF eventually */}
-                <div className="w-full md:w-1/2 aspect-[16/9] bg-[#E7C1EF] rounded-[20px] overflow-hidden">
+                <div className="w-full md:w-1/2 aspect-[16/9] md:aspect-auto md:h-full bg-[#E7C1EF] rounded-[20px] overflow-hidden">
                 </div>
               </div>
             </StaggerItem>
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full">
-                <div style={{ flex: 3.17 }} className="w-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[450px]">
+                <div className="w-full md:w-[31.7%] h-[400px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none" />
                 </div>
-                <div style={{ flex: 6.83 }} className="w-full bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-4 md:mt-0">
+                <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
                      <div className="w-4 h-4 bg-white rounded-full" />
                    </div>
