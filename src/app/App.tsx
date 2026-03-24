@@ -121,54 +121,45 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
 
 // ─── Testimonial Card ────────────────────────────────────────────────────────
 
-function TestimonialCard({ name, role, videoId, defaultVideo = false }: { name: string; role: string; videoId: string; defaultVideo?: boolean }) {
-  const [hovered, setHovered] = React.useState(defaultVideo);
-  
-  // Decide base background and text color based on default mode
-  const bgClass = defaultVideo ? "bg-black" : "bg-white";
-  const textClass = defaultVideo ? "text-white" : "text-[#080617]";
+function TestimonialCard({ name, role, videoId }: { name: string; role: string; videoId: string; defaultVideo?: boolean }) {
+  const [isPlaying, setIsPlaying] = React.useState(false);
   
   return (
     <div 
-       className={`w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-[32px] ${bgClass} shrink-0 p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between border border-white/5 cursor-pointer shadow-sm group transition-all group/video`}
-       onMouseEnter={() => setHovered(true)}
-       onMouseLeave={() => !defaultVideo && setHovered(false)}
+       className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
+       onClick={() => setIsPlaying(true)}
     >
-       {/* Embed mode */}
-       <div className={`absolute inset-0 bg-black z-10 transition-opacity duration-500 ${hovered ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          {hovered && (
-             <iframe 
-                src={`https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1&loop=1&background=1`} 
-                className="w-full h-[120%] -mt-[10%] object-cover scale-[1.05]" 
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-             />
-          )}
-          {/* Play Overlay */}
-          <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
-             <Play size={16} fill="white" className="text-white ml-1" />
-          </div>
+       {/* Video embed — always visible */}
+       <div className="absolute inset-0 z-10">
+         <iframe 
+           src={`https://player.vimeo.com/video/${videoId}?autoplay=${isPlaying ? 1 : 0}&muted=${isPlaying ? 0 : 1}&loop=1&background=${isPlaying ? 0 : 1}&controls=${isPlaying ? 1 : 0}&title=0&byline=0&portrait=0`}
+           className="w-full h-[120%] -mt-[10%] scale-[1.05]" 
+           frameBorder="0" 
+           allow="autoplay; fullscreen" 
+           allowFullScreen
+         />
        </div>
 
-       {/* Text mode */}
-       <div className={`transition-opacity duration-500 flex flex-col h-full z-0 ${hovered ? 'opacity-0' : 'opacity-100'}`}>
-          <div className="flex gap-1 mb-6">
-             {[...Array(5)].map((_, i) => (
-                <svg key={i} className={`w-5 h-5 fill-current ${textClass}`} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-             ))}
-          </div>
-          <p className={`${textClass}/80 font-medium leading-relaxed mb-auto line-clamp-4 md:text-lg`}>
-             Lorem ipsum dolor sit amet consectetur. Suspendisse tincidunt at mauris eget pharetra mauris tincidunt interdum tristique. Libero turpis sed enim ultricies cursus luctus. Velit platea ultricies dolor bibendum massa tempor nisi suspendisse luctus. Volutpat vitae phasellus tellus scelerisque.
-          </p>
-          <div className="flex items-center gap-4 mt-8">
-             <div className="w-12 h-12 bg-[#F1CDF9] rounded-xl flex items-center justify-center shrink-0">
-               <span className="font-bold text-[#080617]">{name.charAt(0)}</span>
-             </div>
-             <div>
-                <h4 className={`font-bold ${textClass} text-lg`}>{name}</h4>
-                <p className={`text-sm font-medium ${textClass}/60`}>{role}</p>
-             </div>
-          </div>
+       {/* Play button overlay — hidden when playing */}
+       {!isPlaying && (
+         <div className="absolute inset-0 z-20 flex items-center justify-center">
+           <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300 shadow-lg">
+             <Play size={20} fill="white" className="text-white ml-1" />
+           </div>
+         </div>
+       )}
+
+       {/* Name badge overlay at bottom */}
+       <div className="absolute bottom-0 left-0 right-0 z-30 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
+         <div className="flex items-center gap-3">
+           <div className="w-9 h-9 bg-[#fbe9ff] rounded-full flex items-center justify-center shrink-0 shadow-md">
+             <span className="font-bold text-[#080617] text-sm">{name.charAt(0)}</span>
+           </div>
+           <div>
+             <h4 className="font-bold text-white text-sm leading-tight">{name}</h4>
+             <p className="text-xs font-medium text-white/70">{role}</p>
+           </div>
+         </div>
        </div>
     </div>
   )
@@ -420,11 +411,14 @@ export default function App() {
 
           {/* Ticker Carousel */}
           <motion.div 
-            className="mt-16 sm:mt-24 w-full relative z-10 flex overflow-hidden group"
+            className="mt-16 sm:mt-24 w-full relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+            style={{ 
+              maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            }}
           >
             <Marquee className="[--duration:50s]" pauseOnHover>
               {[
@@ -433,7 +427,7 @@ export default function App() {
                 'Pointers 2.gif', 'Tina_HG_240p.gif', 'hager 1.gif', 'intense warm.gif', 
                 'softwarm.gif', 'v1_optimized.gif'
               ].map((gif, i) => (
-                <div key={i} className="w-[140px] sm:w-[180px] md:w-[220px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-2">
+                <div key={i} className="w-[140px] sm:w-[180px] md:w-[220px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-2" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
                   <img src={`/assets/ticker-gifs/${gif}`} alt="Reel" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
@@ -728,7 +722,6 @@ export default function App() {
                 <TestimonialCard 
                   key={i} 
                   {...testimonial} 
-                  defaultVideo={i % 3 === 2} 
                 />
               ))}
             </Marquee>
