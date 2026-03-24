@@ -328,8 +328,8 @@ export default function App() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-6">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-[#fbe9ff] transition-colors">Client Login</a>
+            <div className="hidden md:flex items-center gap-4">
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 px-5 py-2.5 rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
               <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-2.5 rounded-lg font-bold hover:bg-white transition-colors">
                 Book a call
               </Link>
@@ -355,8 +355,8 @@ export default function App() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-4 border border-white/10 shadow-xl">
-                <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="font-medium text-center py-2 hover:bg-white/5 rounded-lg">Client Login</a>
+              <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
+                <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
                 <Link to="/apply" className="bg-[#fbe9ff] text-[#080617] px-6 py-3 rounded-lg font-bold text-center">
                   Book a call
                 </Link>

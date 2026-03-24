@@ -36,9 +36,12 @@ export default function ApplyPage() {
                 <span className="text-sm font-semibold italic">TheClipsAgency</span>
               </div>
             </Link>
-            <Link to="/book-a-call" className="bg-[#fbe9ff] text-[#080617] px-6 py-2.5 rounded-lg font-bold hover:bg-white transition-colors">
-              Book a Call
-            </Link>
+            <div className="flex items-center gap-3 md:gap-4">
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-white/80 border border-white/20 px-4 md:px-5 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
+              <Link to="/book-a-call" className="bg-[#fbe9ff] text-[#080617] px-5 md:px-6 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-bold hover:bg-white transition-colors">
+                Book a Call
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
