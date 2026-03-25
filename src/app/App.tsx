@@ -551,10 +551,10 @@ export default function App() {
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Collaborate with Ease.gif" },
-              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/Dashboard from The Clips Agency.gif" },
-              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/IG Analytics from The Clips Agency.gif" },
-              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/Talent Network.gif" }
+              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.gif" },
+              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.gif" },
+              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.gif" },
+              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.gif" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
                 <motion.div
