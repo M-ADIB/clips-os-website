@@ -135,7 +135,7 @@ function TestimonialCard({ name, role, videoId, isActive }: { name: string; role
   
   return (
     <div 
-       className="w-full aspect-square rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
+       className="w-full aspect-[9/16] rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
        onClick={() => { if (!isPlaying) setIsPlaying(true); }}
     >
        {/* Video embed — always visible */}
@@ -372,7 +372,7 @@ export default function App() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
-            className="mb-8 inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/15 relative z-10"
+            className="mb-8 inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -460,7 +460,7 @@ export default function App() {
         {/* ── Built For Experts Section ── */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-24">
-            <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/15 mb-6">
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Standard We Hold</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built For Experts Who<br />Refuse To Settle.</h2>
@@ -540,8 +540,8 @@ export default function App() {
         {/* ── How The System Runs ── */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#fbe9ff]/30 text-[#fbe9ff] mb-6">
-              <span className="text-sm">The System</span>
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The System</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">How The System Runs</h2>
             <p className="text-xl text-white/70 max-w-xl mx-auto">
@@ -585,8 +585,8 @@ export default function App() {
         {/* ── The Operating System ── */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-20 md:mb-32">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 mb-6">
-              <span className="text-sm text-white/70">The Operating System</span>
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Operating System</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight max-w-3xl mx-auto">
               Your Entire Content Operation In One Place
@@ -635,8 +635,8 @@ export default function App() {
         {/* ── Case Studies ── */}
         <section id="case-studies" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 mb-6">
-              <span className="text-sm text-white/70">Client Results</span>
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Client Results</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">Case Studies</h2>
             <p className="text-xl text-white/70 max-w-xl mx-auto">
@@ -710,8 +710,8 @@ export default function App() {
         {/* ── Testimonials ── */}
         <section className="py-12 sm:py-20 md:py-32 w-full overflow-hidden border-y border-white/5 relative bg-[#080617]">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20 max-w-7xl mx-auto px-4">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 mb-6">
-              <span className="text-sm text-white/70">Testimonials</span>
+            <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Testimonials</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">Hear From Our Clients</h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
