@@ -179,12 +179,12 @@ function TestimonialCard({ name, role, videoId, isActive }: { name: string; role
 // ─── Case Study Card (Expandable) ────────────────────────────────────────────
 
 interface CaseStudyProps {
-  name: string;
+  name: React.ReactNode;
   title: string;
   beforeText: string;
   stats: { value: string; label: string; sublabel?: string }[];
   whatWeDid: string[];
-  impact: string;
+  impact: string | string[];
   thumbnails: string[];
   defaultExpanded?: boolean;
 }
@@ -276,7 +276,20 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
                     </ul>
 
                     <h4 className="font-black text-base mb-2">Impact</h4>
-                    <p className="text-sm font-medium text-black/80 mb-8 max-w-md leading-relaxed">{impact}</p>
+                    {Array.isArray(impact) ? (
+                      <ul className="space-y-3 mb-8">
+                        {impact.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <div className="w-4 h-4 mt-0.5 rounded-full bg-[#fbe9ff] flex items-center justify-center shrink-0">
+                              <svg viewBox="0 0 24 24" width="10" height="10" stroke="#000" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                            <span className="text-sm font-medium leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm font-medium text-black/80 mb-8 max-w-md leading-relaxed">{impact}</p>
+                    )}
                   </div>
                   {thumbnails.length > 3 && (
                     <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-auto">
@@ -645,25 +658,30 @@ export default function App() {
           </FadeInOnScroll>
 
           <StaggerContainer className="flex flex-col gap-6 sm:gap-8 md:gap-12">
+            {/* 1. Leena Parwani */}
             <StaggerItem>
               <CaseStudyCard
-                name="Leena Parwani"
-                title="Rheumatologist & Internist"
+                name={<>Leena<br />Parwani</>}
+                title="Entrepreneur"
                 beforeText="She worked with us before when she was selling life insurance then came back when she started real estate."
                 stats={[
-                  { value: "300k", label: "Views" },
-                  { value: "$270k", label: "", sublabel: "Sold a AED 25,000,000 property and cashed in 1M in commissions in the first 2 months" },
+                  { value: "300k+", label: "Views" },
+                  { value: "$270k", label: "", sublabel: "Sold a AED 25,000,000 property and cashed in 1M in commissions in the first month." },
                 ]}
-                whatWeDid={["Targeted her audience", "Created engaging content"]}
+                whatWeDid={["Targeted a niche audience", "Developed a signature series format"]}
                 impact="Becoming a top agent in her niche and generating consistent inbound leads from organic content"
-                thumbnails={[]}
+                thumbnails={[
+                  "/assets/case-studies/leena-Rectangle-1256-TCA-Website.png", "/assets/case-studies/leena-Rectangle-1258-TCA-Website.png", "/assets/case-studies/leena-Rectangle-1259-TCA-Website.png",
+                  "/assets/case-studies/leena-Rectangle-1261-TCA-Website.png", "/assets/case-studies/leena-TCA-Website-Collab-Group-1037.png", "/assets/case-studies/leena-TCA-Website-Collab-Group-1038.png"
+                ]}
                 defaultExpanded={true}
               />
             </StaggerItem>
 
+            {/* 2. Khaled Zkandar */}
             <StaggerItem>
               <CaseStudyCard
-                name="Khaled Zkandar"
+                name={<>Khaled<br />Zkandar</>}
                 title="Architect & Ai Specialist"
                 beforeText="No proper positioning, No clear monetization, No Authority"
                 stats={[
@@ -677,23 +695,87 @@ export default function App() {
                   "/assets/kz-before-1.png", "/assets/kz-before-2.png", "/assets/kz-before-3.png",
                   "/assets/kz-after-1.png", "/assets/kz-after-2.png", "/assets/kz-after-3.png"
                 ]}
-                defaultExpanded={false}
               />
             </StaggerItem>
 
+            {/* 3. Dr. Sara Alhammdi */}
             <StaggerItem>
               <CaseStudyCard
-                name="Dr. Sara Alhammdi"
+                name={<>Dr. Sara<br />Alhammdi</>}
                 title="Cosmetic Dentist"
                 beforeText="Dr. Sara used to create generic content that nobody cared about and didn't show her personality at all."
                 stats={[
-                  { value: "150k", label: "Followers" },
-                  { value: "2.5M+", label: "Views" },
-                  { value: "10+", label: "", sublabel: "New patients monthly from IG" },
+                  { value: "160k", label: "New Followers", sublabel: "in 4-6 months" },
+                  { value: "25M+", label: "Views" },
+                  { value: "1k+", label: "Leads" },
                 ]}
-                whatWeDid={["Rebranded her presence", "Educational & Entertaining"]}
-                impact="Positioned her as an authority in Cosmetic Dentistry in Dubai and completely filled her schedule."
-                thumbnails={[]}
+                whatWeDid={["Studied her personality", "Doubled down on her sarcastic tone of voice that people loved."]}
+                impact={["Sponsored on the UAE's influencer list", "Flooded DMs with inquires + opportunities", "Pursuing her private license to benefit from her online presence"]}
+                thumbnails={[
+                  "/assets/case-studies/sara-before1.png", "/assets/case-studies/sara-Before2.png", "/assets/case-studies/sara-Before3.png",
+                  "/assets/case-studies/sara-after1.png.png", "/assets/case-studies/sara-after2.png", "/assets/case-studies/sara-after3.png"
+                ]}
+              />
+            </StaggerItem>
+
+            {/* 4. Dr. Medhat Shaaban */}
+            <StaggerItem>
+              <CaseStudyCard
+                name={<>Dr. Medhat<br />Shaaban</>}
+                title="Pediatrician"
+                beforeText="Dr. Medhat used to create a lot of content on his clinic page with no return or awareness"
+                stats={[
+                  { value: "350k", label: "New Followers", sublabel: "in 5 months" },
+                  { value: "40M+", label: "Views" },
+                  { value: "15%", label: "", sublabel: "Increase in patient bookings" },
+                ]}
+                whatWeDid={["Started a brand new account", "Leaned in on his friendly personality and created a visual hook system", "Branded videos that made her look more credible"]}
+                impact={["Recruited Top doctors in his clinic", "Increased Patient Flow & revenue", "Immediate Trust with patients"]}
+                thumbnails={[
+                  "/assets/case-studies/medhat-before1.png", "/assets/case-studies/medhat-before2.png", "/assets/case-studies/medhat-before3.png",
+                  "/assets/case-studies/medhat-afterr1.png", "/assets/case-studies/medhat-afterr2.png", "/assets/case-studies/medhat-after3.png"
+                ]}
+              />
+            </StaggerItem>
+
+            {/* 5. Tina Al Shagoury */}
+            <StaggerItem>
+              <CaseStudyCard
+                name={<>Tina Al<br />Shagoury</>}
+                title="Clinical Nutritionist"
+                beforeText={"Started with 30K followers.\nDidn't have time for consistent content creation."}
+                stats={[
+                  { value: "25k", label: "New Followers", sublabel: "After 1 studio session" },
+                  { value: "10M+", label: "Views" },
+                  { value: "10K+", label: "New Leads" },
+                  { value: "$30k+", label: "In revenue" },
+                ]}
+                whatWeDid={["Strategic content to capture leads", "Leaned on her firey personality to create relatable and education content"]}
+                impact={["Started at 33k, now at 189k+ followers", "Established expert in the industry", "Leveraged new income streams from her engaged audience"]}
+                thumbnails={[
+                  "/assets/case-studies/tina-before1.png", "/assets/case-studies/tina-before2.png", "/assets/case-studies/tina-before3.png",
+                  "/assets/case-studies/tina-after1.png", "/assets/case-studies/tina-after2.png", "/assets/case-studies/tina-after3.png"
+                ]}
+              />
+            </StaggerItem>
+
+            {/* 6. Dr. Deena Ahmad */}
+            <StaggerItem>
+              <CaseStudyCard
+                name={<>Dr Deena<br />Ahmad</>}
+                title="Rheumatologist & Internist"
+                beforeText="Deena had no online presence, she never had been on camera, and she was undervalued at work"
+                stats={[
+                  { value: "3k", label: "New Followers", sublabel: "After 1 studio session" },
+                  { value: "1M+", label: "Views" },
+                  { value: "11+", label: "New Patients" },
+                ]}
+                whatWeDid={["Creative relatable content making technical video easy to watch", "Branded Animation to simplify topics"]}
+                impact={['Have the power to say "no"', "Strong positioning amongst her peers", "Getting premium patients from her social presence"]}
+                thumbnails={[
+                  "/assets/case-studies/deena-BEFORE1.png", "/assets/case-studies/deena-BEFORE2.png", "/assets/case-studies/deena-BEFORE3.png",
+                  "/assets/case-studies/deena-AFTER1.png", "/assets/case-studies/deena-AFTER2.png", "/assets/case-studies/deena-AFTER3.png"
+                ]}
               />
             </StaggerItem>
           </StaggerContainer>
