@@ -6,7 +6,7 @@ import App from './app/App'
 import ApplyPage from './app/ApplyPage'
 import BookACallPage from './app/BookACallPage'
 import BookACallAusPage from './app/BookACallAusPage'
-import BookACallDePage from './app/BookACallDePage'
+import BookACallEuPage from './app/BookACallEuPage'
 import ThankYouPage from './app/ThankYouPage'
 import NotFoundPage from './app/NotFoundPage'
 import PrivacyPage from './app/PrivacyPage'
@@ -30,7 +30,7 @@ function AnimatedRoutes() {
           <Route path="/submit-form" element={<ApplyPage />} />
           <Route path="/book-a-call" element={<BookACallPage />} />
           <Route path="/book-a-call-aus" element={<BookACallAusPage />} />
-          <Route path="/book-a-call-de" element={<BookACallDePage />} />
+          <Route path="/book-a-call-eu" element={<BookACallEuPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />

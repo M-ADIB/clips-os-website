@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function BookACallDePage() {
+export default function BookACallEuPage() {
   return (
     <div className="bg-[#080617] min-h-screen text-[#fffff7] font-sans">
       {/* Simple Nav */}
@@ -28,7 +28,7 @@ export default function BookACallDePage() {
       <main className="pt-28 sm:pt-36 pb-12 sm:pb-20 max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
-            Book A Call — Germany
+            Book A Call — Europe
           </h1>
           <p className="text-lg text-white/70 max-w-xl mx-auto">
             Pick a time that works best for you. We'll walk you through everything.
