@@ -722,43 +722,68 @@ export default function App() {
               { name: "Sara", role: "Dentist", videoId: "1144121493" },
               { name: "Ahmed", role: "Creator", videoId: "1144120878" }
             ];
+
             const [currentIndex, setCurrentIndex] = React.useState(0);
-            const visibleCount = typeof window !== 'undefined' && window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
-            const maxIndex = testimonials.length - visibleCount;
+            const [visibleCount, setVisibleCount] = React.useState(1);
+            const GAP = 16; // gap between cards in px
+
+            React.useEffect(() => {
+              const update = () => {
+                const w = window.innerWidth;
+                setVisibleCount(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+              };
+              update();
+              window.addEventListener('resize', update);
+              return () => window.removeEventListener('resize', update);
+            }, []);
+
+            const maxIndex = Math.max(0, testimonials.length - visibleCount);
+            // Clamp currentIndex if screen resizes
+            const safeIndex = Math.min(currentIndex, maxIndex);
             
+            // Each card width as a percentage, accounting for gaps
+            const cardWidthPercent = 100 / visibleCount;
+            // Translate includes the gaps
+            const translateX = safeIndex * (cardWidthPercent);
+
             return (
-              <div className="relative max-w-6xl mx-auto px-4">
-                {/* Navigation arrows */}
+              <div className="relative max-w-5xl mx-auto px-12 sm:px-16">
+                {/* Left arrow */}
                 <button 
-                  onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
-                  disabled={currentIndex === 0}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
+                  onClick={() => setCurrentIndex(Math.max(0, safeIndex - 1))}
+                  disabled={safeIndex === 0}
+                  className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
                 >
-                  <ChevronLeft size={22} className="text-white" />
+                  <ChevronLeft size={20} className="text-white" />
                 </button>
+                
+                {/* Right arrow */}
                 <button 
-                  onClick={() => setCurrentIndex(Math.min(maxIndex, currentIndex + 1))}
-                  disabled={currentIndex >= maxIndex}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
+                  onClick={() => setCurrentIndex(Math.min(maxIndex, safeIndex + 1))}
+                  disabled={safeIndex >= maxIndex}
+                  className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
                 >
-                  <ChevronRight size={22} className="text-white" />
+                  <ChevronRight size={20} className="text-white" />
                 </button>
 
-                {/* Cards container */}
-                <div className="overflow-hidden mx-10 sm:mx-14">
+                {/* Cards viewport */}
+                <div className="overflow-hidden">
                   <div 
-                    className="flex gap-4 transition-transform duration-500 ease-out"
-                    style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}
+                    className="flex transition-transform duration-500 ease-out"
+                    style={{ 
+                      gap: `${GAP}px`,
+                      transform: `translateX(calc(-${translateX}% - ${safeIndex * GAP}px))` 
+                    }}
                   >
                     {testimonials.map((testimonial, i) => (
                       <div 
                         key={i} 
                         className="shrink-0"
-                        style={{ width: `calc(${100 / visibleCount}% - ${((visibleCount - 1) * 16) / visibleCount}px)` }}
+                        style={{ width: `calc(${cardWidthPercent}% - ${((visibleCount - 1) * GAP) / visibleCount}px)` }}
                       >
                         <TestimonialCard 
                           {...testimonial}
-                          isActive={i >= currentIndex && i < currentIndex + visibleCount}
+                          isActive={i >= safeIndex && i < safeIndex + visibleCount}
                         />
                       </div>
                     ))}
@@ -766,12 +791,12 @@ export default function App() {
                 </div>
 
                 {/* Dot indicators */}
-                <div className="flex justify-center gap-2 mt-6">
+                <div className="flex justify-center gap-1.5 mt-8">
                   {Array.from({ length: maxIndex + 1 }, (_, i) => (
                     <button 
                       key={i}
                       onClick={() => setCurrentIndex(i)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-[#fbe9ff] w-6' : 'bg-white/30 hover:bg-white/50'}`}
+                      className={`h-2 rounded-full transition-all duration-300 ${i === safeIndex ? 'bg-[#fbe9ff] w-6' : 'bg-white/30 hover:bg-white/50 w-2'}`}
                     />
                   ))}
                 </div>
