@@ -17,9 +17,9 @@ export default function ApplyPage() {
             </Link>
             <div className="flex items-center gap-3 md:gap-4">
               <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-white/80 border border-white/20 px-4 md:px-5 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
-              <Link to="/book-a-call" className="cta-shine-light px-5 md:px-6 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-bold">
-                Book a Call
-              </Link>
+              <a href="#form" className="cta-shine-light px-5 md:px-6 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-bold">
+                Fill the Form ↓
+              </a>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function ApplyPage() {
 
         {/* Jotform iframe embed – loads immediately, no JS injection delay */}
         <iframe
-          id="JotFormIFrame-232130561902041"
+          id="form"
           title="Apply for ClipsOS"
           src="https://form.jotform.com/232130561902041"
           allow="geolocation; microphone; camera; fullscreen"
