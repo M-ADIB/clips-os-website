@@ -475,8 +475,8 @@ export default function App() {
                   <img src="/assets/branded-presence.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
                 <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
-                   <div className="absolute top-8 left-8 w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
-                     <div className="w-4 h-4 bg-white rounded-full" />
+                   <div className="absolute top-8 left-8 w-12 h-12 rounded-full overflow-hidden shadow-sm">
+                     <img src="/assets/Brand Presence (1).gif" alt="" className="w-full h-full object-cover" />
                    </div>
                    <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight mt-12 md:mt-0">Branded Presence</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
@@ -490,8 +490,8 @@ export default function App() {
             <StaggerItem>
               <div className="w-full bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col md:flex-row items-stretch gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[350px]">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full min-h-[250px] md:min-h-0">
-                   <div className="w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
-                     <div className="w-4 h-4 bg-white rounded-full" />
+                   <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm">
+                     <img src="/assets/Content Sprints (1).gif" alt="" className="w-full h-full object-cover" />
                    </div>
                    <div className="mt-8 md:mt-auto">
                      <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Content Sprints</h3>
@@ -515,8 +515,8 @@ export default function App() {
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none" />
                 </div>
                 <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
-                   <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 bg-[#F1CDF9] rounded-full flex items-center justify-center shadow-sm">
-                     <div className="w-4 h-4 bg-white rounded-full" />
+                   <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm">
+                     <img src="/assets/Demand Generations (1).gif" alt="" className="w-full h-full object-cover" />
                    </div>
                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 tracking-tight mt-16 sm:mt-0">Demand Generation</h3>
                    <p className="text-base sm:text-lg md:text-xl font-medium opacity-80 leading-relaxed max-w-md">
