@@ -459,11 +459,11 @@ export default function App() {
         {/* ── Built For Experts Section ── */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-24">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 mb-6">
-              <span className="text-sm">The Standard We Hold</span>
+            <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/15 mb-6">
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>The Standard We Hold</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built For Experts Who Refuse To Settle.</h2>
-            <p className="text-xl text-white/70">We take your expertise and make it undeniable.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built For Experts Who<br />Refuse To Settle.</h2>
+            <p style={{ fontFamily: 'Inter, sans-serif', fontWeight: 450, fontSize: '27.9px', lineHeight: '100%', letterSpacing: '0%', color: 'rgba(255,255,247,0.7)' }}>We take your expertise and make it undeniable.</p>
           </FadeInOnScroll>
 
           <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
