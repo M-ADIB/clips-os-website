@@ -551,10 +551,10 @@ export default function App() {
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand." },
-              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session." },
-              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently." },
-              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine." }
+              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Collaborate with Ease.gif" },
+              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/Dashboard from The Clips Agency.gif" },
+              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/IG Analytics from The Clips Agency.gif" },
+              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/Talent Network.gif" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
                 <motion.div
@@ -562,9 +562,10 @@ export default function App() {
                   whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(251, 233, 255, 0.08)' }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="bg-[#2d2a41] h-[160px] p-4 relative">
+                  <div className="bg-[#2d2a41] h-[160px] p-4 relative overflow-hidden">
+                    <img src={item.gif} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-60" loading="lazy" />
                     <motion.div
-                      className="bg-[#fbe9ff] w-8 h-8 rounded text-[#101010] font-bold flex items-center justify-center text-sm absolute top-4 left-4"
+                      className="bg-[#fbe9ff] w-8 h-8 rounded text-[#101010] font-bold flex items-center justify-center text-sm absolute top-4 left-4 z-10"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       {item.step}
