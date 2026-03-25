@@ -6,6 +6,7 @@ import { Marquee } from "../components/ui/marquee";
 import { HyperText } from "../components/ui/hyper-text";
 import { PulsatingButton } from "../components/ui/pulsating-button";
 
+const NHGDP = '"Neue Haas Grotesk Display Pro", sans-serif';
 // Placeholder for figma:asset images — replace with real image paths/URLs:
 const imgRectangle1259 = '';
 const imgImage956 = '';
@@ -321,7 +322,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Link to="/" className="flex items-center gap-3">
-              <span className="font-black text-[26px] tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>ClipsOS</span>
+              <span className="font-black text-[26px] tracking-tight" style={{ fontFamily: NHGDP }}>ClipsOS</span>
               <div className="flex flex-col">
                 <span className="text-[8px] text-white/70 uppercase tracking-widest leading-none">Powered by</span>
                 <span className="text-sm font-semibold italic">TheClipsAgency</span>
@@ -376,13 +377,13 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>Trusted by 150+ experts</span>
+            <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Trusted by 150+ experts</span>
           </motion.div>
 
           <motion.h1
             className="uppercase relative z-10 text-center mb-6 sm:mb-8 px-4"
             style={{ 
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: NHGDP,
               fontWeight: 900,
               fontSize: 'clamp(32px, 5vw, 62px)',
               lineHeight: '87%',
@@ -400,7 +401,7 @@ export default function App() {
           <motion.p
             className="max-w-2xl mx-auto mb-10 relative z-10 px-4 text-center"
             style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: NHGDP,
               fontWeight: 500,
               fontSize: '20px',
               lineHeight: '112%',
@@ -460,10 +461,10 @@ export default function App() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-24">
             <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/15 mb-6">
-              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>The Standard We Hold</span>
+              <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Standard We Hold</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built For Experts Who<br />Refuse To Settle.</h2>
-            <p style={{ fontFamily: 'Inter, sans-serif', fontWeight: 450, fontSize: '27.9px', lineHeight: '100%', letterSpacing: '0%', color: 'rgba(255,255,247,0.7)' }}>We take your expertise and make it undeniable.</p>
+            <p style={{ fontFamily: NHGDP, fontWeight: 450, fontSize: '27.9px', lineHeight: '100%', letterSpacing: '0%', color: 'rgba(255,255,247,0.7)' }}>We take your expertise and make it undeniable.</p>
           </FadeInOnScroll>
 
           <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">

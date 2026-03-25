@@ -1,6 +1,43 @@
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
 
+/* Neue Haas Grotesk Display Pro — custom font faces */
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import 'tw-animate-css';
 
 @utility hide-scrollbar {
