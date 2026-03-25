@@ -321,7 +321,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <Link to="/" className="flex items-center gap-3">
-              <span className="font-bold text-xl tracking-tight">ClipsOS</span>
+              <span className="font-black text-[26px] tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>ClipsOS</span>
               <div className="flex flex-col">
                 <span className="text-[8px] text-white/70 uppercase tracking-widest leading-none">Powered by</span>
                 <span className="text-sm font-semibold italic">TheClipsAgency</span>
@@ -330,7 +330,7 @@ export default function App() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-4">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 px-5 py-2.5 rounded-lg font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/60 px-5 py-2.5 rounded-lg font-medium text-sm hover:text-white transition-colors">Client Login</a>
               <Link to="/submit-form" className="cta-shine-light px-6 py-2.5 rounded-lg font-bold">
                 Book a call
               </Link>
@@ -356,7 +356,7 @@ export default function App() {
         >
           <div className="px-4 mt-2">
             <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
+              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/60 py-3 rounded-lg font-medium text-sm text-center hover:text-white transition-colors">Client Login</a>
               <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
                 Book a call
               </Link>
@@ -371,28 +371,41 @@ export default function App() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
-            className="mb-8 inline-flex items-center gap-4 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm relative z-10"
+            className="mb-8 inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/15 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-sm font-medium text-white/90">Trusted by 150+ experts</span>
+            <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>Trusted by 150+ experts</span>
           </motion.div>
 
           <motion.h1
-            className="font-black uppercase tracking-tight leading-[1] mb-6 sm:mb-8 relative z-10 text-center"
-            style={{ fontSize: 'clamp(1.875rem, 3.75vw, 4.5rem)' }}
+            className="uppercase relative z-10 text-center mb-6 sm:mb-8 px-4"
+            style={{ 
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 900,
+              fontSize: 'clamp(32px, 5vw, 62px)',
+              lineHeight: '87%',
+              letterSpacing: '-0.02em',
+            }}
             initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Turn One Filming<br />
-            Session Into Months Of<br />
-            Authority Content
+            <span style={{ filter: 'blur(0px)' }}>Turn One Filming</span><br />
+            <span style={{ filter: 'blur(0.3px)' }}>Session Into Months Of</span><br />
+            <span style={{ filter: 'blur(0.6px)' }}>Authority Content</span>
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed relative z-10 px-4"
+            className="max-w-2xl mx-auto mb-10 relative z-10 px-4 text-center"
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 500,
+              fontSize: '20px',
+              lineHeight: '112%',
+              color: 'rgba(255,255,247,0.8)',
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -424,8 +437,8 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             style={{ 
-              maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+              maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
             }}
           >
             <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
