@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClipsOS Design Kit — Complete Reference</title>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FONT FACES
+       Copy the 3 .ttf files to your app's /fonts/ directory
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+    @font-face {
+      font-family: 'Neue Haas Grotesk Display Pro';
+      src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Neue Haas Grotesk Display Pro';
+      src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+      font-weight: 450; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Neue Haas Grotesk Display Pro';
+      src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Neue Haas Grotesk Display Pro';
+      src: url('/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Neue Haas Grotesk Display Pro';
+      src: url('/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
+      font-weight: 900; font-style: normal; font-display: swap;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN TOKENS (CSS Custom Properties)
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      --font: 'Neue Haas Grotesk Display Pro', sans-serif;
+
+      /* Backgrounds */
+      --bg-primary: #080617;
+      --bg-card: #1e1c2b;
+      --bg-elevated: #2d2a41;
+      --bg-accent: #fbe9ff;
+      --bg-accent-muted: #F1CDF9;
+      --bg-accent-fill: #E7C1EF;
+
+      /* Text */
+      --text-primary: #fffff7;
+      --text-80: rgba(255,255,247,0.8);
+      --text-70: rgba(255,255,247,0.7);
+      --text-60: rgba(255,255,247,0.6);
+      --text-dark: #080617;
+
+      /* Borders */
+      --border-subtle: rgba(255,255,255,0.10);
+      --border-hover: rgba(251,233,255,0.20);
+      --border-card: rgba(255,255,255,0.05);
+
+      /* Radii */
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 20px;
+      --r-xl: 24px;
+      --r-pill: 9999px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BASE STYLES
+    ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding: 40px 20px;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section { margin-bottom: 80px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--bg-accent); margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(251,233,255,0.15);
+    }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════════════════════ */
+    @keyframes shine {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-100% - var(--gap))); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(0.9); opacity: 0.7; }
+      50%  { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TYPOGRAPHY CLASSES
+    ═══════════════════════════════════════════════════════════ */
+
+    /* Hero Title — NeueHaasDisplayBlack */
+    .typo-hero {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(32px, 5vw, 62px);
+      line-height: 87%;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Hero Subtitle — NeueHaasDisplayRoman */
+    .typo-subtitle {
+      font-family: var(--font);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 112%;
+      color: var(--text-80);
+    }
+
+    /* Section Title — NeueHaasDisplayBold */
+    .typo-section-title {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* Section Subtitle — NeueHaasDisplayRoman at 450 */
+    .typo-section-subtitle {
+      font-family: var(--font);
+      font-weight: 450;
+      font-size: 27.9px;
+      line-height: 100%;
+      color: var(--text-70);
+    }
+
+    /* Eyebrow text */
+    .typo-eyebrow {
+      font-family: var(--font);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      color: var(--text-80);
+    }
+
+    /* Body */
+    .typo-body {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-80);
+    }
+
+    /* Card Title — on light bg cards */
+    .typo-card-title {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+    }
+
+    /* Progressive blur lines */
+    .blur-line-1 { filter: blur(0px); }
+    .blur-line-2 { filter: blur(0.3px); }
+    .blur-line-3 { filter: blur(0.6px); }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: EYEBROW BADGE
+    ═══════════════════════════════════════════════════════════ */
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: CTA BUTTONS
+    ═══════════════════════════════════════════════════════════ */
+
+    /* Dark shimmer button */
+    .cta-dark {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 28px;
+      border-radius: var(--r-md);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-primary);
+      background: linear-gradient(45deg, #1C1A27 0%, #1C1A27 30%, #312E48 50%, #1C1A27 70%, #1C1A27 100%);
+      background-size: 300% 300%;
+      animation: shine 6s ease-in-out infinite;
+      box-shadow:
+        0 0 20px rgba(251,233,255,0.15),
+        0 0 60px rgba(251,233,255,0.05),
+        0 8px 30px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 20px 20px -20px rgba(255,255,255,0.15);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .cta-dark:hover {
+      box-shadow:
+        0 0 30px rgba(251,233,255,0.25),
+        0 0 80px rgba(251,233,255,0.1),
+        0 12px 40px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        inset 0 20px 20px -20px rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Light shimmer button */
+    .cta-light {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 28px;
+      border-radius: var(--r-md);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-dark);
+      background: linear-gradient(45deg, #fbe9ff 0%, #fbe9ff 30%, #ffffff 50%, #fbe9ff 70%, #fbe9ff 100%);
+      background-size: 300% 300%;
+      animation: shine 6s ease-in-out infinite;
+      box-shadow:
+        0 0 20px rgba(251,233,255,0.4),
+        0 0 50px rgba(251,233,255,0.2),
+        0 4px 20px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 15px 15px -15px rgba(255,255,255,0.8);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .cta-light:hover {
+      box-shadow:
+        0 0 30px rgba(251,233,255,0.6),
+        0 0 80px rgba(251,233,255,0.3),
+        0 8px 30px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 20px 20px -20px rgba(255,255,255,1);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: NAV LINK (Ghost)
+    ═══════════════════════════════════════════════════════════ */
+    .nav-link {
+      font-family: var(--font);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text-60);
+      padding: 10px 20px;
+      border-radius: var(--r-sm);
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: var(--text-primary); }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: GLASS HEADER
+    ═══════════════════════════════════════════════════════════ */
+    .glass-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: rgba(8,6,23,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+    }
+    .glass-header .logo {
+      font-family: var(--font);
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .glass-header .logo-sub {
+      display: flex; flex-direction: column;
+    }
+    .glass-header .logo-sub small {
+      font-size: 8px; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--text-70); line-height: 1;
+    }
+    .glass-header .logo-sub span {
+      font-size: 14px; font-weight: 600; font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: DARK CARD
+    ═══════════════════════════════════════════════════════════ */
+    .dark-card {
+      background: var(--bg-card);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border-card);
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dark-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(251,233,255,0.08);
+    }
+    .dark-card .card-preview {
+      background: var(--bg-elevated);
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dark-card .card-preview img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.6;
+    }
+    .dark-card .card-number {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      width: 32px; height: 32px;
+      background: var(--bg-accent);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+      color: var(--text-dark);
+    }
+    .dark-card .card-body { padding: 24px; }
+    .dark-card .card-body h3 {
+      font-size: 24px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .dark-card .card-body p {
+      font-size: 14px; color: var(--text-70); line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: LIGHT CARD (Pink/Lavender)
+    ═══════════════════════════════════════════════════════════ */
+    .light-card {
+      background: var(--bg-accent);
+      border-radius: var(--r-xl);
+      padding: 32px 48px;
+      color: var(--text-dark);
+      overflow: hidden;
+      position: relative;
+    }
+    .light-card .icon-circle {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .light-card .icon-circle img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .light-card h3 {
+      font-weight: 900; font-size: 32px; letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .light-card p {
+      font-weight: 500; font-size: 18px; opacity: 0.8; line-height: 1.5; max-width: 360px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT: AMBIENT GLOW
+    ═══════════════════════════════════════════════════════════ */
+    .glow {
+      position: absolute;
+      width: 800px; height: 400px;
+      background: rgba(251,233,255,0.05);
+      filter: blur(120px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════════════════════════ */
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .text-center { text-align: center; }
+    .mb-sm { margin-bottom: 8px; }
+    .mb-md { margin-bottom: 16px; }
+    .mb-lg { margin-bottom: 32px; }
+    .mb-xl { margin-bottom: 48px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">① Glass Header</div>
+    <div class="glass-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="logo">ClipsOS</span>
+        <div class="logo-sub">
+          <small>Powered by</small>
+          <span>TheClipsAgency</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="#" class="nav-link">Client Login</a>
+        <button class="cta-light">Book a call</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">② Eyebrow Badge</div>
+    <div class="row">
+      <div class="eyebrow-badge"><span class="typo-eyebrow">Trusted by 150+ experts</span></div>
+      <div class="eyebrow-badge"><span class="typo-eyebrow">The Standard We Hold</span></div>
+      <div class="eyebrow-badge"><span class="typo-eyebrow">The System</span></div>
+      <div class="eyebrow-badge"><span class="typo-eyebrow">Client Results</span></div>
+      <div class="eyebrow-badge"><span class="typo-eyebrow">Testimonials</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">③ Typography Scale</div>
+
+    <div class="mb-xl">
+      <h1 class="typo-hero" style="margin-bottom:8px;">
+        <span class="blur-line-1">Turn One Filming</span><br>
+        <span class="blur-line-2">Session Into Months Of</span><br>
+        <span class="blur-line-3">Authority Content</span>
+      </h1>
+      <p style="font-size:11px; color:var(--text-60); margin-top:12px;">
+        ↑ .typo-hero — 900 weight, 62px, 87% LH, -2% tracking, uppercase, progressive blur
+      </p>
+    </div>
+
+    <div class="mb-xl">
+      <p class="typo-subtitle" style="max-width:600px;">
+        ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
+      </p>
+      <p style="font-size:11px; color:var(--text-60); margin-top:12px;">
+        ↑ .typo-subtitle — 500 weight, 20px, 112% LH
+      </p>
+    </div>
+
+    <div class="mb-xl">
+      <h2 class="typo-section-title" style="margin-bottom:8px;">Built For Experts Who<br>Refuse To Settle.</h2>
+      <p style="font-size:11px; color:var(--text-60); margin-top:12px;">
+        ↑ .typo-section-title — 700 weight, clamp(24-48px), 110% LH
+      </p>
+    </div>
+
+    <div class="mb-xl">
+      <p class="typo-section-subtitle">We take your expertise and make it undeniable.</p>
+      <p style="font-size:11px; color:var(--text-60); margin-top:12px;">
+        ↑ .typo-section-subtitle — 450 weight, 27.9px, 100% LH (Roman)
+      </p>
+    </div>
+
+    <div class="mb-xl">
+      <p class="typo-body">
+        One productive session turns into months of high quality content helping you save time & energy.
+      </p>
+      <p style="font-size:11px; color:var(--text-60); margin-top:12px;">
+        ↑ .typo-body — 400 weight, 16px, 160% LH
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">④ Buttons (hover them!)</div>
+    <div class="row">
+      <button class="cta-dark">Book a call</button>
+      <button class="cta-light">Book a call</button>
+      <a href="#" class="nav-link">Client Login →</a>
+    </div>
+    <p style="font-size:11px; color:var(--text-60); margin-top:8px;">
+      ↑ .cta-dark (dark shimmer) &nbsp;|&nbsp; .cta-light (pink shimmer) &nbsp;|&nbsp; .nav-link (ghost)
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">⑤ Dark Card (Step Cards)</div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+      <div class="dark-card">
+        <div class="card-preview">
+          <div class="card-number">01</div>
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--bg-card), transparent); opacity:0.5;"></div>
+        </div>
+        <div class="card-body">
+          <h3>Strategy</h3>
+          <p>Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.</p>
+        </div>
+      </div>
+      <div class="dark-card">
+        <div class="card-preview">
+          <div class="card-number">02</div>
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--bg-card), transparent); opacity:0.5;"></div>
+        </div>
+        <div class="card-body">
+          <h3>Capture</h3>
+          <p>Structured filming sessions that transform expertise into 20-30 authority clips in a single session.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">⑥ Light Card (Feature Cards)</div>
+    <div class="light-card">
+      <div class="icon-circle" style="background:var(--bg-accent-muted);"></div>
+      <h3>Branded Presence</h3>
+      <p>Elevate your positioning with a unique visual system and attract premium clients you actually want.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">⑦ Color Palette</div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
+      <div style="background:var(--bg-primary); padding:20px 16px; border-radius:12px; border:1px solid var(--border-subtle);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#080617</div>
+        <div style="font-size:11px; color:var(--text-60);">bg-primary</div>
+      </div>
+      <div style="background:var(--bg-card); padding:20px 16px; border-radius:12px; border:1px solid var(--border-subtle);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#1e1c2b</div>
+        <div style="font-size:11px; color:var(--text-60);">bg-card</div>
+      </div>
+      <div style="background:var(--bg-elevated); padding:20px 16px; border-radius:12px; border:1px solid var(--border-subtle);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#2d2a41</div>
+        <div style="font-size:11px; color:var(--text-60);">bg-elevated</div>
+      </div>
+      <div style="background:var(--bg-accent); padding:20px 16px; border-radius:12px; color:var(--text-dark);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#fbe9ff</div>
+        <div style="font-size:11px; opacity:0.6;">accent</div>
+      </div>
+      <div style="background:var(--bg-accent-muted); padding:20px 16px; border-radius:12px; color:var(--text-dark);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#F1CDF9</div>
+        <div style="font-size:11px; opacity:0.6;">accent-muted</div>
+      </div>
+      <div style="background:var(--bg-accent-fill); padding:20px 16px; border-radius:12px; color:var(--text-dark);">
+        <div style="font-size:12px; font-weight:700; margin-bottom:4px;">#E7C1EF</div>
+        <div style="font-size:11px; opacity:0.6;">accent-fill</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">⑧ Border Radii</div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:end;">
+      <div style="width:60px; height:60px; background:var(--bg-elevated); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:10px; border:1px solid var(--border-subtle);">8px</div>
+      <div style="width:70px; height:70px; background:var(--bg-elevated); border-radius:var(--r-md); display:flex; align-items:center; justify-content:center; font-size:10px; border:1px solid var(--border-subtle);">12px</div>
+      <div style="width:80px; height:80px; background:var(--bg-elevated); border-radius:var(--r-lg); display:flex; align-items:center; justify-content:center; font-size:10px; border:1px solid var(--border-subtle);">20px</div>
+      <div style="width:90px; height:90px; background:var(--bg-elevated); border-radius:var(--r-xl); display:flex; align-items:center; justify-content:center; font-size:10px; border:1px solid var(--border-subtle);">24px</div>
+      <div style="width:120px; height:44px; background:var(--bg-elevated); border-radius:var(--r-pill); display:flex; align-items:center; justify-content:center; font-size:10px; border:1px solid var(--border-subtle);">pill</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
