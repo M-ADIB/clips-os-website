@@ -463,8 +463,8 @@ export default function App() {
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Standard We Hold</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 tracking-tight">Built For Experts Who<br />Refuse To Settle.</h2>
-            <p style={{ fontFamily: NHGDP, fontWeight: 450, fontSize: '27.9px', lineHeight: '100%', letterSpacing: '0%', color: 'rgba(255,255,247,0.7)' }}>We take your expertise and make it undeniable.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-tight uppercase" style={{ fontFamily: NHGDP, fontWeight: 900, letterSpacing: '-0.02em', lineHeight: '87%' }}>Built For Experts Who<br />Refuse To Settle.</h2>
+            <p className="mt-6" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>We take your expertise and make it undeniable.</p>
           </FadeInOnScroll>
 
           <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
@@ -543,8 +543,8 @@ export default function App() {
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The System</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">How The System Runs</h2>
-            <p className="text-xl text-white/70 max-w-xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl mb-4 sm:mb-6 tracking-tight uppercase" style={{ fontFamily: NHGDP, fontWeight: 900, letterSpacing: '-0.02em', lineHeight: '87%' }}>How The System Runs</h2>
+            <p className="max-w-xl mx-auto" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>
               A repeatable system designed to capture expertise, produce content, and generate demand.
             </p>
           </FadeInOnScroll>
@@ -588,10 +588,10 @@ export default function App() {
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Operating System</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 tracking-tight max-w-3xl mx-auto uppercase" style={{ fontFamily: NHGDP, fontWeight: 900, letterSpacing: '-0.02em', lineHeight: '87%' }}>
               Your Entire Content Operation In One Place
             </h2>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="max-w-2xl mx-auto" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>
               ClipsOS is the command layer behind everything we do. Strategy, production, distribution, and performance. All connected, all in one place, all working for you.
             </p>
           </FadeInOnScroll>
@@ -638,8 +638,8 @@ export default function App() {
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Client Results</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">Case Studies</h2>
-            <p className="text-xl text-white/70 max-w-xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 tracking-tight uppercase" style={{ fontFamily: NHGDP, fontWeight: 900, letterSpacing: '-0.02em', lineHeight: '87%' }}>Case Studies</h2>
+            <p className="max-w-xl mx-auto" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>
               Multiple industries. One system. Proven results.
             </p>
           </FadeInOnScroll>
@@ -657,6 +657,7 @@ export default function App() {
                 whatWeDid={["Targeted her audience", "Created engaging content"]}
                 impact="Becoming a top agent in her niche and generating consistent inbound leads from organic content"
                 thumbnails={[]}
+                defaultExpanded={true}
               />
             </StaggerItem>
 
@@ -676,7 +677,7 @@ export default function App() {
                   "/assets/kz-before-1.png", "/assets/kz-before-2.png", "/assets/kz-before-3.png",
                   "/assets/kz-after-1.png", "/assets/kz-after-2.png", "/assets/kz-after-3.png"
                 ]}
-                defaultExpanded={true}
+                defaultExpanded={false}
               />
             </StaggerItem>
 
@@ -713,8 +714,8 @@ export default function App() {
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Testimonials</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">Hear From Our Clients</h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 tracking-tight uppercase" style={{ fontFamily: NHGDP, fontWeight: 900, letterSpacing: '-0.02em', lineHeight: '87%' }}>Hear From Our Clients</h2>
+            <p className="max-w-2xl mx-auto" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>
               Don't just take our word for it. Hear directly from the experts who've transformed their market positioning with us.
             </p>
           </FadeInOnScroll>
@@ -821,11 +822,11 @@ export default function App() {
         </section>
 
         {/* ── Final CTA ── */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll>
             <div className="bg-[#fbe9ff] rounded-[24px] sm:rounded-[40px] p-10 sm:p-16 md:p-24 text-center relative overflow-hidden group shadow-[0_0_80px_rgba(251,233,255,0.05)] border border-[#fbe9ff]/20">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-black text-[#080617] mb-4 sm:mb-6 tracking-tight relative z-10 leading-[1] md:leading-[1.1]">
-                Your Content Should Be <br /> Closing Deals While You Sleep.
+                Your Content Should Be Closing Deals While You Sleep.
               </h2>
               
               <p className="text-[#080617]/80 text-sm sm:text-base max-w-[600px] mx-auto mb-10 relative z-10 font-medium tracking-tight">
