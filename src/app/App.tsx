@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Menu, X, ChevronDown, ChevronUp, Play } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Marquee } from "../components/ui/marquee";
 import { HyperText } from "../components/ui/hyper-text";
@@ -121,43 +121,53 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
 
 // ─── Testimonial Card ────────────────────────────────────────────────────────
 
-function TestimonialCard({ name, role, videoId }: { name: string; role: string; videoId: string; defaultVideo?: boolean }) {
+function TestimonialCard({ name, role, videoId, isActive }: { name: string; role: string; videoId: string; isActive?: boolean }) {
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+
+  // Stop video when card is no longer active
+  React.useEffect(() => {
+    if (!isActive && isPlaying) {
+      setIsPlaying(false);
+    }
+  }, [isActive]);
   
   return (
     <div 
-       className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
-       onClick={() => setIsPlaying(true)}
+       className="w-full aspect-square rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
+       onClick={() => { if (!isPlaying) setIsPlaying(true); }}
     >
        {/* Video embed — always visible */}
-       <div className="absolute inset-0 z-10">
+       <div className="absolute inset-0" style={{ zIndex: 1 }}>
          <iframe 
+           ref={iframeRef}
            src={`https://player.vimeo.com/video/${videoId}?autoplay=${isPlaying ? 1 : 0}&muted=${isPlaying ? 0 : 1}&loop=1&background=${isPlaying ? 0 : 1}&controls=${isPlaying ? 1 : 0}&title=0&byline=0&portrait=0`}
            className="w-full h-[120%] -mt-[10%] scale-[1.05]" 
            frameBorder="0" 
            allow="autoplay; fullscreen" 
            allowFullScreen
+           style={{ pointerEvents: isPlaying ? 'auto' : 'none' }}
          />
        </div>
 
        {/* Play button overlay — hidden when playing */}
        {!isPlaying && (
-         <div className="absolute inset-0 z-20 flex items-center justify-center">
-           <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300 shadow-lg">
-             <Play size={20} fill="white" className="text-white ml-1" />
+         <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 3 }}>
+           <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300 shadow-lg">
+             <Play size={24} fill="white" className="text-white ml-1" />
            </div>
          </div>
        )}
 
-       {/* Name badge overlay at bottom */}
-       <div className="absolute bottom-0 left-0 right-0 z-30 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
+       {/* Name badge overlay at bottom — ALWAYS visible */}
+       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent" style={{ zIndex: 2, pointerEvents: 'none' }}>
          <div className="flex items-center gap-3">
-           <div className="w-9 h-9 bg-[#fbe9ff] rounded-full flex items-center justify-center shrink-0 shadow-md">
+           <div className="w-10 h-10 bg-[#fbe9ff] rounded-full flex items-center justify-center shrink-0 shadow-md">
              <span className="font-bold text-[#080617] text-sm">{name.charAt(0)}</span>
            </div>
            <div>
-             <h4 className="font-bold text-white text-sm leading-tight">{name}</h4>
-             <p className="text-xs font-medium text-white/70">{role}</p>
+             <h4 className="font-bold text-white text-sm leading-tight drop-shadow-md">{name}</h4>
+             <p className="text-xs font-medium text-white/80 drop-shadow-md">{role}</p>
            </div>
          </div>
        </div>
@@ -336,10 +346,15 @@ export default function App() {
           </motion.div>
         </div>
 
-        {/* Mobile Nav */}
-        {/* Mobile Menu - CSS transition instead of heavy AnimatePresence */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden px-4 mt-2 animate-in fade-in slide-in-from-top-2 duration-150">
+        {/* Mobile Nav - smooth slide animation */}
+        <div 
+          className="md:hidden overflow-hidden transition-all duration-200 ease-out"
+          style={{ 
+            maxHeight: isMobileMenuOpen ? '200px' : '0px',
+            opacity: isMobileMenuOpen ? 1 : 0,
+          }}
+        >
+          <div className="px-4 mt-2">
             <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
               <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/80 border border-white/20 py-3 rounded-lg font-semibold text-center hover:bg-white/5 hover:text-white transition-colors">Client Login</a>
               <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
@@ -347,7 +362,7 @@ export default function App() {
               </Link>
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
       <main className="pt-24 sm:pt-32 pb-12 sm:pb-20">
@@ -689,36 +704,80 @@ export default function App() {
             </p>
           </FadeInOnScroll>
 
-          {/* Infinite Marquee */}
-          <div className="relative w-full max-w-[100vw] overflow-hidden">
-            {/* Soft gradient masks for the edges */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r from-[#080617] z-30"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l from-[#080617] z-30"></div>
+          {/* Arrow-navigated Carousel */}
+          {(() => {
+            const testimonials = [
+              { name: "Medhat", role: "Entrepreneur", videoId: "1144122013" },
+              { name: "Diana", role: "Founder", videoId: "1144121636" },
+              { name: "Mira Daher", role: "CEO", videoId: "1144121766" },
+              { name: "Hager", role: "Creator", videoId: "1144121241" },
+              { name: "Jihad", role: "Expert", videoId: "1144121096" },
+              { name: "Vennre", role: "Founder", videoId: "1144121387" },
+              { name: "Leo", role: "Consultant", videoId: "1144122134" },
+              { name: "Reem", role: "Coach", videoId: "1144121444" },
+              { name: "Suzan", role: "Creator", videoId: "1144122103" },
+              { name: "Steve", role: "Founder", videoId: "1144122058" },
+              { name: "Pavel", role: "Consultant", videoId: "1144121872" },
+              { name: "Hala", role: "Chef", videoId: "1144121290" },
+              { name: "Sara", role: "Dentist", videoId: "1144121493" },
+              { name: "Ahmed", role: "Creator", videoId: "1144120878" }
+            ];
+            const [currentIndex, setCurrentIndex] = React.useState(0);
+            const visibleCount = typeof window !== 'undefined' && window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+            const maxIndex = testimonials.length - visibleCount;
             
-            <Marquee pauseOnHover className="[--duration:60s] py-4" repeat={3}>
-              {[
-                { name: "Medhat", role: "Entrepreneur", videoId: "1144122013" },
-                { name: "Diana", role: "Founder", videoId: "1144121636" },
-                { name: "Mira Daher", role: "CEO", videoId: "1144121766" },
-                { name: "Hager", role: "Creator", videoId: "1144121241" },
-                { name: "Jihad", role: "Expert", videoId: "1144121096" },
-                { name: "Vennre", role: "Founder", videoId: "1144121387" },
-                { name: "Leo", role: "Consultant", videoId: "1144122134" },
-                { name: "Reem", role: "Coach", videoId: "1144121444" },
-                { name: "Suzan", role: "Creator", videoId: "1144122103" },
-                { name: "Steve", role: "Founder", videoId: "1144122058" },
-                { name: "Pavel", role: "Consultant", videoId: "1144121872" },
-                { name: "Hala", role: "Chef", videoId: "1144121290" },
-                { name: "Sara", role: "Dentist", videoId: "1144121493" },
-                { name: "Ahmed", role: "Creator", videoId: "1144120878" }
-              ].map((testimonial, i) => (
-                <TestimonialCard 
-                  key={i} 
-                  {...testimonial} 
-                />
-              ))}
-            </Marquee>
-          </div>
+            return (
+              <div className="relative max-w-6xl mx-auto px-4">
+                {/* Navigation arrows */}
+                <button 
+                  onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+                  disabled={currentIndex === 0}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
+                >
+                  <ChevronLeft size={22} className="text-white" />
+                </button>
+                <button 
+                  onClick={() => setCurrentIndex(Math.min(maxIndex, currentIndex + 1))}
+                  disabled={currentIndex >= maxIndex}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-20 disabled:cursor-not-allowed border border-white/20"
+                >
+                  <ChevronRight size={22} className="text-white" />
+                </button>
+
+                {/* Cards container */}
+                <div className="overflow-hidden mx-10 sm:mx-14">
+                  <div 
+                    className="flex gap-4 transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}
+                  >
+                    {testimonials.map((testimonial, i) => (
+                      <div 
+                        key={i} 
+                        className="shrink-0"
+                        style={{ width: `calc(${100 / visibleCount}% - ${((visibleCount - 1) * 16) / visibleCount}px)` }}
+                      >
+                        <TestimonialCard 
+                          {...testimonial}
+                          isActive={i >= currentIndex && i < currentIndex + visibleCount}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dot indicators */}
+                <div className="flex justify-center gap-2 mt-6">
+                  {Array.from({ length: maxIndex + 1 }, (_, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => setCurrentIndex(i)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-[#fbe9ff] w-6' : 'bg-white/30 hover:bg-white/50'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </section>
 
         {/* ── Final CTA ── */}
