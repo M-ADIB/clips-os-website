@@ -671,8 +671,8 @@ export default function App() {
                 whatWeDid={["Targeted a niche audience", "Developed a signature series format"]}
                 impact="Becoming a top agent in her niche and generating consistent inbound leads from organic content"
                 thumbnails={[
-                  "/assets/case-studies/leena-Rectangle-1256-TCA-Website.png", "/assets/case-studies/leena-Rectangle-1258-TCA-Website.png", "/assets/case-studies/leena-Rectangle-1259-TCA-Website.png",
-                  "/assets/case-studies/leena-Rectangle-1261-TCA-Website.png", "/assets/case-studies/leena-TCA-Website-Collab-Group-1037.png", "/assets/case-studies/leena-TCA-Website-Collab-Group-1038.png"
+                  "/assets/case-studies/leena-before1.png", "/assets/case-studies/leena-before2.png", "/assets/case-studies/leena-before3.png",
+                  "/assets/case-studies/leena-after1.png", "/assets/case-studies/leena-after2.png", "/assets/case-studies/leena-after3.png"
                 ]}
                 defaultExpanded={true}
               />
@@ -685,7 +685,7 @@ export default function App() {
                 title="Architect & Ai Specialist"
                 beforeText="No proper positioning, No clear monetization, No Authority"
                 stats={[
-                  { value: "15k", label: "New Followers", sublabel: "After 1 studio session" },
+                  { value: "15k+", label: "New Followers", sublabel: "After 1 studio session" },
                   { value: "500k+", label: "Views" },
                   { value: "$25K", label: "", sublabel: "in cash collected in 2 months" },
                 ]}
@@ -705,15 +705,15 @@ export default function App() {
                 title="Cosmetic Dentist"
                 beforeText="Dr. Sara used to create generic content that nobody cared about and didn't show her personality at all."
                 stats={[
-                  { value: "160k", label: "New Followers", sublabel: "in 4-6 months" },
+                  { value: "160k+", label: "New Followers", sublabel: "in 4-6 months" },
                   { value: "25M+", label: "Views" },
                   { value: "1k+", label: "Leads" },
                 ]}
                 whatWeDid={["Studied her personality", "Doubled down on her sarcastic tone of voice that people loved."]}
                 impact={["Sponsored on the UAE's influencer list", "Flooded DMs with inquires + opportunities", "Pursuing her private license to benefit from her online presence"]}
                 thumbnails={[
-                  "/assets/case-studies/sara-before1.png", "/assets/case-studies/sara-Before2.png", "/assets/case-studies/sara-Before3.png",
-                  "/assets/case-studies/sara-after1.png.png", "/assets/case-studies/sara-after2.png", "/assets/case-studies/sara-after3.png"
+                  "/assets/case-studies/sara-before1.png", "/assets/case-studies/sara-before2.png", "/assets/case-studies/sara-before3.png",
+                  "/assets/case-studies/sara-after1.png", "/assets/case-studies/sara-after2.png", "/assets/case-studies/sara-after3.png"
                 ]}
               />
             </StaggerItem>
@@ -725,7 +725,7 @@ export default function App() {
                 title="Pediatrician"
                 beforeText="Dr. Medhat used to create a lot of content on his clinic page with no return or awareness"
                 stats={[
-                  { value: "350k", label: "New Followers", sublabel: "in 5 months" },
+                  { value: "350k+", label: "New Followers", sublabel: "in 5 months" },
                   { value: "40M+", label: "Views" },
                   { value: "15%", label: "", sublabel: "Increase in patient bookings" },
                 ]}
@@ -738,14 +738,14 @@ export default function App() {
               />
             </StaggerItem>
 
-            {/* 5. Tina Al Shagoury */}
+            {/* 5. Tina Chagoury */}
             <StaggerItem>
               <CaseStudyCard
-                name={<>Tina Al<br />Shagoury</>}
+                name={<>Tina<br />Chagoury</>}
                 title="Clinical Nutritionist"
                 beforeText={"Started with 30K followers.\nDidn't have time for consistent content creation."}
                 stats={[
-                  { value: "25k", label: "New Followers", sublabel: "After 1 studio session" },
+                  { value: "25k+", label: "New Followers", sublabel: "After 1 studio session" },
                   { value: "10M+", label: "Views" },
                   { value: "10K+", label: "New Leads" },
                   { value: "$30k+", label: "In revenue" },
@@ -766,7 +766,7 @@ export default function App() {
                 title="Rheumatologist & Internist"
                 beforeText="Deena had no online presence, she never had been on camera, and she was undervalued at work"
                 stats={[
-                  { value: "3k", label: "New Followers", sublabel: "After 1 studio session" },
+                  { value: "3k+", label: "New Followers", sublabel: "After 1 studio session" },
                   { value: "1M+", label: "Views" },
                   { value: "11+", label: "New Patients" },
                 ]}
