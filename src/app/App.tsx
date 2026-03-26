@@ -453,8 +453,8 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             style={{ 
-              maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+              maskImage: 'linear-gradient(to right, transparent, black 1%, black 99%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 1%, black 99%, transparent)',
             }}
           >
             <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
