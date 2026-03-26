@@ -491,7 +491,7 @@ export default function App() {
                 </div>
                 <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
-                     <img src="/assets/Brand Presence (1).gif" alt="" className="w-full h-full object-cover" />
+                     <video src="/assets/Brand Presence (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
                    <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight mt-12 md:mt-0">Branded Presence</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
@@ -506,7 +506,7 @@ export default function App() {
               <div className="w-full bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col md:flex-row items-stretch gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[350px]">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full min-h-[250px] md:min-h-0">
                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
-                     <img src="/assets/Content Sprints (1).gif" alt="" className="w-full h-full object-cover" />
+                     <video src="/assets/Content Sprints (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
                    <div className="mt-8 md:mt-auto">
                      <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Content Sprints</h3>
@@ -531,7 +531,7 @@ export default function App() {
                 </div>
                 <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
-                     <img src="/assets/Demand Generations (1).gif" alt="" className="w-full h-full object-cover" />
+                     <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 tracking-tight mt-16 sm:mt-0">Demand Generation</h3>
                    <p className="text-base sm:text-lg md:text-xl font-medium opacity-80 leading-relaxed max-w-md">
@@ -566,10 +566,10 @@ export default function App() {
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.gif" },
-              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.gif" },
-              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.gif" },
-              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.gif" }
+              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
+              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
+              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
+              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
                 <motion.div
@@ -578,7 +578,7 @@ export default function App() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="bg-[#2d2a41] h-[160px] p-4 relative overflow-hidden">
-                    <img src={item.gif} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                    <video src={item.gif} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
                     <motion.div
                       className="bg-[#fbe9ff] w-8 h-8 rounded text-[#101010] font-bold flex items-center justify-center text-sm absolute top-4 left-4 z-10"
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -613,10 +613,10 @@ export default function App() {
 
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-40">
             {[
-              { num: "01", title: "Collaborate With Ease", desc: "Access all content, assets, and updates in one workspace — keeping your team, editor, and strategy perfectly aligned.", img: "/assets/Collaborate with Ease.gif", reverse: false },
-              { num: "02", title: "Frame-Based Review", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Dashboard from The Clips Agency.gif", reverse: true },
-              { num: "03", title: "Analytics That Matter", desc: "Track the metrics that actually drive growth — views, retention, reach, and lead signals — so we know exactly what to double down on.", img: "/assets/IG Analytics from The Clips Agency.gif", reverse: false },
-              { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Talent Network.gif", reverse: true },
+              { num: "01", title: "Collaborate With Ease", desc: "Access all content, assets, and updates in one workspace — keeping your team, editor, and strategy perfectly aligned.", img: "/assets/Collaborate with Ease.mp4", reverse: false },
+              { num: "02", title: "Frame-Based Review", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Dashboard from The Clips Agency.mp4", reverse: true },
+              { num: "03", title: "Analytics That Matter", desc: "Track the metrics that actually drive growth — views, retention, reach, and lead signals — so we know exactly what to double down on.", img: "/assets/IG Analytics from The Clips Agency.mp4", reverse: false },
+              { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Talent Network.mp4", reverse: true },
             ].map((item, idx) => (
               <FadeInOnScroll key={idx}>
                 <div className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 sm:gap-10 md:gap-20`}>
@@ -625,7 +625,7 @@ export default function App() {
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <video src={item.img} autoPlay loop muted playsInline className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </motion.div>
                   <div className={`w-full md:w-2/5 flex flex-col gap-4 ${item.reverse ? 'md:items-end md:text-right' : ''}`}>
                     <span className="text-[#fbe9ff] font-medium text-lg mb-2">{item.num}</span>
