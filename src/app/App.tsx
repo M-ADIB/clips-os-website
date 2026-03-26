@@ -828,7 +828,7 @@ export default function App() {
             React.useEffect(() => {
               const update = () => {
                 const w = window.innerWidth;
-                setVisibleCount(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+                setVisibleCount(w >= 1024 ? 3 : 2);
               };
               update();
               window.addEventListener('resize', update);
