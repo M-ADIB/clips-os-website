@@ -516,7 +516,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-2/5 aspect-[9/16] bg-[#E7C1EF] rounded-[20px] overflow-hidden">
+                <div className="w-full md:w-2/5 aspect-[9/16] bg-[#E7C1EF] rounded-[20px] overflow-hidden ml-auto">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -524,8 +524,8 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[450px]">
-                <div className="w-full md:w-[31.7%] h-[400px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[550px]">
+                <div className="w-full md:w-[31.7%] h-[500px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none" />
