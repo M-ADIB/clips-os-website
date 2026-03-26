@@ -503,7 +503,7 @@ export default function App() {
 
             {/* Row 2 */}
             <StaggerItem>
-              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[350px]">
+              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full">
                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
                      <video src="/assets/Content Sprints (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
@@ -516,7 +516,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:h-full bg-[#E7C1EF] rounded-[20px] overflow-hidden">
+                <div className="w-full md:w-2/5 aspect-[9/16] bg-[#E7C1EF] rounded-[20px] overflow-hidden">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
