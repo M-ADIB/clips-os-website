@@ -77,9 +77,11 @@ function StaggerItem({ children, className = '' }: { children: React.ReactNode; 
 // ─── Animated Counter ────────────────────────────────────────────────────────
 
 function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; suffix?: string; prefix?: string }) {
-  const numericPart = value.replace(/[^0-9.]/g, '');
+  const match = value.match(/^([^0-9]*)([\d.]+)(.*)$/);
+  const detectedPrefix = match ? match[1] : '';
+  const numericPart = match ? match[2] : '0';
   const numericValue = parseFloat(numericPart);
-  const textSuffix = value.replace(/[0-9.]/g, '');
+  const textSuffix = match ? match[3] : '';
   const [displayValue, setDisplayValue] = React.useState(0);
   const [hasAnimated, setHasAnimated] = React.useState(false);
   const ref = React.useRef<HTMLSpanElement>(null);
@@ -115,7 +117,7 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
 
   return (
     <span ref={ref}>
-      {prefix}{displayValue}{textSuffix}{suffix}
+      {prefix}{detectedPrefix}{displayValue}{textSuffix}{suffix}
     </span>
   );
 }
