@@ -503,7 +503,7 @@ export default function App() {
 
             {/* Row 2 */}
             <StaggerItem>
-              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto">
+              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[450px]">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full">
                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
                      <video src="/assets/Content Sprints (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
@@ -516,7 +516,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-2/5 aspect-[9/16] bg-[#E7C1EF] rounded-[20px] overflow-hidden ml-auto">
+                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[20px] overflow-hidden ml-auto">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -524,8 +524,8 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[550px]">
-                <div className="w-full md:w-[31.7%] h-[500px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[450px]">
+                <div className="w-full md:w-[31.7%] h-[450px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none" />
@@ -554,7 +554,7 @@ export default function App() {
         </section>
 
         {/* ── How The System Runs ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section className="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The System</span>
@@ -589,8 +589,8 @@ export default function App() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1e1c2b] to-transparent opacity-50 pointer-events-none" />
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-2xl font-medium mb-3 tracking-tight">{item.title}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight" style={{ fontFamily: NHGDP }}>{item.title}</h3>
+                    <p className="text-white/70 text-base leading-relaxed" style={{ fontFamily: NHGDP, fontWeight: 500 }}>{item.desc}</p>
                   </div>
                 </motion.div>
               </StaggerItem>
