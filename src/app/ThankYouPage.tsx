@@ -4,26 +4,6 @@ import { Link } from 'react-router';
 export default function ThankYouPage() {
   return (
     <div className="bg-[#080617] min-h-screen text-[#fffff7] font-sans flex flex-col">
-      {/* Simple Nav */}
-      <nav className="fixed w-full z-50 top-0 left-0">
-        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 mt-3 sm:mt-4">
-          <div className="bg-[rgba(45,42,65,0.4)] backdrop-blur-md rounded-[18px] sm:rounded-[23px] px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between border border-white/5">
-            <Link to="/" className="flex items-center gap-3">
-              <span className="font-bold text-xl tracking-tight">ClipsOS</span>
-              <div className="flex flex-col">
-                <span className="text-[8px] text-white/70 uppercase tracking-widest leading-none">Powered by</span>
-                <span className="text-sm font-semibold italic">TheClipsAgency</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3 md:gap-4">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-white/80 border border-white/20 px-4 md:px-5 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-semibold hover:bg-white/10 hover:text-white transition-colors">Client Login</a>
-              <Link to="/submit-form" className="cta-shine-light px-5 md:px-6 py-2 md:py-2.5 rounded-lg text-sm md:text-base font-bold">
-                Apply Now
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 pt-24 pb-20">
         {/* Hero */}

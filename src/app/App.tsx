@@ -243,7 +243,7 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
             <div className="pt-8 border-t border-black/10">
               <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
                 {/* Left Column */}
-                <div className="flex-1 flex flex-col justify-between">
+                <div className="flex-[1.2] flex flex-col justify-between">
                   <div>
                     <h4 className="font-black text-base mb-2">Before</h4>
                     <p className="text-sm font-medium text-black/80 max-w-[280px] mb-8">{beforeText}</p>
@@ -316,78 +316,20 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
 // ─── Main App ────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { scrollY } = useScroll();
   const navBgOpacity = useTransform(scrollY, [0, 100], [0.4, 0.85]);
   const navBlur = useTransform(scrollY, [0, 100], [12, 20]);
 
   return (
     <div className="bg-[#080617] min-h-screen text-[#fffff7] font-sans selection:bg-[#fbe9ff] selection:text-[#080617] overflow-x-hidden">
-      {/* ── Navigation ── */}
-      <nav className="fixed w-full z-50 top-0 left-0">
-        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 mt-3 sm:mt-4">
-          <motion.div
-            className="rounded-[18px] sm:rounded-[23px] px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between border border-white/5"
-            style={{
-              backgroundColor: useTransform(navBgOpacity, (v) => `rgba(45, 42, 65, ${v})`),
-              backdropFilter: useTransform(navBlur, (v) => `blur(${v}px)`),
-            }}
-            initial={{ y: -60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <Link to="/" className="flex items-center gap-3">
-              <span className="font-black text-[26px] tracking-tight" style={{ fontFamily: NHGDP }}>ClipsOS</span>
-              <div className="flex flex-col">
-                <span className="text-[8px] text-white/70 uppercase tracking-widest leading-none">Powered by</span>
-                <span className="text-sm font-semibold italic">TheClipsAgency</span>
-              </div>
-            </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-4">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/60 px-5 py-2.5 rounded-lg font-medium text-sm hover:text-white transition-colors">Client Login</a>
-              <Link to="/submit-form" className="cta-shine-light px-6 py-2.5 rounded-lg font-bold">
-                Book a call
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-white"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Mobile Nav - smooth slide animation */}
-        <div 
-          className="md:hidden overflow-hidden transition-all duration-200 ease-out"
-          style={{ 
-            maxHeight: isMobileMenuOpen ? '200px' : '0px',
-            opacity: isMobileMenuOpen ? 1 : 0,
-          }}
-        >
-          <div className="px-4 mt-2">
-            <div className="bg-[#1e1c2b] rounded-xl p-4 flex flex-col gap-3 border border-white/10 shadow-xl">
-              <a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-white/60 py-3 rounded-lg font-medium text-sm text-center hover:text-white transition-colors">Client Login</a>
-              <Link to="/submit-form" className="cta-shine-light px-6 py-3 rounded-lg font-bold text-center">
-                Book a call
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="pt-24 sm:pt-32 pb-12 sm:pb-20">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-20">
         {/* ── Hero Section ── */}
-        <section className="max-w-[1400px] mx-auto overflow-hidden text-center pt-8 sm:pt-16 md:pt-24 pb-16 sm:pb-24 md:pb-32 relative">
+        <section className="max-w-[1400px] mx-auto overflow-hidden text-center pt-2 sm:pt-4 md:pt-6 pb-4 sm:pb-6 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
-            className="mb-8 inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 relative z-10"
+            className="mb-4 hidden sm:inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -396,30 +338,29 @@ export default function App() {
           </motion.div>
 
           <motion.h1
-            className="uppercase relative z-10 text-center mb-6 sm:mb-8 px-4"
+            className="uppercase relative z-10 text-center mb-4 sm:mb-5 px-4"
             style={{ 
               fontFamily: NHGDP,
               fontWeight: 900,
-              fontSize: 'clamp(32px, 5vw, 62px)',
-              lineHeight: '87%',
+              lineHeight: 0.87,
               letterSpacing: '-0.02em',
             }}
             initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span style={{ filter: 'blur(0px)' }}>Turn One Filming</span><br />
-            <span style={{ filter: 'blur(0.3px)' }}>Session Into Months Of</span><br />
-            <span style={{ filter: 'blur(0.6px)' }}>Authority Content</span>
+            <span className="hidden sm:inline" style={{ fontSize: 'clamp(26px, 2.8vw, 42px)' }}>The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month</span>
+            <span className="sm:hidden" style={{ fontSize: 'clamp(34px, 10vw, 52px)' }}>Your Entire Content<br />Operation In One Place</span>
           </motion.h1>
 
+          {/* Desktop subtitle */}
           <motion.p
-            className="max-w-2xl mx-auto mb-10 relative z-10 px-4 text-center"
+            className="hidden sm:block max-w-xl mx-auto mb-6 relative z-10 px-4 text-center"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
-              fontSize: '20px',
-              lineHeight: '112%',
+              fontSize: '17px',
+              lineHeight: '140%',
               color: 'rgba(255,255,247,0.8)',
             }}
             initial={{ opacity: 0, y: 20 }}
@@ -427,6 +368,22 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
+          </motion.p>
+          {/* Mobile subtitle */}
+          <motion.p
+            className="sm:hidden max-w-sm mx-auto mb-6 relative z-10 px-4 text-center"
+            style={{
+              fontFamily: NHGDP,
+              fontWeight: 500,
+              fontSize: '18px',
+              lineHeight: '140%',
+              color: 'rgba(255,255,247,0.8)',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            A repeatable system designed to capture expertise, produce content, and generate demand.
           </motion.p>
 
           <motion.div
@@ -448,7 +405,7 @@ export default function App() {
 
           {/* Ticker Carousel */}
           <motion.div 
-            className="mt-16 sm:mt-24 w-full relative z-10"
+            className="mt-8 sm:mt-10 w-full relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
@@ -464,7 +421,7 @@ export default function App() {
                 'Pointers 2', 'Tina_HG_240p', 'hager 1', 'intense warm', 
                 'softwarm', 'v1_optimized'
               ].map((name, i) => (
-                <div key={i} className="w-[120px] sm:w-[160px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-1" style={{ willChange: 'transform', transform: 'translateZ(0)', contain: 'layout paint' }}>
+                <div key={i} className="w-[100px] sm:w-[130px] md:w-[155px] aspect-[9/16] rounded-2xl overflow-hidden shrink-0 border border-white/10 bg-white/5 mx-1" style={{ willChange: 'transform', transform: 'translateZ(0)', contain: 'layout paint' }}>
                   <video src={`/assets/ticker-vids/${name}.mp4`} autoPlay muted loop playsInline className="w-full h-full object-cover" />
                 </div>
               ))}
@@ -620,15 +577,15 @@ export default function App() {
               { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Talent Network.mp4", reverse: true },
             ].map((item, idx) => (
               <FadeInOnScroll key={idx}>
-                <div className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 sm:gap-10 md:gap-20`}>
+                <div className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-start gap-8 sm:gap-10 md:gap-20`}>
                   <motion.div
-                    className="w-full md:w-3/5 rounded-[20px] sm:rounded-[32px] overflow-hidden bg-[#2d2a41] border border-white/10 aspect-[16/9] shadow-2xl relative group"
+                    className="w-full md:w-[63%] rounded-[20px] sm:rounded-[32px] overflow-hidden bg-[#2d2a41] border border-white/10 aspect-[16/9] shadow-2xl relative group"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.5 }}
                   >
                     <video src={item.img} autoPlay loop muted playsInline className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </motion.div>
-                  <div className={`w-full md:w-2/5 flex flex-col gap-4 ${item.reverse ? 'md:items-end md:text-right' : ''}`}>
+                  <div className="w-full md:w-[32%] flex flex-col gap-4">
                     <span className="text-[#fbe9ff] font-medium text-lg mb-2">{item.num}</span>
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-none">{item.title}</h3>
                     <p className="text-white/70 text-lg leading-relaxed mt-2">{item.desc}</p>
