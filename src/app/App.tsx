@@ -325,16 +325,16 @@ export default function App() {
 
       <main className="pt-20 sm:pt-24 pb-12 sm:pb-20">
         {/* ── Hero Section ── */}
-        <section className="max-w-[1400px] mx-auto overflow-hidden text-center pt-2 sm:pt-4 md:pt-6 pb-4 sm:pb-6 relative">
+        <section className="max-w-[1400px] mx-auto overflow-hidden text-center relative min-h-[calc(100dvh-5rem)] sm:min-h-[calc(100dvh-6rem)] flex flex-col items-center justify-center pb-4 sm:pb-6">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
-            className="mb-4 hidden sm:inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 relative z-10"
+            className="mb-3 sm:mb-4 inline-flex items-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/10 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Trusted by 150+ experts</span>
+            <span className="text-[11px] sm:text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Trusted by 150+ experts</span>
           </motion.div>
 
           <motion.h1
@@ -350,7 +350,7 @@ export default function App() {
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <span className="hidden sm:inline" style={{ fontSize: 'clamp(26px, 2.8vw, 42px)' }}>The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month</span>
-            <span className="sm:hidden" style={{ fontSize: 'clamp(34px, 10vw, 52px)' }}>Your Entire Content<br />Operation In One Place</span>
+            <span className="sm:hidden" style={{ fontSize: 'clamp(26px, 7.5vw, 40px)' }}>Your Entire Content<br />Operation In One Place</span>
           </motion.h1>
 
           {/* Desktop subtitle */}
@@ -371,11 +371,11 @@ export default function App() {
           </motion.p>
           {/* Mobile subtitle */}
           <motion.p
-            className="sm:hidden max-w-sm mx-auto mb-6 relative z-10 px-4 text-center"
+            className="sm:hidden max-w-sm mx-auto mb-4 relative z-10 px-4 text-center"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
-              fontSize: '18px',
+              fontSize: '15px',
               lineHeight: '140%',
               color: 'rgba(255,255,247,0.8)',
             }}
@@ -405,7 +405,7 @@ export default function App() {
 
           {/* Ticker Carousel */}
           <motion.div 
-            className="mt-8 sm:mt-10 w-full relative z-10"
+            className="mt-6 sm:mt-10 w-full relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
