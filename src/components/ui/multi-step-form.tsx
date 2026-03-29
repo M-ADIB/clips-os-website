@@ -112,13 +112,13 @@ export function MultiStepForm() {
         last_name: formData.lastName,
         email: formData.email,
         phone: formData.phone,
-        username: formData.username,
+        social: formData.username,          // DB column: social
         country: formData.country,
         business_type: formData.businessType,
-        income_range: formData.incomeRange,
+        monthly_revenue: formData.incomeRange, // DB column: monthly_revenue
         goal: formData.goal,
         obstacle: formData.obstacle,
-        will_show_up: formData.willShowUp
+        call_confirmed: formData.willShowUp === 'Yes', // DB column: call_confirmed (boolean)
       };
 
       const response = await fetch('https://izqogaohvqdlwcxokzvv.supabase.co/functions/v1/receive-lead-webhook', {
