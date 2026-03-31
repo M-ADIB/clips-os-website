@@ -522,12 +522,12 @@ export default function App() {
             </p>
           </FadeInOnScroll>
 
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
             {[
-              { step: "01", title: "Strategy", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
-              { step: "02", title: "Capture", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
-              { step: "03", title: "Placement", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
-              { step: "04", title: "System Oversight", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
+              { step: "01", title: "STRATEGY", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
+              { step: "02", title: "CAPTURE", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
+              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
+              { step: "04", title: "OVERSIGHT", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
                 <motion.div
@@ -535,7 +535,7 @@ export default function App() {
                   whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(251, 233, 255, 0.08)' }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="bg-[#2d2a41] h-[160px] p-4 relative overflow-hidden">
+                  <div className="bg-[#2d2a41] h-[240px] sm:h-[320px] p-4 relative overflow-hidden">
                     <video src={item.gif} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
                     <motion.div
                       className="bg-[#fbe9ff] w-8 h-8 rounded text-[#101010] font-bold flex items-center justify-center text-sm absolute top-4 left-4 z-10"
@@ -545,9 +545,9 @@ export default function App() {
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1e1c2b] to-transparent opacity-50 pointer-events-none" />
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-2xl font-bold mb-3 tracking-tight" style={{ fontFamily: NHGDP }}>{item.title}</h3>
-                    <p className="text-white/70 text-base leading-relaxed" style={{ fontFamily: NHGDP, fontWeight: 500 }}>{item.desc}</p>
+                  <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                    <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tight" style={{ fontFamily: NHGDP }}>{item.title}</h3>
+                    <p className="text-white/70 text-base sm:text-lg leading-relaxed" style={{ fontFamily: NHGDP, fontWeight: 500 }}>{item.desc}</p>
                   </div>
                 </motion.div>
               </StaggerItem>
