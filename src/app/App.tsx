@@ -329,7 +329,7 @@ export default function App() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
-            className="mb-8 md:mb-4 inline-flex items-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/10 relative z-10"
+            className="mb-6 sm:mb-4 inline-flex items-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/10 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -338,7 +338,7 @@ export default function App() {
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase relative z-10 text-center mb-8 md:mb-5 px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase relative z-10 text-center mb-6 sm:mb-5 px-4"
             style={{ 
               fontFamily: NHGDP,
               fontWeight: 900,
@@ -354,7 +354,7 @@ export default function App() {
           </motion.h1>
 
           <motion.p
-            className="max-w-xl mx-auto mb-12 lg:mb-6 relative z-10 px-4 text-center"
+            className="max-w-xl mx-auto mb-10 sm:mb-6 relative z-10 px-4 text-center"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
@@ -375,25 +375,25 @@ export default function App() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-6 sm:gap-4 relative z-10 px-6 sm:px-4"
+            className="flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-4 sm:gap-4 relative z-10 px-6 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <Link to="/submit-form" className="w-full max-w-[280px] sm:max-w-none sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block text-center cta-shine-light px-6 py-5 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold">
+              <span className="relative block text-center cta-shine-light px-6 py-4 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold">
                 Apply for ClipsOS™
               </span>
             </Link>
-            <a href="#case-studies" className="w-full max-w-[280px] sm:max-w-none sm:w-auto text-center border border-white/30 text-white px-6 py-5 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors">
+            <a href="#case-studies" className="w-full max-w-[280px] sm:max-w-none sm:w-auto text-center border border-white/30 text-white px-6 py-4 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors">
               See client results
             </a>
           </motion.div>
 
           {/* Ticker Carousel */}
           <motion.div 
-            className="mt-16 sm:mt-10 w-full relative z-10"
+            className="mt-12 sm:mt-10 w-full relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
@@ -488,10 +488,10 @@ export default function App() {
             </StaggerItem>
           </div>
 
-          <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
-            <Link to="/submit-form" className="w-full sm:w-auto relative group">
+          <FadeInOnScroll className="mt-24 sm:mt-32 flex justify-center relative z-20 px-4">
+            <Link to="/submit-form" className="inline-block relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+              <span className="relative block cta-shine-light px-10 py-4.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-center whitespace-normal max-w-full">
                 Build your Authority Engine
               </span>
             </Link>
@@ -569,10 +569,10 @@ export default function App() {
             </FadeInOnScroll>
           </div>
 
-          <FadeInOnScroll className="mt-16 sm:mt-24 md:mt-32 flex justify-center relative z-20">
-            <Link to="/submit-form" className="w-full sm:w-auto relative group">
+          <FadeInOnScroll className="mt-24 sm:mt-32 md:mt-40 flex justify-center relative z-20 px-4">
+            <Link to="/submit-form" className="inline-block relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+              <span className="relative block cta-shine-light px-10 py-4.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-center whitespace-normal max-w-full">
                 Book a Walkthrough
               </span>
             </Link>
@@ -714,10 +714,10 @@ export default function App() {
             </StaggerItem>
           </StaggerContainer>
 
-          <FadeInOnScroll className="mt-16 sm:mt-24 flex justify-center relative z-20">
-            <Link to="/submit-form" className="w-full sm:w-auto relative group">
+          <FadeInOnScroll className="mt-24 sm:mt-32 md:mt-40 flex justify-center relative z-20 px-4">
+            <Link to="/submit-form" className="inline-block relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block cta-shine-light px-10 py-4 rounded-xl font-bold text-lg text-center">
+              <span className="relative block cta-shine-light px-10 py-4.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-center whitespace-normal max-w-full">
                 Apply to become our next Case Study
               </span>
             </Link>
