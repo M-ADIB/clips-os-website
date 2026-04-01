@@ -338,7 +338,7 @@ export default function App() {
           </motion.div>
 
           <motion.h1
-            className="uppercase relative z-10 text-center mb-4 sm:mb-5 px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase relative z-10 text-center mb-4 sm:mb-5 px-4"
             style={{ 
               fontFamily: NHGDP,
               fontWeight: 900,
@@ -349,41 +349,29 @@ export default function App() {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="hidden sm:inline" style={{ fontSize: 'clamp(26px, 2.8vw, 42px)' }}>The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month</span>
-            <span className="sm:hidden" style={{ fontSize: 'clamp(26px, 7.5vw, 40px)' }}>Your Entire Content<br />Operation In One Place</span>
+            <span className="hidden sm:inline">The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month</span>
+            <span className="sm:hidden">Your Entire Content<br />Operation In One Place</span>
           </motion.h1>
 
-          {/* Desktop subtitle */}
           <motion.p
-            className="hidden sm:block max-w-xl mx-auto mb-6 relative z-10 px-4 text-center"
+            className="max-w-xl mx-auto mb-6 relative z-10 px-4 text-center"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
-              fontSize: '17px',
-              lineHeight: '140%',
+              fontSize: '20px',
+              lineHeight: '112%',
               color: 'rgba(255,255,247,0.8)',
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
-          </motion.p>
-          {/* Mobile subtitle */}
-          <motion.p
-            className="sm:hidden max-w-sm mx-auto mb-4 relative z-10 px-4 text-center"
-            style={{
-              fontFamily: NHGDP,
-              fontWeight: 500,
-              fontSize: '15px',
-              lineHeight: '140%',
-              color: 'rgba(255,255,247,0.8)',
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            A repeatable system designed to capture expertise, produce content, and generate demand.
+            <span className="hidden sm:inline">
+              ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
+            </span>
+            <span className="sm:hidden">
+              A repeatable system designed to capture expertise, produce content, and generate demand.
+            </span>
           </motion.p>
 
           <motion.div
@@ -442,11 +430,11 @@ export default function App() {
           <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
             {/* Row 1 */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4 items-stretch h-auto md:h-[450px]">
-                <div className="w-full md:w-1/2 h-[350px] md:h-full rounded-[24px] overflow-hidden relative">
+              <div className="flex flex-col md:flex-row gap-0 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent rounded-[24px] md:rounded-none overflow-hidden md:overflow-visible">
+                <div className="w-full md:w-1/2 h-[350px] md:h-full rounded-none md:rounded-[24px] overflow-hidden relative">
                   <img src="/assets/branded-presence.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
-                <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
+                <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-none md:rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
                      <video src="/assets/Brand Presence (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
@@ -481,13 +469,13 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-4 items-stretch w-full h-auto md:h-[450px]">
-                <div className="w-full md:w-[31.7%] h-[450px] md:h-full rounded-[24px] overflow-hidden relative shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-0 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent rounded-[24px] md:rounded-none overflow-hidden md:overflow-visible shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-none">
+                <div className="w-full md:w-[31.7%] h-[450px] md:h-full rounded-none md:rounded-[24px] overflow-hidden relative shadow-none md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-none md:rounded-[24px] pointer-events-none" />
                 </div>
-                <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
+                <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-none md:rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
                    <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
                      <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
@@ -569,30 +557,16 @@ export default function App() {
             </p>
           </FadeInOnScroll>
 
-          <div className="flex flex-col gap-16 sm:gap-24 md:gap-40">
-            {[
-              { num: "01", title: "Collaborate With Ease", desc: "Access all content, assets, and updates in one workspace — keeping your team, editor, and strategy perfectly aligned.", img: "/assets/Collaborate with Ease.mp4", reverse: false },
-              { num: "02", title: "Frame-Based Review", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Dashboard from The Clips Agency.mp4", reverse: true },
-              { num: "03", title: "Analytics That Matter", desc: "Track the metrics that actually drive growth — views, retention, reach, and lead signals — so we know exactly what to double down on.", img: "/assets/IG Analytics from The Clips Agency.mp4", reverse: false },
-              { num: "04", title: "Talent Network", desc: "Leave precise feedback directly on the timeline, making revisions faster, clearer, and friction-free.", img: "/assets/Talent Network.mp4", reverse: true },
-            ].map((item, idx) => (
-              <FadeInOnScroll key={idx}>
-                <div className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-start gap-8 sm:gap-10 md:gap-20`}>
-                  <motion.div
-                    className="w-full md:w-[63%] rounded-[20px] sm:rounded-[32px] overflow-hidden bg-[#2d2a41] border border-white/10 aspect-[16/9] shadow-2xl relative group"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <video src={item.img} autoPlay loop muted playsInline className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </motion.div>
-                  <div className="w-full md:w-[32%] flex flex-col gap-4">
-                    <span className="text-[#fbe9ff] font-medium text-lg mb-2">{item.num}</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-none">{item.title}</h3>
-                    <p className="text-white/70 text-lg leading-relaxed mt-2">{item.desc}</p>
-                  </div>
-                </div>
-              </FadeInOnScroll>
-            ))}
+          <div className="flex justify-center w-full">
+            <FadeInOnScroll className="w-full max-w-5xl mx-auto">
+              <motion.div
+                className="w-full rounded-[20px] sm:rounded-[32px] overflow-hidden bg-[#2d2a41] border border-white/10 aspect-[16/9] shadow-2xl relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5 }}
+              >
+                <video src="/assets/Comp 15.webm" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+              </motion.div>
+            </FadeInOnScroll>
           </div>
 
           <FadeInOnScroll className="mt-16 sm:mt-24 md:mt-32 flex justify-center relative z-20">
