@@ -325,7 +325,7 @@ export default function App() {
 
       <main className="pt-20 sm:pt-24 pb-12 sm:pb-20">
         {/* ── Hero Section ── */}
-        <section className="max-w-[1400px] mx-auto overflow-hidden text-center relative min-h-[calc(100dvh-5rem)] sm:min-h-[calc(100dvh-6rem)] flex flex-col items-center justify-center pb-4 sm:pb-6">
+        <section className="max-w-[1400px] mx-auto overflow-hidden text-center relative flex flex-col items-center pt-8 pb-4 sm:pt-0 sm:pb-6 sm:justify-center sm:min-h-[calc(100dvh-6rem)]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#fbe9ff]/5 blur-[120px] rounded-full pointer-events-none" />
 
           <motion.div
@@ -375,18 +375,18 @@ export default function App() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 px-4"
+            className="flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-5 sm:gap-4 relative z-10 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Link to="/submit-form" className="w-full sm:w-auto relative group">
+            <Link to="/submit-form" className="w-full max-w-[280px] sm:max-w-none sm:w-auto relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block cta-shine-light px-8 py-3.5 rounded-xl font-bold">
+              <span className="relative block text-center cta-shine-light px-6 py-3 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold">
                 Apply for ClipsOS™
               </span>
             </Link>
-            <a href="#case-studies" className="w-full sm:w-auto border border-white/30 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors">
+            <a href="#case-studies" className="w-full max-w-[280px] sm:max-w-none sm:w-auto text-center border border-white/30 text-white px-6 py-3 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors">
               See client results
             </a>
           </motion.div>
@@ -418,7 +418,7 @@ export default function App() {
         </section>
 
         {/* ── Built For Experts Section ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-24">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Standard We Hold</span>
@@ -427,7 +427,7 @@ export default function App() {
             <p className="mt-6" style={{ fontFamily: NHGDP, fontWeight: 500, fontSize: '20px', lineHeight: '112%', color: 'rgba(255,255,247,0.8)' }}>We take your expertise and make it undeniable.</p>
           </FadeInOnScroll>
 
-          <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
+          <div className="flex flex-col gap-12 sm:gap-6 md:gap-4 max-w-5xl mx-auto">
             {/* Row 1 */}
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
@@ -499,7 +499,7 @@ export default function App() {
         </section>
 
         {/* ── How The System Runs ── */}
-        <section className="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-12 sm:py-20 md:py-32">
+        <section className="max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-16 py-24 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The System</span>
@@ -544,7 +544,7 @@ export default function App() {
         </section>
 
         {/* ── The Operating System ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-20 md:mb-32">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>The Operating System</span>
@@ -580,7 +580,7 @@ export default function App() {
         </section>
 
         {/* ── Case Studies ── */}
-        <section id="case-studies" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section id="case-studies" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-20 md:py-32">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Client Results</span>
@@ -725,7 +725,7 @@ export default function App() {
         </section>
 
         {/* ── Testimonials ── */}
-        <section className="py-12 sm:py-20 md:py-32 w-full overflow-hidden border-y border-white/5 relative bg-[#080617]">
+        <section className="py-24 sm:py-20 md:py-32 w-full overflow-hidden border-y border-white/5 relative bg-[#080617]">
           <FadeInOnScroll className="text-center mb-12 sm:mb-16 md:mb-20 max-w-7xl mx-auto px-4">
             <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 mb-6">
               <span className="text-[13px] font-medium text-white/80 tracking-wide" style={{ fontFamily: NHGDP }}>Testimonials</span>
@@ -838,7 +838,7 @@ export default function App() {
         </section>
 
         {/* ── Final CTA ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-20 md:py-32">
           <FadeInOnScroll>
             <div className="bg-[#fbe9ff] rounded-[24px] sm:rounded-[40px] p-10 sm:p-16 md:p-24 text-center relative overflow-hidden group shadow-[0_0_80px_rgba(251,233,255,0.05)] border border-[#fbe9ff]/20">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-black text-[#080617] mb-4 sm:mb-6 tracking-tight relative z-10 leading-[1] md:leading-[1.1]">
