@@ -15,14 +15,14 @@ export default function BookACallEuPage() {
           </p>
         </div>
 
-        {/* WealthyFilmmakers booking embed */}
+        {/* Calendly booking embed */}
         <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-white">
           <iframe
-            src="https://app.wealthyfilmmakers.com/widget/bookings/the-clips-agency"
+            src="https://calendly.com/j-hamdan/45min-discovery-call"
             width="100%"
             height="700"
             frameBorder="0"
-            title="Schedule a call — Germany"
+            title="Schedule a call — Europe"
             className="w-full"
           />
         </div>
