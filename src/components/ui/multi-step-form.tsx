@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router';
-import { ChevronRight, ChevronLeft, Check, AlertCircle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, AlertCircle, X } from 'lucide-react';
 
 type FormData = {
   firstName: string;
@@ -10,6 +10,7 @@ type FormData = {
   phone: string;
   username: string;
   country: string;
+  contentLanguage: string;
   businessType: string;
   incomeRange: string;
   goal: string;
@@ -24,6 +25,7 @@ const initialFormData: FormData = {
   phone: '',
   username: '',
   country: '',
+  contentLanguage: '',
   businessType: '',
   incomeRange: '',
   goal: '',
@@ -37,11 +39,25 @@ const COUNTRIES = [
   'Canada',
   'Australia',
   'Germany',
+  'Netherlands',
+  'France',
   'United Arab Emirates',
   'Saudi Arabia',
   'Qatar',
   'Kuwait',
   'Europe (Other)',
+  'Other',
+];
+
+const EUROPEAN_COUNTRIES = ['Germany', 'Netherlands', 'France', 'United Kingdom', 'Europe (Other)'];
+
+const CONTENT_LANGUAGES = [
+  'English',
+  'Arabic',
+  'Dutch',
+  'German',
+  'French',
+  'Spanish',
   'Other',
 ];
 
@@ -67,7 +83,11 @@ export function MultiStepForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
   const navigate = useNavigate();
+
+  const isEuropean = EUROPEAN_COUNTRIES.includes(formData.country);
+  const needsLanguageCheck = isEuropean && formData.contentLanguage && formData.contentLanguage !== 'English' && formData.contentLanguage !== 'Arabic';
 
   const handleNext = () => {
     // Basic validation
@@ -79,6 +99,14 @@ export function MultiStepForm() {
     } else if (step === 2) {
       if (!formData.country || !formData.businessType || !formData.incomeRange) {
         setError('Please select all options to continue.');
+        return;
+      }
+      if (isEuropean && !formData.contentLanguage) {
+        setError('Please select what language your content will be in.');
+        return;
+      }
+      if (needsLanguageCheck) {
+        setShowLanguageModal(true);
         return;
       }
     }
@@ -112,13 +140,14 @@ export function MultiStepForm() {
         last_name: formData.lastName,
         email: formData.email,
         phone: formData.phone,
-        social: formData.username,          // DB column: social
+        social: formData.username,
         country: formData.country,
+        content_language: formData.contentLanguage || null,
         business_type: formData.businessType,
-        monthly_revenue: formData.incomeRange, // DB column: monthly_revenue
+        monthly_revenue: formData.incomeRange,
         goal: formData.goal,
         obstacle: formData.obstacle,
-        call_confirmed: formData.willShowUp === 'Yes', // DB column: call_confirmed (boolean)
+        call_confirmed: formData.willShowUp === 'Yes',
       };
 
       const response = await fetch('https://izqogaohvqdlwcxokzvv.supabase.co/functions/v1/receive-lead-webhook', {
@@ -142,7 +171,7 @@ export function MultiStepForm() {
 
     // Routing Logic based on location
     const { country } = formData;
-    const euCountries = ['United Kingdom', 'Germany', 'Europe (Other)'];
+    const euCountries = ['United Kingdom', 'Germany', 'Netherlands', 'France', 'Europe (Other)'];
     
     if (country === 'Australia') {
       navigate('/book-a-call-aus');
@@ -270,7 +299,7 @@ export function MultiStepForm() {
                 <label className="text-sm font-medium text-white/70">Where are you based? *</label>
                 <select
                   value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, country: e.target.value, contentLanguage: '' })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all appearance-none cursor-pointer"
                 >
                   <option value="" disabled className="text-black">Select a country...</option>
@@ -279,6 +308,31 @@ export function MultiStepForm() {
                   ))}
                 </select>
               </div>
+
+              {/* Dynamic Content Language Field for European Countries */}
+              <AnimatePresence>
+                {isEuropean && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-3 overflow-hidden"
+                  >
+                    <label className="text-sm font-medium text-white/70">What language will your content be in? *</label>
+                    <select
+                      value={formData.contentLanguage}
+                      onChange={(e) => setFormData({ ...formData, contentLanguage: e.target.value })}
+                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="" disabled className="text-black">Select a language...</option>
+                      {CONTENT_LANGUAGES.map(lang => (
+                        <option key={lang} value={lang} className="text-black">{lang}</option>
+                      ))}
+                    </select>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <div className="space-y-3">
                 <label className="text-sm font-medium text-white/70">What is your business? *</label>
@@ -414,6 +468,71 @@ export function MultiStepForm() {
           )}
         </div>
       </div>
+
+      {/* Language Not Supported Modal */}
+      <AnimatePresence>
+        {showLanguageModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowLanguageModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="bg-[#1a1829] border border-white/10 rounded-2xl p-8 sm:p-10 max-w-md w-full relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowLanguageModal(false)}
+                className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="text-center">
+                <div className="w-14 h-14 rounded-full bg-[#fbe9ff]/10 border border-[#fbe9ff]/20 flex items-center justify-center mx-auto mb-5">
+                  <AlertCircle className="w-7 h-7 text-[#fbe9ff]" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Language Not Supported</h3>
+                <p className="text-white/70 text-sm leading-relaxed mb-6">
+                  To deliver the highest quality content and strategy, we currently only support <span className="text-white font-semibold">English</span> and <span className="text-white font-semibold">Arabic</span> content production. If you're open to creating your content in either of these languages, we'd love to work with you.
+                </p>
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => {
+                      setFormData({ ...formData, contentLanguage: 'English' });
+                      setShowLanguageModal(false);
+                    }}
+                    className="w-full py-3 rounded-xl bg-white text-black font-bold hover:bg-[#fbe9ff] transition-colors text-sm"
+                  >
+                    I'll create content in English
+                  </button>
+                  <button
+                    onClick={() => {
+                      setFormData({ ...formData, contentLanguage: 'Arabic' });
+                      setShowLanguageModal(false);
+                    }}
+                    className="w-full py-3 rounded-xl bg-white/10 border border-white/10 text-white font-bold hover:bg-white/20 transition-colors text-sm"
+                  >
+                    I'll create content in Arabic
+                  </button>
+                  <button
+                    onClick={() => setShowLanguageModal(false)}
+                    className="text-white/40 text-xs hover:text-white/60 transition-colors mt-1"
+                  >
+                    Go back and change my selection
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
