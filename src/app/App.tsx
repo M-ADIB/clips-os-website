@@ -430,15 +430,15 @@ export default function App() {
           <div className="flex flex-col gap-6 md:gap-4 max-w-5xl mx-auto">
             {/* Row 1 */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-0 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent rounded-[24px] md:rounded-none overflow-hidden md:overflow-visible">
-                <div className="w-full md:w-1/2 h-[350px] md:h-full rounded-none md:rounded-[24px] overflow-hidden relative">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
+                <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
                   <img src="/assets/branded-presence.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
-                <div className="w-full md:w-1/2 bg-[#fbe9ff] rounded-none md:rounded-[24px] p-8 sm:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-[300px] md:min-h-0 md:h-full">
-                   <div className="absolute top-8 left-8 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
+                <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[24px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                   <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Brand Presence (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
-                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight mt-12 md:mt-0">Branded Presence</h3>
+                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Branded Presence</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
                      Elevate your positioning with a unique visual system and attract premium clients you actually want.
                    </p>
@@ -461,7 +461,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[20px] overflow-hidden ml-auto">
+                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[20px] sm:rounded-[24px] overflow-hidden ml-auto">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -469,17 +469,17 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-0 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent rounded-[24px] md:rounded-none overflow-hidden md:overflow-visible shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-none">
-                <div className="w-full md:w-[31.7%] h-[450px] md:h-full rounded-none md:rounded-[24px] overflow-hidden relative shadow-none md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
+                <div className="w-full md:w-[31.7%] h-[350px] sm:h-[450px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-none md:rounded-[24px] pointer-events-none" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 md:ring-white/10 rounded-[20px] md:rounded-[24px] pointer-events-none" />
                 </div>
-                <div className="w-full md:w-[68.3%] bg-[#fbe9ff] rounded-none md:rounded-[24px] p-8 sm:p-12 md:p-12 lg:p-16 flex flex-col justify-end relative text-[#080617] overflow-hidden mt-0 min-h-[300px] md:min-h-0 md:h-full">
-                   <div className="absolute top-8 left-8 md:top-12 md:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
+                <div className="w-full md:w-[68.3%] bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[24px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                   <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
-                   <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 tracking-tight mt-16 sm:mt-0">Demand Generation</h3>
+                   <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 tracking-tight">Demand Generation</h3>
                    <p className="text-base sm:text-lg md:text-xl font-medium opacity-80 leading-relaxed max-w-md">
                      Conversion-focused strategy designed to get you attention, leads, and conversations that close.
                    </p>
