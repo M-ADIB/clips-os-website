@@ -143,7 +143,7 @@ export function MultiStepForm() {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
       if (tz.includes('Dubai') || tz.includes('Riyadh') || tz.includes('Qatar') || tz.includes('Kuwait') || tz.includes('Asia/Muscat') || tz.includes('Asia/Bahrain') || tz.includes('Asia/Amman') || tz.includes('Africa/Cairo')) {
-        setRegionDefaults({ firstName: 'Ahmed', lastName: 'Al-Maktoum', email: 'ahmed@example.com', phone: '+971 50 123 4567' });
+        setRegionDefaults({ firstName: 'Ahmed', lastName: 'Al-Mansoori', email: 'ahmed@example.com', phone: '+971 50 123 4567' });
       } else if (tz.includes('Europe') || tz.includes('London') || tz.includes('Paris') || tz.includes('Berlin')) {
         setRegionDefaults({ firstName: 'Lucas', lastName: 'Müller', email: 'lucas@example.com', phone: '+44 7911 123456' });
       } else if (tz.includes('Australia') || tz.includes('Sydney')) {
