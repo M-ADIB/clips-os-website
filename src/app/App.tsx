@@ -137,7 +137,7 @@ function TestimonialCard({ name, role, videoId, isActive }: { name: string; role
   
   return (
     <div 
-       className="w-full aspect-[9/16] rounded-[24px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
+       className="w-full aspect-[9/16] rounded-[16.25px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
        onClick={() => { if (!isPlaying) setIsPlaying(true); }}
     >
        {/* Video embed — always visible */}
@@ -196,7 +196,7 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
 
   return (
     <motion.div
-      className="bg-white text-black rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 md:p-10 relative overflow-hidden cursor-pointer group shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-black/5"
+      className="bg-white text-black rounded-[16.25px] p-5 sm:p-8 md:p-10 relative overflow-hidden cursor-pointer group shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-black/5"
       whileHover={{ y: -4, boxShadow: '0 20px 60px rgba(251, 233, 255, 0.15)' }}
       transition={{ duration: 0.3 }}
       layout
@@ -423,11 +423,11 @@ export default function App() {
           <div className="flex flex-col gap-12 sm:gap-6 md:gap-4 max-w-5xl mx-auto">
             {/* Row 1 */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
-                <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
+                <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
                   <img src="/assets/branded-presence-png-high-res.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
-                <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[24px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Brand Presence (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
@@ -441,7 +441,7 @@ export default function App() {
 
             {/* Row 2 */}
             <StaggerItem>
-              <div className="w-full bg-[#fbe9ff] rounded-[24px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[450px]">
+              <div className="w-full bg-[#fbe9ff] rounded-[16.25px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[450px]">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full">
                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
                      <video src="/assets/Content Sprints (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
@@ -454,7 +454,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[20px] sm:rounded-[24px] overflow-hidden ml-auto">
+                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[16.25px] overflow-hidden ml-auto">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -462,13 +462,13 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
-                <div className="w-full md:w-[31.7%] h-[350px] sm:h-[450px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
+                <div className="w-full md:w-[31.7%] h-[350px] sm:h-[450px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <img src="/assets/demand-generation-high-res.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 md:ring-white/10 rounded-[20px] md:rounded-[24px] pointer-events-none" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 md:ring-white/10 rounded-[16.25px] md:rounded-[16.25px] pointer-events-none" />
                 </div>
-                <div className="w-full md:w-[68.3%] bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[24px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                <div className="w-full md:w-[68.3%] bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
