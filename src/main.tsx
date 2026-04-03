@@ -9,6 +9,7 @@ import BookACallBetaPage from './app/BookACallBetaPage'
 import BookACallAusPage from './app/BookACallAusPage'
 import BookACallEuPage from './app/BookACallEuPage'
 import ThankYouPage from './app/ThankYouPage'
+import ApplicationReceivedPage from './app/ApplicationReceivedPage'
 import NotFoundPage from './app/NotFoundPage'
 import PrivacyPage from './app/PrivacyPage'
 import TermsPage from './app/TermsPage'
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
           <Route path="/book-a-call-aus" element={<BookACallAusPage />} />
           <Route path="/book-a-call-eu" element={<BookACallEuPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/application-received" element={<ApplicationReceivedPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

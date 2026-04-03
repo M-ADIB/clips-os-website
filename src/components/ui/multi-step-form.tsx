@@ -174,7 +174,9 @@ export function MultiStepForm() {
     const { country } = formData;
     const euCountries = ['United Kingdom', 'Germany', 'Netherlands', 'France', 'Europe (Other)'];
     
-    if (country === 'Australia') {
+    if (!payload.is_qualified) {
+      navigate('/application-received');
+    } else if (country === 'Australia') {
       navigate('/book-a-call-aus');
     } else if (euCountries.includes(country)) {
       navigate('/book-a-call-eu');
