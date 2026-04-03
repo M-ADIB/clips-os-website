@@ -30,6 +30,23 @@ export default function ThankYouPage() {
           </p>
         </div>
 
+        {/* Video Section */}
+        <div className="w-full max-w-3xl mx-auto mb-20 relative z-10 w-full flex-shrink-0 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          <h2 className="text-2xl sm:text-3xl font-black text-center mb-8 tracking-tight">
+            Watch this before you come on to the call
+          </h2>
+          <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(251,233,255,0.08)] bg-black/40" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src="https://player.vimeo.com/video/1054062501?title=0&byline=0&portrait=0"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Watch before the call"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+        </div>
+
         {/* What To Expect Steps */}
         <div className="w-full max-w-4xl mx-auto px-4">
           <p className="text-center text-white/40 text-sm uppercase tracking-widest mb-12 font-medium">What happens next</p>
