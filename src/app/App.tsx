@@ -425,7 +425,7 @@ export default function App() {
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
                 <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
-                  <img src="/assets/branded-presence.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
+                  <img src="/assets/branded-presence-png-high-res.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
                 <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[24px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
@@ -464,7 +464,7 @@ export default function App() {
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[24px]">
                 <div className="w-full md:w-[31.7%] h-[350px] sm:h-[450px] md:h-full rounded-[20px] md:rounded-[24px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                  <img src="/assets/image-of-theperson.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
+                  <img src="/assets/demand-generation-high-res.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 md:ring-white/10 rounded-[20px] md:rounded-[24px] pointer-events-none" />
                 </div>
