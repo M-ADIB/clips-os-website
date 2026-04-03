@@ -196,7 +196,7 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
 
   return (
     <motion.div
-      className="bg-white text-black rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 md:p-10 relative overflow-hidden cursor-pointer group shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-black/5"
+      className="bg-white text-black rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 md:p-10 relative overflow-hidden cursor-pointer group shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-black/5"
       whileHover={{ y: -4, boxShadow: '0 20px 60px rgba(251, 233, 255, 0.15)' }}
       transition={{ duration: 0.3 }}
       layout
@@ -205,25 +205,25 @@ function CaseStudyCard({ name, title, beforeText, stats, whatWeDid, impact, thum
       {/* Header (Always Visible) */}
       <div className="flex flex-col lg:flex-row justify-between w-full">
         {/* Left: Name & Title */}
-        <div className="flex-1 mb-6 lg:mb-0">
-          <h3 className="text-4xl sm:text-[50px] font-black uppercase tracking-tight leading-[0.9] mb-2" style={{ wordSpacing: '-0.1em' }}>
+        <div className="flex-1 mb-5 lg:mb-0">
+          <h3 className="text-3xl sm:text-[50px] font-black uppercase tracking-tight leading-[0.9] mb-2" style={{ wordSpacing: '-0.1em' }}>
             {name}
           </h3>
-          <p className="font-bold text-sm sm:text-base uppercase tracking-wider text-black">
+          <p className="font-bold text-[11px] sm:text-base uppercase tracking-wider text-black">
             {title}
           </p>
         </div>
 
         {/* Right: Stats */}
-        <div className="flex gap-8 sm:gap-12 items-start shrink-0">
+        <div className="flex gap-4 sm:gap-8 lg:gap-12 items-start shrink-0 overflow-x-visible w-full md:w-auto">
           {stats.map((stat, i) => (
-            <div key={i} className="flex flex-col">
-              <p className="text-4xl sm:text-[44px] font-black tracking-tight mb-1 leading-[1]">
+            <div key={i} className="flex flex-col flex-1 sm:flex-initial">
+              <p className="text-2xl sm:text-[44px] font-black tracking-tight mb-1 leading-[1]">
                 <AnimatedCounter value={stat.value} />
               </p>
-              <p className="font-bold text-black text-xs sm:text-sm">{stat.label}</p>
+              <p className="font-bold text-black text-[10px] sm:text-sm uppercase tracking-wide">{stat.label}</p>
               {stat.sublabel && (
-                <p className="text-[11px] font-medium text-black/70 max-w-[160px] mt-1 leading-snug">{stat.sublabel}</p>
+                <p className="text-[10px] sm:text-[11px] font-medium text-black/70 max-w-[120px] sm:max-w-[160px] mt-1 leading-tight sm:leading-snug">{stat.sublabel}</p>
               )}
             </div>
           ))}
@@ -338,7 +338,7 @@ export default function App() {
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase relative z-10 text-center mb-6 sm:mb-5 px-4"
+            className="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl uppercase relative z-10 text-center mb-6 sm:mb-5 px-4"
             style={{ 
               fontFamily: NHGDP,
               fontWeight: 900,
@@ -349,16 +349,14 @@ export default function App() {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="hidden sm:inline">The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month</span>
-            <span className="sm:hidden">Your Entire Content<br />Operation In One Place</span>
+            The Complete Content<br />Acquisition System<br />In Only 2-3 Hours A Month
           </motion.h1>
 
           <motion.p
-            className="max-w-xl mx-auto mb-10 sm:mb-6 relative z-10 px-4 text-center"
+            className="max-w-xl mx-auto mb-10 sm:mb-6 relative z-10 px-4 text-center text-[16px] sm:text-[20px]"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
-              fontSize: '20px',
               lineHeight: '112%',
               color: 'rgba(255,255,247,0.8)',
             }}
@@ -366,12 +364,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <span className="hidden sm:inline">
-              ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
-            </span>
-            <span className="sm:hidden">
-              A repeatable system designed to capture expertise, produce content, and generate demand.
-            </span>
+            ClipsOS captures your expertise and transforms it into strategic content designed to generate visibility, trust, and inbound demand.
           </motion.p>
 
           <motion.div
