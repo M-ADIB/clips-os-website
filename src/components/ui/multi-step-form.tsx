@@ -148,6 +148,7 @@ export function MultiStepForm() {
         goal: formData.goal,
         obstacle: formData.obstacle,
         call_confirmed: formData.willShowUp === 'Yes',
+        is_qualified: formData.incomeRange !== 'Less than $5k /mo',
       };
 
       const response = await fetch('https://izqogaohvqdlwcxokzvv.supabase.co/functions/v1/receive-lead-webhook', {
@@ -505,27 +506,12 @@ export function MultiStepForm() {
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={() => {
-                      setFormData({ ...formData, contentLanguage: 'English' });
+                      setFormData({ ...formData, contentLanguage: '' });
                       setShowLanguageModal(false);
                     }}
                     className="w-full py-3 rounded-xl bg-white text-black font-bold hover:bg-[#fbe9ff] transition-colors text-sm"
                   >
-                    I'll create content in English
-                  </button>
-                  <button
-                    onClick={() => {
-                      setFormData({ ...formData, contentLanguage: 'Arabic' });
-                      setShowLanguageModal(false);
-                    }}
-                    className="w-full py-3 rounded-xl bg-white/10 border border-white/10 text-white font-bold hover:bg-white/20 transition-colors text-sm"
-                  >
-                    I'll create content in Arabic
-                  </button>
-                  <button
-                    onClick={() => setShowLanguageModal(false)}
-                    className="text-white/40 text-xs hover:text-white/60 transition-colors mt-1"
-                  >
-                    Go back and change my selection
+                    I understand, I will change my selection
                   </button>
                 </div>
               </div>
