@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { ChevronRight, ChevronLeft, Check, AlertCircle, X } from 'lucide-react';
+import Select from 'react-select';
+import { getNames } from 'country-list';
 
 type FormData = {
   firstName: string;
@@ -33,23 +35,68 @@ const initialFormData: FormData = {
   willShowUp: '',
 };
 
-const COUNTRIES = [
-  'United States',
-  'United Kingdom',
-  'Canada',
-  'Australia',
-  'Germany',
-  'Netherlands',
-  'France',
-  'United Arab Emirates',
-  'Saudi Arabia',
-  'Qatar',
-  'Kuwait',
-  'Europe (Other)',
-  'Other',
+const ALL_COUNTRIES = getNames()
+  .map(name => ({ value: name, label: name }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+const EUROPEAN_COUNTRIES = [
+  'Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 
+  'Bulgaria', 'Croatia', 'Cyprus', 'Czechia', 'Czech Republic', 'Denmark', 'Estonia', 
+  'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 
+  'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 
+  'Monaco', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 
+  'Portugal', 'Romania', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 
+  'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom', 'Vatican City'
 ];
 
-const EUROPEAN_COUNTRIES = ['Germany', 'Netherlands', 'France', 'United Kingdom', 'Europe (Other)'];
+const customSelectStyles = {
+  control: (base: any, state: any) => ({
+    ...base,
+    background: 'rgba(0, 0, 0, 0.2)',
+    borderColor: state.isFocused ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+    borderRadius: '0.75rem',
+    minHeight: '48px',
+    boxShadow: 'none',
+    cursor: 'pointer',
+    '&:hover': {
+      borderColor: 'rgba(255, 255, 255, 0.3)',
+    }
+  }),
+  menu: (base: any) => ({
+    ...base,
+    background: '#1a1829',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '0.75rem',
+    overflow: 'hidden',
+    zIndex: 100,
+  }),
+  option: (base: any, state: any) => ({
+    ...base,
+    background: state.isSelected ? 'rgba(168, 85, 247, 0.2)' : state.isFocused ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+    color: state.isSelected ? '#fbe9ff' : 'white',
+    cursor: 'pointer',
+    padding: '12px 16px',
+    '&:active': {
+      background: 'rgba(168, 85, 247, 0.3)',
+    }
+  }),
+  singleValue: (base: any) => ({
+    ...base,
+    color: 'white',
+  }),
+  input: (base: any) => ({
+    ...base,
+    color: 'white',
+  }),
+  placeholder: (base: any) => ({
+    ...base,
+    color: 'rgba(255, 255, 255, 0.4)',
+  }),
+  menuList: (base: any) => ({
+    ...base,
+    padding: '4px',
+  })
+};
 
 const CONTENT_LANGUAGES = [
   'English',
@@ -84,7 +131,28 @@ export function MultiStepForm() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const [regionDefaults, setRegionDefaults] = useState({
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@example.com',
+    phone: '+1 (555) 000-0000',
+  });
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.includes('Dubai') || tz.includes('Riyadh') || tz.includes('Qatar') || tz.includes('Kuwait') || tz.includes('Asia/Muscat') || tz.includes('Asia/Bahrain') || tz.includes('Asia/Amman') || tz.includes('Africa/Cairo')) {
+        setRegionDefaults({ firstName: 'Ahmed', lastName: 'Al-Maktoum', email: 'ahmed@example.com', phone: '+971 50 123 4567' });
+      } else if (tz.includes('Europe') || tz.includes('London') || tz.includes('Paris') || tz.includes('Berlin')) {
+        setRegionDefaults({ firstName: 'Lucas', lastName: 'Müller', email: 'lucas@example.com', phone: '+44 7911 123456' });
+      } else if (tz.includes('Australia') || tz.includes('Sydney')) {
+        setRegionDefaults({ firstName: 'Jack', lastName: 'Smith', email: 'jack@example.com', phone: '+61 400 000 000' });
+      }
+    } catch (e) {
+      // Keep defaults
+    }
+  }, []);
 
   const isEuropean = EUROPEAN_COUNTRIES.includes(formData.country);
   const needsLanguageCheck = isEuropean && formData.contentLanguage && formData.contentLanguage !== 'English' && formData.contentLanguage !== 'Arabic';
@@ -173,8 +241,9 @@ export function MultiStepForm() {
     // Routing Logic based on location
     const { country } = formData;
     const euCountries = ['United Kingdom', 'Germany', 'Netherlands', 'France', 'Europe (Other)'];
+    const isQualified = formData.incomeRange !== 'Less than $5k /mo';
     
-    if (!payload.is_qualified) {
+    if (!isQualified) {
       navigate('/application-received');
     } else if (country === 'Australia') {
       navigate('/book-a-call-aus');
@@ -237,7 +306,7 @@ export function MultiStepForm() {
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                    placeholder="John"
+                    placeholder={regionDefaults.firstName}
                   />
                 </div>
                 <div className="space-y-2">
@@ -247,7 +316,7 @@ export function MultiStepForm() {
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                    placeholder="Doe"
+                    placeholder={regionDefaults.lastName}
                   />
                 </div>
               </div>
@@ -259,7 +328,7 @@ export function MultiStepForm() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="john@example.com"
+                  placeholder={regionDefaults.email}
                 />
               </div>
 
@@ -270,7 +339,7 @@ export function MultiStepForm() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder={regionDefaults.phone}
                 />
               </div>
 
@@ -298,18 +367,19 @@ export function MultiStepForm() {
             >
               <h2 className="text-2xl font-bold mb-6">Tell us about your business</h2>
 
-              <div className="space-y-3">
+              <div className="space-y-3" style={{ zIndex: 100 }}>
                 <label className="text-sm font-medium text-white/70">Where are you based? *</label>
-                <select
-                  value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value, contentLanguage: '' })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all appearance-none cursor-pointer"
-                >
-                  <option value="" disabled className="text-black">Select a country...</option>
-                  {COUNTRIES.map(c => (
-                    <option key={c} value={c} className="text-black">{c}</option>
-                  ))}
-                </select>
+                <Select
+                  options={ALL_COUNTRIES}
+                  value={ALL_COUNTRIES.find(c => c.value === formData.country) || null}
+                  onChange={(option) => setFormData({ ...formData, country: option?.value || '', contentLanguage: '' })}
+                  placeholder="Search countries..."
+                  styles={customSelectStyles}
+                  className="text-sm text-left font-sans"
+                  classNamePrefix="react-select"
+                  isSearchable={true}
+                  name="country"
+                />
               </div>
 
               {/* Dynamic Content Language Field for European Countries */}
