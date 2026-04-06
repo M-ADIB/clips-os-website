@@ -425,7 +425,7 @@ export default function App() {
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
                 <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
-                  <img src="/assets/branded-presence-png-high-res.png" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
+                  <img src="/assets/art-board.webp" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
                 <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
