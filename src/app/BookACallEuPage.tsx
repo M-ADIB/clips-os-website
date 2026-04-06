@@ -27,8 +27,14 @@ export default function BookACallEuPage() {
           />
         </div>
 
-        <div className="mt-12 text-center pb-8">
-          <p className="text-white/60 text-sm">
+        <div className="mt-12 text-center pb-8 flex flex-col gap-4">
+          <p className="text-[#fbe9ff] text-base font-medium">
+            If you didn't find a good time, please contact us on WhatsApp to arrange a good time that works for you as soon as possible:<br/>
+            <a href="https://wa.me/4917632566074" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 font-bold text-lg underline decoration-white/30 underline-offset-4 hover:text-white transition-colors">
+              +49 176 325 66074
+            </a>
+          </p>
+          <p className="text-white/60 text-sm mt-4">
             Facing any issues? <a href="mailto:mail@theclips.agency?subject=Issues%20with%20ClipsOS%20Application&body=Hello%20TCA%20Team%2C%0A%0AI%20am%20having%20issues%20with%20my%20application.%20Please%20help." className="underline decoration-white/30 underline-offset-4 hover:text-white transition-colors">Email us at mail@theclips.agency</a>.
           </p>
         </div>
