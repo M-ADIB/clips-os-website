@@ -464,7 +464,7 @@ export default function App() {
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch w-full h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
                 <div className="w-full md:w-[31.7%] h-[350px] sm:h-[450px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                  <img src="/assets/demand-generation-high-res.png" alt="Demand Generation" className="w-full h-full object-cover bg-black/10" />
+                  <video src="/assets/demand-generation-opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover bg-black/10" />
                   {/* Subtle inner shadow for premium feel */}
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 md:ring-white/10 rounded-[16.25px] md:rounded-[16.25px] pointer-events-none" />
                 </div>
