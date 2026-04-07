@@ -56,6 +56,30 @@ const TARGET_AUDIENCES = [
 
 export function PartnershipForm() {
   const [step, setStep] = useState(1);
+  const [regionDefaults, setRegionDefaults] = useState({
+    name: 'John Doe',
+    email: 'john@example.com',
+    phone: '+1 (555) 000-0000',
+    location: 'New York, USA',
+  });
+
+  React.useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.includes('Dubai') || tz.includes('Riyadh') || tz.includes('Qatar') || tz.includes('Kuwait') || tz.includes('Asia/Muscat') || tz.includes('Asia/Bahrain') || tz.includes('Asia/Amman') || tz.includes('Africa/Cairo')) {
+        setRegionDefaults({ name: 'Ahmed Al-Mansoori', email: 'ahmed@example.com', phone: '+971 50 123 4567', location: 'Dubai, UAE' });
+      } else if (tz.includes('Europe') || tz.includes('London') || tz.includes('Paris') || tz.includes('Berlin')) {
+        setRegionDefaults({ name: 'Lucas Müller', email: 'lucas@example.com', phone: '+44 7911 123456', location: 'London, UK' });
+      } else if (tz.includes('Australia') || tz.includes('Sydney')) {
+        setRegionDefaults({ name: 'Jack Smith', email: 'jack@example.com', phone: '+61 400 000 000', location: 'Sydney, Australia' });
+      } else if (tz.includes('America') || tz.includes('New_York') || tz.includes('Los_Angeles')) {
+        setRegionDefaults({ name: 'John Doe', email: 'john@example.com', phone: '+1 (555) 000-0000', location: 'New York, USA' });
+      }
+    } catch (e) {
+      // Keep defaults
+    }
+  }, []);
+
   const [formData, setFormData] = useState<PartnershipFormData>(initialFormData);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -192,7 +216,7 @@ export function PartnershipForm() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="John Doe"
+                  placeholder={regionDefaults.name}
                 />
               </div>
 
@@ -203,7 +227,7 @@ export function PartnershipForm() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="john@example.com"
+                  placeholder={regionDefaults.email}
                 />
               </div>
 
@@ -214,7 +238,7 @@ export function PartnershipForm() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder={regionDefaults.phone}
                 />
               </div>
 
@@ -226,7 +250,7 @@ export function PartnershipForm() {
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                    placeholder="Dubai, UAE"
+                    placeholder={regionDefaults.location}
                   />
                 </div>
                 <div className="space-y-2">
