@@ -12,6 +12,7 @@ import ThankYouPage from './app/ThankYouPage'
 import ApplicationReceivedPage from './app/ApplicationReceivedPage'
 import CaseStudiesPage from './app/CaseStudiesPage'
 import NotFoundPage from './app/NotFoundPage'
+import PartnershipPage from './app/PartnershipPage'
 import PrivacyPage from './app/PrivacyPage'
 import TermsPage from './app/TermsPage'
 import GlobalNav from './components/GlobalNav'
@@ -41,6 +42,7 @@ function AnimatedRoutes() {
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/partnership" element={<PartnershipPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </motion.div>
