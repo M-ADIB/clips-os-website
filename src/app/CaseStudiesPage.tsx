@@ -639,6 +639,14 @@ export default function CaseStudiesPage() {
               <div>
                 <h4 className="font-bold mb-6 text-[#080617] uppercase text-sm tracking-wider">Resources</h4>
                 <ul className="space-y-4">
+                  <li>
+                    <Link to="/partnership" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium flex items-center gap-2">
+                      Partnerships
+                      <span className="bg-[#080617] text-[#fffff7] text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider relative overflow-hidden group-hover:bg-[#fbe9ff] group-hover:text-[#080617] transition-colors">
+                        Apply Now
+                      </span>
+                    </Link>
+                  </li>
                   <li><a href="https://app.theclips.agency" target="_blank" rel="noopener noreferrer" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Platform</a></li>
                   <li><a href="#" className="text-[#080617]/70 hover:text-[#080617] transition-colors text-sm font-medium">Help Center</a></li>
                 </ul>
