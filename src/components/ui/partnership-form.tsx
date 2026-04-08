@@ -1,104 +1,195 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router';
-import { ChevronRight, ChevronLeft, Check, AlertCircle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, AlertCircle, ChevronDown } from 'lucide-react';
+import Select from 'react-select';
+import { getNames } from 'country-list';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type PartnershipFormData = {
   name: string;
   email: string;
   phone: string;
-  location: string;
-  languages: string;
+  country: string;
+  city: string;
+  languages: string[];
   role: string;
-  targetAudience: string;
+  roleOther: string;
+  targetAudience: string[];
+  audienceOther: string;
   experienceYears: string;
   portfolioLink: string;
   bestPieces: string;
   clientAccounts: string;
   hasPayingClients: string;
-  hasSoldService: string;
-  soldServiceExplanation: string;
+  hasHighTicketExperience: string;
+  highTicketExplanation: string;
 };
 
 const initialFormData: PartnershipFormData = {
   name: '',
   email: '',
   phone: '',
-  location: '',
-  languages: '',
+  country: '',
+  city: '',
+  languages: [],
   role: '',
-  targetAudience: '',
+  roleOther: '',
+  targetAudience: [],
+  audienceOther: '',
   experienceYears: '',
   portfolioLink: '',
   bestPieces: '',
   clientAccounts: '',
   hasPayingClients: '',
-  hasSoldService: '',
-  soldServiceExplanation: '',
+  hasHighTicketExperience: '',
+  highTicketExplanation: '',
 };
 
-const ROLES = [
-  'Content Creator',
-  'Strategist',
-  'Agency Owner',
-  'Consultant',
+// ─── Static Data ──────────────────────────────────────────────────────────────
+
+const ALL_COUNTRIES = getNames()
+  .map((name) => ({ value: name, label: name }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+const LANGUAGES = [
+  'English',
+  'Arabic',
+  'French',
+  'Spanish',
+  'German',
+  'Portuguese',
+  'Turkish',
+  'Hindi',
+  'Urdu',
+  'Mandarin',
   'Other',
 ];
 
-const TARGET_AUDIENCES = [
-  'Doctors',
-  'Clinics',
-  'Founders',
-  'Coaches',
-  'Brands',
-  'Other',
+const ROLES = ['Content Creator', 'Strategist', 'Agency Owner', 'Consultant', 'Other'];
+
+const TARGET_AUDIENCES = ['Doctors', 'Clinics', 'Founders', 'Coaches', 'Brands', 'Other'];
+
+const EXPERIENCE_OPTIONS = [
+  { value: '1-3', label: '1 to 3 years' },
+  { value: '3-5', label: '3 to 5 years' },
+  { value: '5-10', label: '5 to 10 years' },
+  { value: '10+', label: 'More than 10 years' },
 ];
+
+// ─── react-select dark styles ─────────────────────────────────────────────────
+
+const customSelectStyles = {
+  control: (base: any, state: any) => ({
+    ...base,
+    background: 'rgba(0, 0, 0, 0.2)',
+    borderColor: state.isFocused ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+    borderRadius: '0.75rem',
+    minHeight: '48px',
+    boxShadow: 'none',
+    cursor: 'pointer',
+    '&:hover': { borderColor: 'rgba(255, 255, 255, 0.3)' },
+  }),
+  menu: (base: any) => ({
+    ...base,
+    background: '#1a1829',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '0.75rem',
+    overflow: 'hidden',
+    zIndex: 100,
+  }),
+  option: (base: any, state: any) => ({
+    ...base,
+    background: state.isSelected
+      ? 'rgba(168, 85, 247, 0.2)'
+      : state.isFocused
+      ? 'rgba(255, 255, 255, 0.1)'
+      : 'transparent',
+    color: state.isSelected ? '#fbe9ff' : 'white',
+    cursor: 'pointer',
+    padding: '12px 16px',
+    '&:active': { background: 'rgba(168, 85, 247, 0.3)' },
+  }),
+  singleValue: (base: any) => ({ ...base, color: 'white' }),
+  input: (base: any) => ({ ...base, color: 'white' }),
+  placeholder: (base: any) => ({ ...base, color: 'rgba(255, 255, 255, 0.4)' }),
+  menuList: (base: any) => ({ ...base, padding: '4px' }),
+};
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function toggleItem<T>(arr: T[], item: T): T[] {
+  return arr.includes(item) ? arr.filter((i) => i !== item) : [...arr, item];
+}
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export function PartnershipForm() {
   const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState<PartnershipFormData>(initialFormData);
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [expOpen, setExpOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Dynamic regional defaults
   const [regionDefaults, setRegionDefaults] = useState({
     name: 'John Doe',
     email: 'john@example.com',
     phone: '+1 (555) 000-0000',
-    location: 'New York, USA',
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if (tz.includes('Dubai') || tz.includes('Riyadh') || tz.includes('Qatar') || tz.includes('Kuwait') || tz.includes('Asia/Muscat') || tz.includes('Asia/Bahrain') || tz.includes('Asia/Amman') || tz.includes('Africa/Cairo')) {
-        setRegionDefaults({ name: 'Ahmed Al-Mansoori', email: 'ahmed@example.com', phone: '+971 50 123 4567', location: 'Dubai, UAE' });
-      } else if (tz.includes('Europe') || tz.includes('London') || tz.includes('Paris') || tz.includes('Berlin')) {
-        setRegionDefaults({ name: 'Lucas Müller', email: 'lucas@example.com', phone: '+44 7911 123456', location: 'London, UK' });
+      if (
+        tz.includes('Dubai') || tz.includes('Riyadh') || tz.includes('Qatar') ||
+        tz.includes('Kuwait') || tz.includes('Asia/Muscat') || tz.includes('Asia/Bahrain') ||
+        tz.includes('Asia/Amman') || tz.includes('Africa/Cairo')
+      ) {
+        setRegionDefaults({ name: 'Ahmed Al-Mansoori', email: 'ahmed@example.com', phone: '+971 50 123 4567' });
+      } else if (
+        tz.includes('Europe') || tz.includes('London') || tz.includes('Paris') || tz.includes('Berlin')
+      ) {
+        setRegionDefaults({ name: 'Lucas Müller', email: 'lucas@example.com', phone: '+44 7911 123456' });
       } else if (tz.includes('Australia') || tz.includes('Sydney')) {
-        setRegionDefaults({ name: 'Jack Smith', email: 'jack@example.com', phone: '+61 400 000 000', location: 'Sydney, Australia' });
-      } else if (tz.includes('America') || tz.includes('New_York') || tz.includes('Los_Angeles')) {
-        setRegionDefaults({ name: 'John Doe', email: 'john@example.com', phone: '+1 (555) 000-0000', location: 'New York, USA' });
+        setRegionDefaults({ name: 'Jack Smith', email: 'jack@example.com', phone: '+61 400 000 000' });
       }
-    } catch (e) {
-      // Keep defaults
+    } catch (_) {
+      // keep defaults
     }
   }, []);
 
-  const [formData, setFormData] = useState<PartnershipFormData>(initialFormData);
-  const [error, setError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
+  // ─── Validation ─────────────────────────────────────────────────────────────
 
   const handleNext = () => {
-    // Basic validation
-    if (step === 1) {
-      if (!formData.name || !formData.email || !formData.phone || !formData.location || !formData.languages) {
-        setError('Please fill in all fields to continue.');
-        return;
-      }
-    } else if (step === 2) {
-      if (!formData.role || !formData.targetAudience || !formData.experienceYears) {
-        setError('Please complete all fields to continue.');
-        return;
-      }
-    }
     setError('');
+
+    if (step === 1) {
+      if (!formData.name.trim()) { setError('Please enter your full name.'); return; }
+      if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
+        setError('Please enter a valid email address.'); return;
+      }
+      if (!formData.phone.trim()) { setError('Please enter your WhatsApp / phone number.'); return; }
+      if (!formData.country) { setError('Please select your country.'); return; }
+      if (formData.languages.length === 0) { setError('Please select at least one language.'); return; }
+    }
+
+    if (step === 2) {
+      if (!formData.role) { setError('Please select what describes you best.'); return; }
+      if (formData.role === 'Other' && !formData.roleOther.trim()) {
+        setError('Please tell us what your role is.'); return;
+      }
+      if (formData.targetAudience.length === 0) {
+        setError('Please select at least one audience type.'); return;
+      }
+      if (formData.targetAudience.includes('Other') && !formData.audienceOther.trim()) {
+        setError('Please describe the other audience type you work with.'); return;
+      }
+      if (!formData.experienceYears) { setError('Please select your years of experience.'); return; }
+    }
+
     setStep((s) => s + 1);
   };
 
@@ -107,63 +198,97 @@ export function PartnershipForm() {
     setStep((s) => s - 1);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.portfolioLink || !formData.bestPieces || !formData.hasPayingClients || !formData.hasSoldService) {
-      setError('Please answer all required questions to complete your application.');
-      return;
-    }
-
-    if (formData.hasSoldService === 'Yes' && !formData.soldServiceExplanation) {
-      setError('Please provide a brief explanation of the service you sold or the client you closed.');
-      return;
-    }
-
+  const handleSubmit = async () => {
     setError('');
+
+    if (!formData.portfolioLink.trim()) { setError('Please provide a link to your portfolio or Instagram.'); return; }
+    if (!formData.bestPieces.trim()) { setError('Please share 2–3 links to your best work.'); return; }
+    if (!formData.hasPayingClients) { setError('Please answer whether you currently work with paying clients.'); return; }
+    if (!formData.hasHighTicketExperience) {
+      setError('Please answer whether you have high-ticket deal closing experience.'); return;
+    }
+    if (formData.hasHighTicketExperience === 'Yes' && !formData.highTicketExplanation.trim()) {
+      setError('Please provide a brief explanation of your high-ticket experience.'); return;
+    }
+
     setIsSubmitting(true);
 
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      location: formData.city ? `${formData.city}, ${formData.country}` : formData.country,
+      languages: formData.languages.join(', '),
+      role: formData.role === 'Other' ? formData.roleOther : formData.role,
+      target_audience: formData.targetAudience
+        .map((a) => (a === 'Other' ? formData.audienceOther : a))
+        .join(', '),
+      experience_years: formData.experienceYears,
+      portfolio_link: formData.portfolioLink,
+      best_pieces: formData.bestPieces,
+      client_accounts: formData.clientAccounts,
+      has_paying_clients: formData.hasPayingClients === 'Yes',
+      has_sold_service: formData.hasHighTicketExperience === 'Yes',
+      sold_service_explanation: formData.highTicketExplanation,
+    };
+
     try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        location: formData.location,
-        languages: formData.languages,
-        role: formData.role,
-        target_audience: formData.targetAudience,
-        experience_years: formData.experienceYears,
-        portfolio_link: formData.portfolioLink,
-        best_pieces: formData.bestPieces,
-        client_accounts: formData.clientAccounts,
-        has_paying_clients: formData.hasPayingClients === 'Yes',
-        has_sold_service: formData.hasSoldService === 'Yes',
-        sold_service_explanation: formData.soldServiceExplanation,
-      };
+      const response = await fetch(
+        'https://izqogaohvqdlwcxokzvv.supabase.co/functions/v1/receive-partnership-webhook',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-webhook-secret': '920ce2bc0e4aed1271fe5708580bdb89b1230990167660a83fc08bc5355b8664',
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
-      // We'll use a new edge function endpoint name for partnerships
-      const response = await fetch('https://izqogaohvqdlwcxokzvv.supabase.co/functions/v1/receive-partnership-webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-webhook-secret': '920ce2bc0e4aed1271fe5708580bdb89b1230990167660a83fc08bc5355b8664',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit application. Please try again.');
-      }
+      if (!response.ok) throw new Error('Submission failed');
+      navigate('/application-received');
     } catch (err) {
-      console.error('Submission error:', err);
-      // Even if webhook fails, we'll navigate them for now or show error based on requirements.
-      // Let's make it show the error so the backend can be updated first.
-      setError('An error occurred submitting the form. (The backend edge function needs to be updated to receive these fields).');
+      console.error(err);
+      setError('Something went wrong. Please try again or contact us directly.');
       setIsSubmitting(false);
-      return;
     }
-
-    navigate('/application-received');
   };
+
+  // ─── Pill Button ─────────────────────────────────────────────────────────────
+
+  const PillButton = ({
+    label,
+    selected,
+    onClick,
+    accent = 'purple',
+  }: {
+    label: string;
+    selected: boolean;
+    onClick: () => void;
+    accent?: 'purple' | 'pink';
+  }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-200 flex items-center gap-2 ${
+        selected
+          ? accent === 'purple'
+            ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.2)]'
+            : 'border-[#fbe9ff]/50 bg-[#fbe9ff]/10 text-white shadow-[0_0_20px_rgba(251,233,255,0.15)]'
+          : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+      }`}
+    >
+      {selected && <Check className="w-3.5 h-3.5 shrink-0" />}
+      {label}
+    </button>
+  );
+
+  // ─── Input className ─────────────────────────────────────────────────────────
+
+  const inputCls =
+    'w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/30';
+
+  // ─── Render ──────────────────────────────────────────────────────────────────
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -184,20 +309,26 @@ export function PartnershipForm() {
         </div>
       </div>
 
-      {/* Form Card */}
-      <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl relative overflow-hidden shadow-2xl">
-        {error && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 text-sm"
-          >
-            <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
-            <p>{error}</p>
-          </motion.div>
-        )}
+      {/* Card */}
+      <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl">
+        {/* Error */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              key="error"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 text-sm"
+            >
+              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+              <p>{error}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence mode="wait">
+          {/* ─── STEP 1: About You ────────────────────────────────────────────── */}
           {step === 1 && (
             <motion.div
               key="step1"
@@ -208,65 +339,94 @@ export function PartnershipForm() {
               className="space-y-6"
             >
               <h2 className="text-2xl font-bold mb-6">Let's get to know you</h2>
-              
+
+              {/* Name */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/70">Name *</label>
+                <label className="text-sm font-medium text-white/70">Full Name *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
+                  className={inputCls}
                   placeholder={regionDefaults.name}
                 />
               </div>
 
+              {/* Email */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/70">Email Address *</label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
+                  className={inputCls}
                   placeholder={regionDefaults.email}
                 />
               </div>
 
+              {/* Phone */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/70">WhatsApp / Phone Number *</label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
+                  className={inputCls}
                   placeholder={regionDefaults.phone}
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Country + City */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">City / Country *</label>
-                  <input
-                    type="text"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                    placeholder={regionDefaults.location}
+                  <label className="text-sm font-medium text-white/70">Country *</label>
+                  <Select
+                    options={ALL_COUNTRIES}
+                    value={ALL_COUNTRIES.find((c) => c.value === formData.country) || null}
+                    onChange={(opt) => setFormData({ ...formData, country: opt?.value || '' })}
+                    placeholder="Search countries..."
+                    styles={customSelectStyles}
+                    className="text-sm text-left font-sans"
+                    classNamePrefix="react-select"
+                    isSearchable
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">Languages *</label>
+                  <label className="text-sm font-medium text-white/70">City <span className="text-white/30">(optional)</span></label>
                   <input
                     type="text"
-                    value={formData.languages}
-                    onChange={(e) => setFormData({ ...formData, languages: e.target.value })}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                    placeholder="English, Arabic..."
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    className={inputCls}
+                    placeholder="e.g. Dubai"
                   />
+                </div>
+              </div>
+
+              {/* Languages multi-select */}
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-white/70">
+                  Languages you work in *
+                  <span className="ml-2 text-white/30 font-normal text-xs">Select all that apply</span>
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {LANGUAGES.map((lang) => (
+                    <PillButton
+                      key={lang}
+                      label={lang}
+                      selected={formData.languages.includes(lang)}
+                      onClick={() =>
+                        setFormData({ ...formData, languages: toggleItem(formData.languages, lang) })
+                      }
+                      accent="purple"
+                    />
+                  ))}
                 </div>
               </div>
             </motion.div>
           )}
 
+          {/* ─── STEP 2: Expertise ────────────────────────────────────────────── */}
           {step === 2 && (
             <motion.div
               key="step2"
@@ -278,59 +438,149 @@ export function PartnershipForm() {
             >
               <h2 className="text-2xl font-bold mb-6">Tell us about your expertise</h2>
 
+              {/* Role single-select */}
               <div className="space-y-3">
                 <label className="text-sm font-medium text-white/70">What describes you best? *</label>
                 <div className="flex flex-wrap gap-3">
-                  {ROLES.map(role => (
-                    <button
+                  {ROLES.map((role) => (
+                    <PillButton
                       key={role}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, role: role })}
-                      className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-200 ${
-                        formData.role === role 
-                          ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.2)]'
-                          : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {role}
-                    </button>
+                      label={role}
+                      selected={formData.role === role}
+                      onClick={() => setFormData({ ...formData, role, roleOther: '' })}
+                      accent="purple"
+                    />
                   ))}
                 </div>
+                <AnimatePresence>
+                  {formData.role === 'Other' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pt-2"
+                    >
+                      <input
+                        type="text"
+                        value={formData.roleOther}
+                        onChange={(e) => setFormData({ ...formData, roleOther: e.target.value })}
+                        className={inputCls}
+                        placeholder="Please describe your role…"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
+              {/* Target Audience multi-select */}
               <div className="space-y-3">
-                <label className="text-sm font-medium text-white/70">Who do you primarily work with? *</label>
+                <label className="text-sm font-medium text-white/70">
+                  Who do you primarily work with? *
+                  <span className="ml-2 text-white/30 font-normal text-xs">Select all that apply</span>
+                </label>
                 <div className="flex flex-wrap gap-3">
-                  {TARGET_AUDIENCES.map(audience => (
-                    <button
+                  {TARGET_AUDIENCES.map((audience) => (
+                    <PillButton
                       key={audience}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, targetAudience: audience })}
-                      className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-200 ${
-                        formData.targetAudience === audience 
-                          ? 'border-[#fbe9ff]/50 bg-[#fbe9ff]/10 text-white shadow-[0_0_20px_rgba(251,233,255,0.15)]'
-                          : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {audience}
-                    </button>
+                      label={audience}
+                      selected={formData.targetAudience.includes(audience)}
+                      onClick={() =>
+                        setFormData({
+                          ...formData,
+                          targetAudience: toggleItem(formData.targetAudience, audience),
+                          ...(audience === 'Other' &&
+                            formData.targetAudience.includes('Other') && { audienceOther: '' }),
+                        })
+                      }
+                      accent="pink"
+                    />
                   ))}
                 </div>
+                <AnimatePresence>
+                  {formData.targetAudience.includes('Other') && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pt-2"
+                    >
+                      <input
+                        type="text"
+                        value={formData.audienceOther}
+                        onChange={(e) => setFormData({ ...formData, audienceOther: e.target.value })}
+                        className={inputCls}
+                        placeholder="Describe the audience you work with…"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
+              {/* Experience Years dropdown */}
               <div className="space-y-3">
-                <label className="text-sm font-medium text-white/70">How many years have you been working in content or media? *</label>
-                <input
-                  type="text"
-                  value={formData.experienceYears}
-                  onChange={(e) => setFormData({ ...formData, experienceYears: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="e.g. 5 years"
-                />
+                <label className="text-sm font-medium text-white/70">
+                  How many years have you been working in content or media? *
+                </label>
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setExpOpen((o) => !o)}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border text-sm transition-all ${
+                      formData.experienceYears
+                        ? 'border-white/20 bg-black/30 text-white'
+                        : 'border-white/10 bg-black/20 text-white/40'
+                    }`}
+                  >
+                    <span>
+                      {EXPERIENCE_OPTIONS.find((o) => o.value === formData.experienceYears)?.label ||
+                        'Select experience range…'}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${expOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {expOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute top-full mt-1 left-0 right-0 z-50 bg-[#1a1829] border border-white/10 rounded-xl overflow-hidden shadow-2xl"
+                      >
+                        {EXPERIENCE_OPTIONS.map((opt) => (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            onClick={() => {
+                              setFormData({ ...formData, experienceYears: opt.value });
+                              setExpOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-3 text-sm transition-colors ${
+                              formData.experienceYears === opt.value
+                                ? 'bg-purple-500/20 text-[#fbe9ff]'
+                                : 'text-white/80 hover:bg-white/10'
+                            }`}
+                          >
+                            <span className="flex items-center gap-2">
+                              {formData.experienceYears === opt.value && (
+                                <Check className="w-3.5 h-3.5 text-purple-400" />
+                              )}
+                              {opt.label}
+                            </span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </motion.div>
           )}
 
+          {/* ─── STEP 3: Work & Experience ───────────────────────────────────── */}
           {step === 3 && (
             <motion.div
               key="step3"
@@ -340,51 +590,58 @@ export function PartnershipForm() {
               transition={{ duration: 0.3 }}
               className="space-y-8"
             >
-              <h2 className="text-2xl font-bold mb-6">Your Work & Experience</h2>
+              <h2 className="text-2xl font-bold mb-6">Your Work &amp; Experience</h2>
 
-              <div className="space-y-3">
+              {/* Portfolio */}
+              <div className="space-y-2">
                 <label className="text-sm font-medium text-white/70">Link to your portfolio / Instagram *</label>
                 <input
                   type="url"
                   value={formData.portfolioLink}
                   onChange={(e) => setFormData({ ...formData, portfolioLink: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/20"
-                  placeholder="https://"
+                  className={inputCls}
+                  placeholder="https://instagram.com/yourhandle"
                 />
               </div>
 
-              <div className="space-y-3">
+              {/* Best pieces */}
+              <div className="space-y-2">
                 <label className="text-sm font-medium text-white/70">2–3 best pieces of work (links) *</label>
                 <textarea
                   value={formData.bestPieces}
                   onChange={(e) => setFormData({ ...formData, bestPieces: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all min-h-[100px] resize-none"
-                  placeholder="Paste links here..."
+                  className={`${inputCls} min-h-[100px] resize-none`}
+                  placeholder="Paste one link per line…"
                 />
               </div>
 
-              <div className="space-y-3">
-                <label className="text-sm font-medium text-white/70">Any client accounts you’ve managed or contributed to</label>
+              {/* Client accounts */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/70">
+                  Client accounts you've managed or contributed to
+                  <span className="ml-1 text-white/30 font-normal">(optional)</span>
+                </label>
                 <textarea
                   value={formData.clientAccounts}
                   onChange={(e) => setFormData({ ...formData, clientAccounts: e.target.value })}
-                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all min-h-[80px] resize-none"
-                  placeholder="Share accounts or handles..."
+                  className={`${inputCls} min-h-[80px] resize-none`}
+                  placeholder="Share account names or handles…"
                 />
               </div>
 
+              {/* Has paying clients */}
               <div className="space-y-3">
-                <label className="text-sm font-medium text-white/70 leading-snug block">
+                <label className="text-sm font-medium text-white/70 block">
                   Do you currently work with paying clients? *
                 </label>
                 <div className="flex gap-4">
-                  {['Yes', 'No'].map(opt => (
+                  {['Yes', 'No'].map((opt) => (
                     <button
                       key={opt}
                       type="button"
                       onClick={() => setFormData({ ...formData, hasPayingClients: opt })}
                       className={`flex-1 py-4 rounded-xl border text-base font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                        formData.hasPayingClients === opt 
+                        formData.hasPayingClients === opt
                           ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.2)]'
                           : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                       }`}
@@ -396,45 +653,57 @@ export function PartnershipForm() {
                 </div>
               </div>
 
+              {/* High-ticket experience */}
               <div className="space-y-3">
                 <label className="text-sm font-medium text-white/70 leading-snug block">
-                  Have you ever sold a service or closed a client? *
+                  Do you have experience closing high-ticket deals ($10k+)? *
                 </label>
                 <div className="flex gap-4">
-                  {['Yes', 'No'].map(opt => (
+                  {['Yes', 'No'].map((opt) => (
                     <button
                       key={opt}
                       type="button"
-                      onClick={() => setFormData({ ...formData, hasSoldService: opt })}
+                      onClick={() =>
+                        setFormData({
+                          ...formData,
+                          hasHighTicketExperience: opt,
+                          ...(opt === 'No' && { highTicketExplanation: '' }),
+                        })
+                      }
                       className={`flex-1 py-4 rounded-xl border text-base font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
-                        formData.hasSoldService === opt 
+                        formData.hasHighTicketExperience === opt
                           ? 'border-[#fbe9ff]/50 bg-[#fbe9ff]/10 text-white shadow-[0_0_20px_rgba(251,233,255,0.15)]'
                           : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                       }`}
                     >
-                      {formData.hasSoldService === opt && <Check className="w-4 h-4" />}
+                      {formData.hasHighTicketExperience === opt && <Check className="w-4 h-4" />}
                       {opt}
                     </button>
                   ))}
                 </div>
+
+                <AnimatePresence>
+                  {formData.hasHighTicketExperience === 'Yes' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pt-2 space-y-2"
+                    >
+                      <label className="text-sm font-medium text-white/60">Tell us more *</label>
+                      <textarea
+                        value={formData.highTicketExplanation}
+                        onChange={(e) =>
+                          setFormData({ ...formData, highTicketExplanation: e.target.value })
+                        }
+                        className={`${inputCls} min-h-[80px] resize-none`}
+                        placeholder="Describe the deal — context, size, and your role in closing it…"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-
-              {formData.hasSoldService === 'Yes' && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="space-y-3"
-                >
-                  <label className="text-sm font-medium text-white/70">Brief explanation *</label>
-                  <textarea
-                    value={formData.soldServiceExplanation}
-                    onChange={(e) => setFormData({ ...formData, soldServiceExplanation: e.target.value })}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all min-h-[80px] resize-none"
-                    placeholder="Tell us about the service you sold or the client you closed..."
-                  />
-                </motion.div>
-              )}
-
             </motion.div>
           )}
         </AnimatePresence>
@@ -451,7 +720,9 @@ export function PartnershipForm() {
               <ChevronLeft className="w-4 h-4" />
               Back
             </button>
-          ) : <div></div>}
+          ) : (
+            <div />
+          )}
 
           {step < 3 ? (
             <button
@@ -469,7 +740,7 @@ export function PartnershipForm() {
               disabled={isSubmitting}
               className="flex items-center gap-2 bg-white text-black px-8 py-2.5 rounded-full font-bold hover:bg-[#fbe9ff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed cta-shine-light"
             >
-              {isSubmitting ? 'Submitting...' : 'Submit Application'}
+              {isSubmitting ? 'Submitting…' : 'Submit Application'}
             </button>
           )}
         </div>
