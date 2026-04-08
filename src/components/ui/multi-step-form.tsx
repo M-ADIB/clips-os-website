@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router';
-import { ChevronRight, ChevronLeft, Check, AlertCircle, X } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, AlertCircle, X, Loader2 } from 'lucide-react';
 import Select from 'react-select';
 import { getNames } from 'country-list';
 
@@ -132,6 +132,7 @@ export function MultiStepForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
   const [calendarUrl, setCalendarUrl] = useState<string | null>(null);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [regionDefaults, setRegionDefaults] = useState({
     firstName: 'John',
     lastName: 'Doe',
@@ -188,8 +189,27 @@ export function MultiStepForm() {
     setStep((s) => s - 1);
   };
 
+  const openCalendarModal = () => {
+    const { country } = formData;
+    const euCountries = ['United Kingdom', 'Germany', 'Netherlands', 'France', 'Europe (Other)'];
+    
+    if (country === 'Australia') {
+      setCalendarUrl('https://calendly.com/shafay-theclips/discovery-call?embed_domain=localhost&embed_type=Inline');
+    } else if (euCountries.includes(country)) {
+      setCalendarUrl('https://calendly.com/j-hamdan/45min-discovery-call?embed_domain=localhost&embed_type=Inline');
+    } else {
+      setCalendarUrl('https://calendly.com/the-clipsagency/30min?embed_domain=localhost&embed_type=Inline');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (hasSubmitted) {
+      openCalendarModal();
+      return;
+    }
+
     if (!formData.goal || !formData.obstacle || !formData.willShowUp) {
       setError('Please answer all questions to complete your application.');
       return;
@@ -240,18 +260,14 @@ export function MultiStepForm() {
     }
 
     // Routing Logic based on location
-    const { country } = formData;
-    const euCountries = ['United Kingdom', 'Germany', 'Netherlands', 'France', 'Europe (Other)'];
+    setIsSubmitting(false);
+    setHasSubmitted(true);
     const isQualified = formData.incomeRange !== 'Less than $5k /mo';
     
     if (!isQualified) {
       navigate('/application-received');
-    } else if (country === 'Australia') {
-      setCalendarUrl('https://calendly.com/shafay-theclips/discovery-call?embed_domain=localhost&embed_type=Inline');
-    } else if (euCountries.includes(country)) {
-      setCalendarUrl('https://calendly.com/j-hamdan/45min-discovery-call?embed_domain=localhost&embed_type=Inline');
     } else {
-      setCalendarUrl('https://calendly.com/the-clipsagency/30min?embed_domain=localhost&embed_type=Inline');
+      openCalendarModal();
     }
   };
 
@@ -533,11 +549,20 @@ export function MultiStepForm() {
           ) : (
             <button
               type="button"
-              onClick={handleSubmit}
+              onClick={hasSubmitted ? openCalendarModal : handleSubmit}
               disabled={isSubmitting}
               className="flex items-center gap-2 bg-white text-black px-8 py-2.5 rounded-full font-bold hover:bg-[#fbe9ff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed cta-shine-light"
             >
-              {isSubmitting ? 'Submitting...' : 'Next: Book a Call'}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Submitting...
+                </>
+              ) : hasSubmitted ? (
+                'Open Booking Calendar'
+              ) : (
+                'Next: Book a Call'
+              )}
             </button>
           )}
         </div>
