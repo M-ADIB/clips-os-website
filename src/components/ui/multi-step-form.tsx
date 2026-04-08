@@ -131,6 +131,7 @@ export function MultiStepForm() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const [calendarUrl, setCalendarUrl] = useState<string | null>(null);
   const [regionDefaults, setRegionDefaults] = useState({
     firstName: 'John',
     lastName: 'Doe',
@@ -246,11 +247,11 @@ export function MultiStepForm() {
     if (!isQualified) {
       navigate('/application-received');
     } else if (country === 'Australia') {
-      navigate('/book-a-call-aus');
+      setCalendarUrl('https://calendly.com/shafay-theclips/discovery-call?embed_domain=localhost&embed_type=Inline');
     } else if (euCountries.includes(country)) {
-      navigate('/book-a-call-eu');
+      setCalendarUrl('https://calendly.com/j-hamdan/45min-discovery-call?embed_domain=localhost&embed_type=Inline');
     } else {
-      navigate('/book-a-call');
+      setCalendarUrl('https://calendly.com/the-clipsagency/30min?embed_domain=localhost&embed_type=Inline');
     }
   };
 
@@ -536,7 +537,7 @@ export function MultiStepForm() {
               disabled={isSubmitting}
               className="flex items-center gap-2 bg-white text-black px-8 py-2.5 rounded-full font-bold hover:bg-[#fbe9ff] transition-colors disabled:opacity-50 disabled:cursor-not-allowed cta-shine-light"
             >
-              {isSubmitting ? 'Submitting...' : 'Submit Application'}
+              {isSubmitting ? 'Submitting...' : 'Next: Book a Call'}
             </button>
           )}
         </div>
@@ -583,9 +584,49 @@ export function MultiStepForm() {
                     }}
                     className="w-full py-3 rounded-xl bg-white text-black font-bold hover:bg-[#fbe9ff] transition-colors text-sm"
                   >
-                    I understand, I will change my selection
+                    Close
                   </button>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Calendly Booking Modal */}
+      <AnimatePresence>
+        {calendarUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl w-full max-w-5xl h-[85vh] sm:h-[90vh] overflow-hidden relative shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between p-4 border-b">
+                <h3 className="text-xl font-bold text-gray-900">Step 2: Book Your Call</h3>
+                <button
+                  onClick={() => setCalendarUrl(null)}
+                  className="w-10 h-10 bg-gray-100 hover:bg-gray-200 text-black rounded-full flex items-center justify-center transition-colors shadow-sm"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex-1 w-full bg-white relative">
+                <iframe
+                  src={calendarUrl}
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  title="Schedule a call"
+                  className="absolute inset-0 w-full h-full"
+                />
               </div>
             </motion.div>
           </motion.div>
