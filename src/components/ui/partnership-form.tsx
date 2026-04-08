@@ -14,6 +14,7 @@ type PartnershipFormData = {
   country: string;
   city: string;
   languages: string[];
+  languageOther: string;
   role: string;
   roleOther: string;
   targetAudience: string[];
@@ -34,6 +35,7 @@ const initialFormData: PartnershipFormData = {
   country: '',
   city: '',
   languages: [],
+  languageOther: '',
   role: '',
   roleOther: '',
   targetAudience: [],
@@ -174,6 +176,9 @@ export function PartnershipForm() {
       if (!formData.phone.trim()) { setError('Please enter your WhatsApp / phone number.'); return; }
       if (!formData.country) { setError('Please select your country.'); return; }
       if (formData.languages.length === 0) { setError('Please select at least one language.'); return; }
+      if (formData.languages.includes('Other') && !formData.languageOther.trim()) {
+        setError('Please describe the other language you work in.'); return;
+      }
     }
 
     if (step === 2) {
@@ -218,7 +223,9 @@ export function PartnershipForm() {
       email: formData.email,
       phone: formData.phone,
       location: formData.city ? `${formData.city}, ${formData.country}` : formData.country,
-      languages: formData.languages.join(', '),
+      languages: formData.languages
+        .map((l) => (l === 'Other' ? formData.languageOther : l))
+        .join(', '),
       role: formData.role === 'Other' ? formData.roleOther : formData.role,
       target_audience: formData.targetAudience
         .map((a) => (a === 'Other' ? formData.audienceOther : a))
@@ -416,12 +423,36 @@ export function PartnershipForm() {
                       label={lang}
                       selected={formData.languages.includes(lang)}
                       onClick={() =>
-                        setFormData({ ...formData, languages: toggleItem(formData.languages, lang) })
+                        setFormData({
+                          ...formData,
+                          languages: toggleItem(formData.languages, lang),
+                          ...(lang === 'Other' &&
+                            formData.languages.includes('Other') && { languageOther: '' }),
+                        })
                       }
                       accent="purple"
                     />
                   ))}
                 </div>
+                <AnimatePresence>
+                  {formData.languages.includes('Other') && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pt-2"
+                    >
+                      <input
+                        type="text"
+                        value={formData.languageOther}
+                        onChange={(e) => setFormData({ ...formData, languageOther: e.target.value })}
+                        className={inputCls}
+                        placeholder="Please describe the other language…"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           )}

@@ -10,7 +10,7 @@ export default function PartnershipPage() {
             Apply For Partnership
           </h1>
           <p className="text-lg text-white/70 max-w-xl mx-auto">
-            Fill in the form below and we'll get back to you within 24 hours.
+            Fill in the form below so we can learn more about you.
           </p>
         </div>
 
