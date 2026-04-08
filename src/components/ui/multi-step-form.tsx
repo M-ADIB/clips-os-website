@@ -12,8 +12,11 @@ type FormData = {
   phone: string;
   username: string;
   country: string;
-  contentLanguage: string;
-  businessType: string;
+  city: string;
+  contentLanguages: string[];
+  contentLanguageOther: string;
+  businessTypes: string[];
+  businessTypeOther: string;
   incomeRange: string;
   goal: string;
   obstacle: string;
@@ -27,8 +30,11 @@ const initialFormData: FormData = {
   phone: '',
   username: '',
   country: '',
-  contentLanguage: '',
-  businessType: '',
+  city: '',
+  contentLanguages: [],
+  contentLanguageOther: '',
+  businessTypes: [],
+  businessTypeOther: '',
   incomeRange: '',
   goal: '',
   obstacle: '',
@@ -125,6 +131,10 @@ const INCOME_RANGES = [
   'More than $10k /mo',
 ];
 
+function toggleItem<T>(arr: T[], item: T): T[] {
+  return arr.includes(item) ? arr.filter((i) => i !== item) : [...arr, item];
+}
+
 export function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -157,7 +167,7 @@ export function MultiStepForm() {
   }, []);
 
   const isEuropean = EUROPEAN_COUNTRIES.includes(formData.country);
-  const needsLanguageCheck = isEuropean && formData.contentLanguage && formData.contentLanguage !== 'English' && formData.contentLanguage !== 'Arabic';
+  const needsLanguageCheck = isEuropean && formData.contentLanguages.length > 0 && formData.contentLanguages.some(lang => lang !== 'English' && lang !== 'Arabic');
 
   const handleNext = () => {
     // Basic validation
@@ -167,12 +177,20 @@ export function MultiStepForm() {
         return;
       }
     } else if (step === 2) {
-      if (!formData.country || !formData.businessType || !formData.incomeRange) {
-        setError('Please select all options to continue.');
+      if (!formData.country || formData.businessTypes.length === 0 || !formData.incomeRange) {
+        setError('Please select all required options to continue.');
         return;
       }
-      if (isEuropean && !formData.contentLanguage) {
+      if (formData.businessTypes.includes('Other') && !formData.businessTypeOther.trim()) {
+        setError('Please describe your business type.');
+        return;
+      }
+      if (isEuropean && formData.contentLanguages.length === 0) {
         setError('Please select what language your content will be in.');
+        return;
+      }
+      if (isEuropean && formData.contentLanguages.includes('Other') && !formData.contentLanguageOther.trim()) {
+        setError('Please describe the other language you will use.');
         return;
       }
       if (needsLanguageCheck) {
@@ -231,8 +249,9 @@ export function MultiStepForm() {
         phone: formData.phone,
         social: formData.username,
         country: formData.country,
-        content_language: formData.contentLanguage || null,
-        business_type: formData.businessType,
+        city: formData.city,
+        content_language: formData.contentLanguages.length ? formData.contentLanguages.map(l => l === 'Other' ? formData.contentLanguageOther : l).join(', ') : null,
+        business_type: formData.businessTypes.length ? formData.businessTypes.map(t => t === 'Other' ? formData.businessTypeOther : t).join(', ') : '',
         monthly_revenue: formData.incomeRange,
         goal: formData.goal,
         obstacle: formData.obstacle,
@@ -270,6 +289,22 @@ export function MultiStepForm() {
       openCalendarModal();
     }
   };
+
+
+  const PillButton = ({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-200 flex items-center gap-2 ${
+        selected
+          ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.2)]'
+          : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+      }`}
+    >
+      {selected && <Check className="w-3.5 h-3.5 shrink-0" />}
+      {label}
+    </button>
+  );
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -384,19 +419,31 @@ export function MultiStepForm() {
             >
               <h2 className="text-2xl font-bold mb-6">Tell us about your business</h2>
 
-              <div className="space-y-3" style={{ zIndex: 100 }}>
-                <label className="text-sm font-medium text-white/70">Where are you based? *</label>
-                <Select
-                  options={ALL_COUNTRIES}
-                  value={ALL_COUNTRIES.find(c => c.value === formData.country) || null}
-                  onChange={(option) => setFormData({ ...formData, country: option?.value || '', contentLanguage: '' })}
-                  placeholder="Search countries..."
-                  styles={customSelectStyles}
-                  className="text-sm text-left font-sans"
-                  classNamePrefix="react-select"
-                  isSearchable={true}
-                  name="country"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{ zIndex: 100 }}>
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-white/70">Where are you based? *</label>
+                  <Select
+                    options={ALL_COUNTRIES}
+                    value={ALL_COUNTRIES.find(c => c.value === formData.country) || null}
+                    onChange={(option) => setFormData({ ...formData, country: option?.value || '', contentLanguages: [] })}
+                    placeholder="Search countries..."
+                    styles={customSelectStyles}
+                    className="text-sm text-left font-sans"
+                    classNamePrefix="react-select"
+                    isSearchable={true}
+                    name="country"
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-white/70">City <span className="text-white/30">(optional)</span></label>
+                  <input
+                    type="text"
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/30"
+                    placeholder="e.g. Dubai"
+                  />
+                </div>
               </div>
 
               {/* Dynamic Content Language Field for European Countries */}
@@ -409,39 +456,67 @@ export function MultiStepForm() {
                     transition={{ duration: 0.3 }}
                     className="space-y-3 overflow-hidden"
                   >
-                    <label className="text-sm font-medium text-white/70">What language will your content be in? *</label>
-                    <select
-                      value={formData.contentLanguage}
-                      onChange={(e) => setFormData({ ...formData, contentLanguage: e.target.value })}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all appearance-none cursor-pointer"
-                    >
-                      <option value="" disabled className="text-black">Select a language...</option>
+                    <label className="text-sm font-medium text-white/70">What language will your content be in? *
+                      <span className="ml-2 text-white/30 font-normal text-xs">Select all that apply</span>
+                    </label>
+                    <div className="flex flex-wrap gap-2">
                       {CONTENT_LANGUAGES.map(lang => (
-                        <option key={lang} value={lang} className="text-black">{lang}</option>
+                        <PillButton
+                          key={lang}
+                          label={lang}
+                          selected={formData.contentLanguages.includes(lang)}
+                          onClick={() => setFormData({
+                            ...formData,
+                            contentLanguages: toggleItem(formData.contentLanguages, lang),
+                            ...(lang === 'Other' && formData.contentLanguages.includes('Other') && { contentLanguageOther: '' })
+                          })}
+                        />
                       ))}
-                    </select>
+                    </div>
+                    {formData.contentLanguages.includes('Other') && (
+                      <motion.input
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        type="text"
+                        value={formData.contentLanguageOther}
+                        onChange={(e) => setFormData({ ...formData, contentLanguageOther: e.target.value })}
+                        placeholder="Please specify..."
+                        className="w-full mt-3 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/30 text-sm"
+                      />
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <div className="space-y-3">
-                <label className="text-sm font-medium text-white/70">What is your business? *</label>
-                <div className="flex flex-wrap gap-3">
+                <label className="text-sm font-medium text-white/70">What is your business? *
+                  <span className="ml-2 text-white/30 font-normal text-xs">Select all that apply</span>
+                </label>
+                <div className="flex flex-wrap gap-2">
                   {BUSINESS_TYPES.map(type => (
-                    <button
+                    <PillButton
                       key={type}
-                      type="button"
-                      onClick={() => setFormData({ ...formData, businessType: type })}
-                      className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-200 ${
-                        formData.businessType === type 
-                          ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.2)]'
-                          : 'border-white/10 bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {type}
-                    </button>
+                      label={type}
+                      selected={formData.businessTypes.includes(type)}
+                      onClick={() => setFormData({
+                        ...formData,
+                        businessTypes: toggleItem(formData.businessTypes, type),
+                        ...(type === 'Other' && formData.businessTypes.includes('Other') && { businessTypeOther: '' })
+                      })}
+                    />
                   ))}
                 </div>
+                {formData.businessTypes.includes('Other') && (
+                  <motion.input
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    type="text"
+                    value={formData.businessTypeOther}
+                    onChange={(e) => setFormData({ ...formData, businessTypeOther: e.target.value })}
+                    placeholder="Please specify your business type..."
+                    className="w-full mt-3 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all placeholder:text-white/30 text-sm"
+                  />
+                )}
               </div>
 
               <div className="space-y-3">
@@ -604,7 +679,7 @@ export function MultiStepForm() {
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={() => {
-                      setFormData({ ...formData, contentLanguage: '' });
+                      setFormData({ ...formData, contentLanguages: formData.contentLanguages.filter(l => l === 'English' || l === 'Arabic') });
                       setShowLanguageModal(false);
                     }}
                     className="w-full py-3 rounded-xl bg-white text-black font-bold hover:bg-[#fbe9ff] transition-colors text-sm"
