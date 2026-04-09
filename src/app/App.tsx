@@ -462,28 +462,18 @@ export default function App() {
 
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
-              <div className="flex flex-col gap-8 w-full h-auto bg-[#fbe9ff] p-8 sm:p-12 lg:p-16 rounded-[16.25px] text-[#080617] overflow-hidden relative">
-                <div className="w-full max-w-2xl">
-                   <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-6">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
+                <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
+                  <video src="/assets/demand-generation-opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover bg-black/10" />
+                </div>
+                <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                   <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
-                   <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight">Demand Generation</h3>
-                   <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-80 leading-relaxed">
+                   <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Demand Generation</h3>
+                   <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
                      Conversion-focused strategy designed to get you attention, leads, and conversations that close.
                    </p>
-                </div>
-
-                <div className="w-full max-w-[450px] mx-auto aspect-[9/16] rounded-[16.25px] overflow-hidden relative shadow-[0_10px_40px_rgba(0,0,0,0.15)] ring-1 ring-black/5">
-                  <video src="/assets/demand-generation-opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover object-bottom" />
-                  
-                  {/* Real UI Badge Overlay for views */}
-                  <div className="absolute bottom-6 left-6 z-20 px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center gap-2.5 shadow-lg">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-[14px] font-bold text-white tracking-tight">3.8M Views</span>
-                  </div>
-
-                  {/* Subtle inner shadow for premium feel */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none" />
                 </div>
               </div>
             </StaggerItem>
@@ -515,7 +505,7 @@ export default function App() {
             {[
               { step: "01", title: "STRATEGY", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
               { step: "02", title: "CAPTURE", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
-              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/Collaborate with Ease.mp4" },
+              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
               { step: "04", title: "OVERSIGHT", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
