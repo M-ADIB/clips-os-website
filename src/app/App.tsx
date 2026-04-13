@@ -454,7 +454,7 @@ export default function App() {
                    </div>
                 </div>
                 {/* Content Sprints GIF */}
-                <div className="w-full md:w-[35%] h-[380px] md:h-full bg-[#E7C1EF] rounded-[16.25px] overflow-hidden ml-auto">
+                <div className="w-full md:w-auto md:aspect-[9/16] md:h-full md:shrink-0 h-[380px] bg-[#E7C1EF] rounded-[16.25px] overflow-hidden md:ml-auto">
                   <video src="/assets/Comp_11_optimized.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -463,10 +463,10 @@ export default function App() {
             {/* Row 3 - Demand Generation */}
             <StaggerItem>
               <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-stretch h-auto md:h-[450px] bg-[#fbe9ff] md:bg-transparent p-6 sm:p-8 md:p-0 rounded-[16.25px]">
-                <div className="w-full md:w-1/2 h-[320px] sm:h-[350px] md:h-full rounded-[16.25px] md:rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
+                <div className="w-full md:w-auto md:aspect-[9/16] md:h-full md:shrink-0 h-[320px] sm:h-[350px] rounded-[16.25px] overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:shadow-none">
                   <video src="/assets/demand-generation-opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover bg-black/10" />
                 </div>
-                <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
+                <div className="w-full md:flex-1 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
                      <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
                    </div>
@@ -705,12 +705,18 @@ export default function App() {
             </StaggerItem>
           </StaggerContainer>
 
-          <FadeInOnScroll className="mt-24 sm:mt-32 md:mt-40 flex justify-center relative z-20 px-4">
+          <FadeInOnScroll className="mt-24 sm:mt-32 md:mt-40 flex flex-col sm:flex-row justify-center items-center gap-4 relative z-20 px-4">
             <Link to="/submit-form" className="inline-block relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-10 py-4.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-center whitespace-normal max-w-full">
                 Apply to become our next Case Study
               </span>
+            </Link>
+            <Link
+              to="/case-studies"
+              className="border border-white/30 text-white px-10 py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-white/10 transition-colors text-center"
+            >
+              View More Case Studies
             </Link>
           </FadeInOnScroll>
         </section>
@@ -833,7 +839,7 @@ export default function App() {
           <FadeInOnScroll>
             <div className="bg-[#fbe9ff] rounded-[24px] sm:rounded-[40px] p-10 sm:p-16 md:p-24 text-center relative overflow-hidden group shadow-[0_0_80px_rgba(251,233,255,0.05)] border border-[#fbe9ff]/20">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-black text-[#080617] mb-4 sm:mb-6 tracking-tight relative z-10 leading-[1] md:leading-[1.1]">
-                Your Content Should Be Closing Deals While You Sleep.
+                Your Content Should Be<br />Closing Deals While You Sleep.
               </h2>
               
               <p className="text-[#080617]/80 text-sm sm:text-base max-w-[600px] mx-auto mb-10 relative z-10 font-medium tracking-tight">
@@ -843,13 +849,8 @@ export default function App() {
               <div className="flex justify-center relative z-20">
                 <Link
                   to="/submit-form"
-                  className="cta-shine text-white px-10 py-4 rounded-full font-bold text-[15px] inline-block relative group"
+                  className="bg-[#080617] text-white px-10 py-4 rounded-full font-bold text-[15px] inline-block transition-opacity duration-200 hover:opacity-75"
                 >
-                  {/* Top highlight sheen */}
-                  <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-                    <span className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                    <span className="absolute top-0 left-[10%] right-[10%] h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-full" />
-                  </span>
                   Apply For Clips OS™
                 </Link>
               </div>
