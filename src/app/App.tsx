@@ -5,6 +5,10 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Marquee } from "../components/ui/marquee";
 import { HyperText } from "../components/ui/hyper-text";
 import { PulsatingButton } from "../components/ui/pulsating-button";
+import Lottie from 'lottie-react';
+import brandPresenceAnimation from '../assets/icons/brand-presence.json';
+import contentSprintsAnimation from '../assets/icons/content-sprints.json';
+import demandGenerationsAnimation from '../assets/icons/demand-generations.json';
 
 const NHGDP = '"Neue Haas Grotesk Display Pro", sans-serif';
 // Placeholder for figma:asset images — replace with real image paths/URLs:
@@ -353,12 +357,13 @@ export default function App() {
           </motion.h1>
 
           <motion.p
-            className="max-w-xl mx-auto mb-10 sm:mb-6 relative z-10 px-4 text-center text-[16px] sm:text-[20px]"
+            className="max-w-[467px] mx-auto mb-10 sm:mb-6 relative z-10 px-4 text-center"
             style={{
               fontFamily: NHGDP,
               fontWeight: 500,
+              fontSize: '20px',
               lineHeight: '112%',
-              color: 'rgba(255,255,247,0.8)',
+              color: '#FFFFFF',
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -368,18 +373,45 @@ export default function App() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-4 sm:gap-4 relative z-10 px-6 sm:px-4"
+            className="flex flex-col sm:flex-row w-full sm:w-auto items-center justify-center gap-4 relative z-10 px-6 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Link to="/submit-form" className="w-full max-w-[280px] sm:max-w-none sm:w-auto relative group">
-              <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative block text-center cta-shine-light px-6 py-4 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold">
-                Apply for ClipsOS™
-              </span>
+            <Link
+              to="/submit-form"
+              className="flex items-center justify-center hover:opacity-80 transition-opacity w-full sm:w-auto"
+              style={{
+                background: '#FBE9FF',
+                borderRadius: '9.41px',
+                padding: '11.65px 18px 10.59px',
+                fontFamily: NHGDP,
+                fontWeight: 700,
+                fontSize: '13.56px',
+                lineHeight: '100%',
+                letterSpacing: '-0.02em',
+                color: '#080617',
+                minWidth: '151px',
+              }}
+            >
+              Apply for ClipsOS™
             </Link>
-            <a href="#case-studies" className="w-full max-w-[280px] sm:max-w-none sm:w-auto text-center border border-white/30 text-white px-6 py-4 text-sm sm:text-base sm:px-8 sm:py-3.5 rounded-xl font-bold hover:bg-white/10 transition-colors">
+            <a
+              href="#case-studies"
+              className="flex items-center justify-center hover:bg-white/10 transition-colors w-full sm:w-auto"
+              style={{
+                border: '1.06px solid #FFFFFF',
+                borderRadius: '9.41px',
+                padding: '11.65px 18px 10.59px',
+                fontFamily: NHGDP,
+                fontWeight: 700,
+                fontSize: '13.56px',
+                lineHeight: '100%',
+                letterSpacing: '-0.02em',
+                color: '#FFFFFF',
+                minWidth: '151px',
+              }}
+            >
               See client results
             </a>
           </motion.div>
@@ -428,9 +460,9 @@ export default function App() {
                   <img src="/assets/art-board.webp" alt="Branded Presence" className="w-full h-full object-cover bg-black/10" />
                 </div>
                 <div className="w-full md:w-1/2 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
-                   <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
-                     <video src="/assets/Brand Presence (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
-                   </div>
+                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
+                      <Lottie animationData={brandPresenceAnimation} loop={true} className="w-full h-full" />
+                    </div>
                    <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Branded Presence</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
                      Elevate your positioning with a unique visual system and attract premium clients you actually want.
@@ -444,7 +476,7 @@ export default function App() {
               <div className="w-full bg-[#fbe9ff] rounded-[16.25px] p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-stretch gap-5 md:gap-8 relative text-[#080617] overflow-hidden h-auto md:h-[450px]">
                 <div className="w-full md:w-1/2 flex flex-col justify-between h-full">
                    <div className="w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer">
-                     <video src="/assets/Content Sprints (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                     <Lottie animationData={contentSprintsAnimation} loop={true} className="w-full h-full" />
                    </div>
                    <div className="mt-5 md:mt-auto">
                      <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Content Sprints</h3>
@@ -468,7 +500,7 @@ export default function App() {
                 </div>
                 <div className="w-full md:flex-1 bg-transparent md:bg-[#fbe9ff] rounded-none md:rounded-[16.25px] p-0 md:p-8 lg:p-12 flex flex-col justify-end relative text-[#080617] overflow-hidden min-h-0 md:h-full mt-2 md:mt-0">
                    <div className="md:absolute md:top-8 lg:top-12 md:left-8 lg:left-12 w-12 h-12 rounded-full overflow-hidden shadow-sm transition-transform duration-300 hover:scale-125 hover:rotate-6 cursor-pointer mb-4 md:mb-0">
-                     <video src="/assets/Demand Generations (1).mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                     <Lottie animationData={demandGenerationsAnimation} loop={true} className="w-full h-full" />
                    </div>
                    <h3 className="text-3xl sm:text-4xl font-black mb-3 tracking-tight">Demand Generation</h3>
                    <p className="text-base sm:text-lg font-medium opacity-80 leading-relaxed max-w-sm">
