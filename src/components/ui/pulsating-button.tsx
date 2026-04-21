@@ -13,17 +13,17 @@ export function PulsatingButton({
   containerClassName?: string;
 }) {
   const innerContent = (
-    <span className={`relative block bg-[#080617] text-[#fbe9ff] px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-lg sm:text-xl hover:bg-black transition-colors shadow-xl z-10 ${className || ""}`}>
+    <span className={`relative block cta-shine text-[#fbe9ff] px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-lg sm:text-xl z-10 ${className || ""}`}>
       {children}
     </span>
   );
 
   return (
     <div className={`relative inline-block w-fit group ${containerClassName || ""}`}>
-      {/* Outer Glow Pulse */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#080617] rounded-full animate-ping opacity-30 [animation-duration:2.5s] pointer-events-none" />
-      {/* Inner strong glow */}
-      <div className="absolute inset-[-4px] rounded-full bg-[#080617] blur-md opacity-40 group-hover:opacity-60 transition-opacity pointer-events-none z-0" />
+      {/* Outer Glow Pulse ring — now uses the accent color so it's visible */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#fbe9ff]/20 rounded-full animate-ping [animation-duration:2.5s] pointer-events-none" />
+      {/* Soft ambient glow underneath */}
+      <div className="absolute inset-[-6px] rounded-full bg-[#fbe9ff]/10 blur-xl group-hover:bg-[#fbe9ff]/20 transition-all duration-500 pointer-events-none z-0" />
       
       {to ? (
         <Link to={to} className="relative z-10 block">

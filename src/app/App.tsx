@@ -378,24 +378,26 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Link
-              to="/submit-form"
-              className="flex items-center justify-center hover:opacity-80 transition-opacity w-full sm:w-auto"
-              style={{
-                background: '#FBE9FF',
-                borderRadius: '9.41px',
-                padding: '11.65px 18px 10.59px',
-                fontFamily: NHGDP,
-                fontWeight: 700,
-                fontSize: '13.56px',
-                lineHeight: '100%',
-                letterSpacing: '-0.02em',
-                color: '#080617',
-                minWidth: '151px',
-              }}
-            >
-              Apply for ClipsOS™
-            </Link>
+            <div className="relative inline-block group w-full sm:w-auto">
+              <span className="absolute inset-0 rounded-[9.41px] bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-300 pointer-events-none" />
+              <Link
+                to="/submit-form"
+                className="relative flex items-center justify-center cta-shine-light w-full sm:w-auto"
+                style={{
+                  borderRadius: '9.41px',
+                  padding: '11.65px 18px 10.59px',
+                  fontFamily: NHGDP,
+                  fontWeight: 700,
+                  fontSize: '13.56px',
+                  lineHeight: '100%',
+                  letterSpacing: '-0.02em',
+                  color: '#080617',
+                  minWidth: '151px',
+                }}
+              >
+                Apply for ClipsOS™
+              </Link>
+            </div>
             <a
               href="#case-studies"
               className="flex items-center justify-center hover:bg-white/10 transition-colors w-full sm:w-auto"
@@ -879,12 +881,16 @@ export default function App() {
               </p>
               
               <div className="flex justify-center relative z-20">
-                <Link
-                  to="/submit-form"
-                  className="bg-[#080617] text-white px-10 py-4 rounded-full font-bold text-[15px] inline-block transition-opacity duration-200 hover:opacity-75"
-                >
-                  Apply For Clips OS™
-                </Link>
+                <div className="relative inline-block group">
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#fbe9ff]/20 rounded-full animate-ping [animation-duration:2.5s] pointer-events-none" />
+                  <span className="absolute inset-[-6px] rounded-full bg-[#fbe9ff]/10 blur-xl group-hover:bg-[#fbe9ff]/20 transition-all duration-500 pointer-events-none" />
+                  <Link
+                    to="/submit-form"
+                    className="relative cta-shine text-[#fbe9ff] px-10 py-4 rounded-full font-bold text-[15px] inline-block"
+                  >
+                    Apply For Clips OS™
+                  </Link>
+                </div>
               </div>
             </div>
           </FadeInOnScroll>
