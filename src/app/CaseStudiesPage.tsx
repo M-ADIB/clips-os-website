@@ -402,7 +402,7 @@ export default function CaseStudiesPage() {
                   { value: "40M+", label: "Views" },
                   { value: "15%", label: "", sublabel: "Increase in patient bookings" },
                 ]}
-                whatWeDid={["Started a brand new account", "Leaned in on his friendly personality and created a visual hook system", "Branded videos that made her look more credible"]}
+                whatWeDid={["Started a brand new account", "Leaned in on his friendly personality and created a visual hook system", "Branded videos that made him look more credible"]}
                 impact={["Recruited Top doctors in his clinic", "Increased Patient Flow & revenue", "Immediate Trust with patients"]}
                 thumbnails={[
                   "/assets/case-studies/medhat-before1.png", "/assets/case-studies/medhat-before2.png", "/assets/case-studies/medhat-before3.png",
