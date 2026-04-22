@@ -539,7 +539,7 @@ export default function App() {
             {[
               { step: "01", title: "STRATEGY", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
               { step: "02", title: "CAPTURE", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
-              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
+              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/new-placement.webp" },
               { step: "04", title: "OVERSIGHT", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
@@ -549,7 +549,11 @@ export default function App() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="bg-[#2d2a41] h-[240px] sm:h-[320px] p-4 relative overflow-hidden">
-                    <video src={item.gif} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
+                    {item.gif.endsWith('.webp') || item.gif.endsWith('.gif') ? (
+                      <img src={item.gif} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
+                    ) : (
+                      <video src={item.gif} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
+                    )}
                     <motion.div
                       className="bg-[#fbe9ff] w-8 h-8 rounded text-[#101010] font-bold flex items-center justify-center text-sm absolute top-4 left-4 z-10"
                       whileHover={{ scale: 1.1, rotate: 5 }}
