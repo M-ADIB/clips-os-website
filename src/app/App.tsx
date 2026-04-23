@@ -539,7 +539,7 @@ export default function App() {
             {[
               { step: "01", title: "STRATEGY", desc: "Positioning, content angles, and authority series designed to generate attention, trust, and inbound demand.", gif: "/assets/Strategy.mp4" },
               { step: "02", title: "CAPTURE", desc: "Structured filming sessions that transform expertise into 20-30 authority clips in a single session.", gif: "/assets/capture.mp4" },
-              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/new-placement.webp" },
+              { step: "03", title: "PLACEMENT", desc: "Dedicated editing and publishing workflows that structure, refine, and distribute content consistently.", gif: "/assets/placement.mp4" },
               { step: "04", title: "OVERSIGHT", desc: "Quality control, brand alignment, and performance insights that continuously improve the authority engine.", gif: "/assets/system oversight.mp4" }
             ].map((item, idx) => (
               <StaggerItem key={idx}>
@@ -593,7 +593,7 @@ export default function App() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5 }}
               >
-                <video src="/assets/Comp 15.webm" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                <img src="/assets/new-placement.webp" alt="ClipsOS Platform" className="w-full h-full object-cover" />
               </motion.div>
             </FadeInOnScroll>
           </div>
