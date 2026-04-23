@@ -74,11 +74,11 @@ export default function GlobalNav() {
               rel="noopener noreferrer"
               style={{
                 fontFamily: NHGDP,
-                fontWeight: 600,
+                fontWeight: 400,
                 fontSize: '18px',
                 lineHeight: '100%',
                 letterSpacing: '-0.02em',
-                color: '#FBE9FF',
+                color: '#FFFFFF',
               }}
               className="hover:opacity-70 transition-opacity"
             >
@@ -130,8 +130,8 @@ export default function GlobalNav() {
               href="https://app.theclips.agency"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FBE9FF] py-3 rounded-lg text-center hover:opacity-70 transition-opacity"
-              style={{ fontFamily: NHGDP, fontWeight: 600, fontSize: '16px', letterSpacing: '-0.02em' }}
+              className="text-white py-3 rounded-lg text-center hover:opacity-70 transition-opacity"
+              style={{ fontFamily: NHGDP, fontWeight: 400, fontSize: '16px', letterSpacing: '-0.02em' }}
             >
               Client Login
             </a>

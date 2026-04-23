@@ -144,36 +144,18 @@ function TestimonialCard({ name, role, videoId, isActive }: { name: string; role
        className="w-full aspect-[9/16] rounded-[16.25px] bg-black shrink-0 relative overflow-hidden border border-white/10 cursor-pointer shadow-lg group"
        onClick={() => { if (!isPlaying) setIsPlaying(true); }}
     >
-       {/* Thumbnail/background iframe — scaled up to push Vimeo's top chrome off-screen */}
-       {!isPlaying && (
-         <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 1 }}>
-           <iframe 
-             src={`https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0&dnt=1`}
-             className="absolute left-0 w-full" 
-             style={{ 
-               top: '-5%',
-               height: '110%',
-               pointerEvents: 'none'
-             }}
-             frameBorder="0" 
-             allow="autoplay"
-           />
-         </div>
-       )}
-
-       {/* Playback iframe — shown only when playing, has controls */}
-       {isPlaying && (
-         <div className="absolute inset-0" style={{ zIndex: 1 }}>
-           <iframe 
-             ref={iframeRef}
-             src={`https://player.vimeo.com/video/${videoId}?autoplay=1&muted=0&loop=1&background=0&controls=1&title=0&byline=0&portrait=0&dnt=1`}
-             className="w-full h-full" 
-             frameBorder="0" 
-             allow="autoplay; fullscreen" 
-             allowFullScreen
-           />
-         </div>
-       )}
+       {/* Video embed — always visible */}
+       <div className="absolute inset-0" style={{ zIndex: 1 }}>
+         <iframe 
+           ref={iframeRef}
+           src={`https://player.vimeo.com/video/${videoId}?autoplay=${isPlaying ? 1 : 0}&muted=${isPlaying ? 0 : 1}&loop=1&background=${isPlaying ? 0 : 1}&controls=${isPlaying ? 1 : 0}&title=0&byline=0&portrait=0`}
+           className="w-full h-[120%] -mt-[10%] scale-[1.05]" 
+           frameBorder="0" 
+           allow="autoplay; fullscreen" 
+           allowFullScreen
+           style={{ pointerEvents: isPlaying ? 'auto' : 'none' }}
+         />
+       </div>
 
        {/* Play button overlay — hidden when playing */}
        {!isPlaying && (
@@ -765,7 +747,7 @@ export default function App() {
             <Link to="/submit-form" className="inline-block relative group">
               <span className="absolute inset-0 rounded-xl bg-[#fbe9ff] blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
               <span className="relative block cta-shine-light px-10 py-4.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-center whitespace-normal max-w-full">
-                Apply Now
+                Apply to become our next Case Study
               </span>
             </Link>
             <Link
