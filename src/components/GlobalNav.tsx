@@ -8,8 +8,8 @@ const NHGDP = "'Neue Haas Grotesk Display Pro', 'NHaasGroteskDSPro-95Blk', 'Helv
 export default function GlobalNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { scrollY } = useScroll();
-  const navBgOpacity = useTransform(scrollY, [0, 100], [0.05, 0.5]);
-  const navBlur = useTransform(scrollY, [0, 100], [16, 24]);
+  const navBgOpacity = useTransform(scrollY, [0, 100], [0.02, 0.4]);
+  const navBlur = useTransform(scrollY, [0, 100], [16, 28]);
 
   return (
     <nav className="fixed w-full z-50 top-0 left-0">
@@ -52,7 +52,7 @@ export default function GlobalNav() {
               </span>
               <span
                 style={{
-                  fontFamily: "'PolySans Trial', Georgia, serif",
+                  fontFamily: NHGDP,
                   fontStyle: 'italic',
                   fontWeight: 700,
                   fontSize: '14.94px',
