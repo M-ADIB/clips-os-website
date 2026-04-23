@@ -8,17 +8,17 @@ const NHGDP = "'Neue Haas Grotesk Display Pro', 'NHaasGroteskDSPro-95Blk', 'Helv
 export default function GlobalNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { scrollY } = useScroll();
-  const navBgOpacity = useTransform(scrollY, [0, 100], [0.2, 0.85]);
-  const navBlur = useTransform(scrollY, [0, 100], [12, 20]);
+  const navBgOpacity = useTransform(scrollY, [0, 100], [0.05, 0.5]);
+  const navBlur = useTransform(scrollY, [0, 100], [16, 24]);
 
   return (
     <nav className="fixed w-full z-50 top-0 left-0">
       <div className="mx-auto max-w-[1304px] px-3 sm:px-4 mt-9">
         <motion.div
-          className="h-[85px] rounded-[23px] px-5 sm:px-6 flex items-center justify-between border border-white/5"
+          className="h-[85px] rounded-[23px] px-5 sm:px-6 flex items-center justify-between border border-white/10"
           style={{
             backgroundColor: useTransform(navBgOpacity, (v) => `rgba(45, 42, 65, ${v})`),
-            backdropFilter: useTransform(navBlur, (v) => `blur(${v}px)`),
+            backdropFilter: useTransform(navBlur, (v) => `blur(${v}px) saturate(180%)`)  ,
           }}
           initial={{ y: -60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
